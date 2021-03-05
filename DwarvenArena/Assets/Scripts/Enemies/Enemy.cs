@@ -1,5 +1,6 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 using UnityEngine.AI;
 
@@ -127,6 +128,11 @@ public class Enemy : MonoBehaviour
             return EnemyActions.ATTACK;
     }
 
+    protected virtual void FindPlayer()
+    {
+        target = PlayerController.Instance.transform;
+    }
+
     protected virtual void FindTarget()
     {
         if (target != null)
@@ -135,7 +141,17 @@ public class Enemy : MonoBehaviour
         Transform transform = null;
 
         //find player singleton OR closest structure
-
+        List<PlayerStuff> possibleTargets = FindObjectsOfType<PlayerStuff>().ToList();
+        float minDistance = Mathf.Infinity;
+        foreach(PlayerStuff target in possibleTargets)
+        {
+            float distance = Vector3.Distance(target.transform.position, transform.position);
+            if (distance < minDistance)
+            {
+                minDistance = distance;
+                transform = target.transform;
+            }
+        }
         target = transform;
     }
 

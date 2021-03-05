@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 
 [RequireComponent(typeof(PlayerMovement))]
-public class PlayerController : MonoBehaviour
+public class PlayerController : PlayerStuff
 {
     public static PlayerController Instance = null;
 
