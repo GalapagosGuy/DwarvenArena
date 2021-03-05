@@ -4,8 +4,7 @@ using UnityEngine;
 
 public class PlayerStats : MonoBehaviour
 {
-    [SerializeField]
-    private float maxHp;
+    public float maxHp { get; private set; }
     public float hp { get; private set; }
     public int money { get; private set; }
 
@@ -29,6 +28,8 @@ public class PlayerStats : MonoBehaviour
             Debug.Log("PLAYER IS DEAD");
             Destroy(this.gameObject);
         }
+
+        UIManager.Instance.UpdateUI();
     }
 
     public void HealUp(float value)
@@ -38,11 +39,15 @@ public class PlayerStats : MonoBehaviour
         {
             hp = maxHp;
         }
+        UIManager.Instance.UpdateUI();
+
     }
 
     public void AddMoney(int value)
     {
         money += value;
+        UIManager.Instance.UpdateUI();
+
     }
 
     public void SubstractMoney(int value)
@@ -50,6 +55,8 @@ public class PlayerStats : MonoBehaviour
         money -= value;
         if (money < 0)
             money = 0;
+        UIManager.Instance.UpdateUI();
+
     }
 
     public bool HasEnoughMoney(int value)
