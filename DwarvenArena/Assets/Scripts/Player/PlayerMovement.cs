@@ -32,7 +32,7 @@ public class PlayerMovement : MonoBehaviour
         if (isMoving)
             RotatePlayer(movementLR, movementFB);
 
-        characterController?.Move(movement * movementSpeed * Time.deltaTime * Mathf.Abs(movementValue));
+        characterController?.Move(movement.normalized * movementSpeed * Time.deltaTime * Mathf.Abs(movementValue));
     }
 
     private void RotatePlayer(float movementLR, float movementFB)
