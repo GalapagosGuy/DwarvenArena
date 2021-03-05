@@ -9,6 +9,7 @@ public class Enemy : MonoBehaviour
     protected NavMeshAgent navMeshAgent;
 
     protected Transform target = null;
+    protected string allyTag = "Enemy";
     [Tooltip("Use for manual target setup")] public Transform debugSetTarget;
 
     public EnemyActions enemyActions { get; protected set; }
@@ -17,8 +18,11 @@ public class Enemy : MonoBehaviour
 
     public class DistancePreferences
     {
-        public float minPrefferedDistance = 0;
-        public float maxPrefferedDistance = 1;
+        public float minPrefferedDistanceFromPlayer = 0;
+        public float maxPrefferedDistanceFromPlayer = 1;
+
+        public float minPrefferedDistanceFromAlly = 1;
+        public float maxPrefferedDistanceFromAlly = Mathf.Infinity;
     }
     public DistancePreferences distancePrefs { get; protected set; }
 
@@ -52,6 +56,18 @@ public class Enemy : MonoBehaviour
         }
     }
     public ActionAvailability actionAvailability { get; private set; }
+
+    ///////////////////////////////////////////////////////////////////////////////////////////
+    
+    public class ContextBasedSteeringBehaviourWeights
+    {
+        float[] weights;
+
+        ContextBasedSteeringBehaviourWeights(int size)
+        {
+            weights = new float[size];
+        }
+    }
 
     // Start is called before the first frame update
     protected virtual void Awake()
@@ -94,7 +110,7 @@ public class Enemy : MonoBehaviour
                 break;
             case EnemyActions.FOLLOW:
                 //move
-                if (Vector3.Distance(transform.position, target.position) > distancePrefs.maxPrefferedDistance)
+                if (Vector3.Distance(transform.position, target.position) > distancePrefs.maxPrefferedDistanceFromPlayer)
                     MoveTowards(target);
                 else
                     enemyActions = EnemyActions.ATTACK;
@@ -108,7 +124,7 @@ public class Enemy : MonoBehaviour
             case EnemyActions.RETREAT:
                 //consider possible locations
                 //move there
-                if (Vector3.Distance(transform.position, target.position) > distancePrefs.maxPrefferedDistance)
+                if (Vector3.Distance(transform.position, target.position) > distancePrefs.maxPrefferedDistanceFromPlayer)
                     MoveAwayFrom(target);
                 else
                     enemyActions = EnemyActions.ATTACK;
@@ -120,9 +136,9 @@ public class Enemy : MonoBehaviour
     {
         float distance = Vector3.Distance(transform.position, target.position);
 
-        if (distance > distancePrefs.maxPrefferedDistance)
+        if (distance > distancePrefs.maxPrefferedDistanceFromPlayer)
             return EnemyActions.FOLLOW;
-        else if (distance < distancePrefs.minPrefferedDistance)
+        else if (distance < distancePrefs.minPrefferedDistanceFromPlayer)
             return EnemyActions.RETREAT;
         else
             return EnemyActions.ATTACK;
@@ -138,10 +154,12 @@ public class Enemy : MonoBehaviour
         if (target != null)
             return;
 
-        Transform transform = null;
+        Transform targetTransform = null;
 
         //find player singleton OR closest structure
         List<PlayerStuff> possibleTargets = FindObjectsOfType<PlayerStuff>().ToList();
+        if (possibleTargets.Count == 0)
+            Debug.Log("No PlayerStuff on Scene!");
         float minDistance = Mathf.Infinity;
         foreach(PlayerStuff target in possibleTargets)
         {
@@ -149,15 +167,18 @@ public class Enemy : MonoBehaviour
             if (distance < minDistance)
             {
                 minDistance = distance;
-                transform = target.transform;
+                targetTransform = target.transform;
             }
         }
-        target = transform;
+        target = targetTransform;
     }
 
     protected virtual void MoveTowards(Transform target)
     {
         actionAvailability.SetBusy();
+
+        Collider[] allies = Physics.OverlapSphere(transform.position, distancePrefs.minPrefferedDistanceFromAlly);
+
 
         navMeshAgent.SetDestination(target.position);
     }
