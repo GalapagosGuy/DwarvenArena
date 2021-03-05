@@ -8,6 +8,8 @@ public class Enemy : MonoBehaviour
     protected NavMeshAgent navMeshAgent;
 
     protected Transform target = null;
+    [Tooltip("Use for manual target setup")] public Transform debugSetTarget;
+
     public EnemyActions enemyActions { get; protected set; }
 
     ////////////////////////////////////////////////////////////////////////////////////////////
@@ -15,7 +17,7 @@ public class Enemy : MonoBehaviour
     public class DistancePreferences
     {
         public float minPrefferedDistance = 0;
-        public float maxPrefferedDistance = Mathf.Infinity;
+        public float maxPrefferedDistance = 1;
     }
     public DistancePreferences distancePrefs { get; protected set; }
 
@@ -55,6 +57,9 @@ public class Enemy : MonoBehaviour
     {
         navMeshAgent = GetComponent<NavMeshAgent>();
         enemyActions = EnemyActions.NOTHING;
+
+        distancePrefs = new DistancePreferences();
+        actionAvailability = new ActionAvailability();
     }
 
     // Update is called once per frame
@@ -62,15 +67,27 @@ public class Enemy : MonoBehaviour
     {
         if(actionAvailability.CheckIfFree())
             Act();
+
     }
 
     protected virtual void Act()
     {
+        //debug
+        if(debugSetTarget != null)
+        {
+            target = debugSetTarget;
+            debugSetTarget = null;
+        }
+
+        //find target
+        FindTarget();
+
+        if (target == null)
+            return;
+
         switch (enemyActions)
         {
             case EnemyActions.NOTHING:
-                //find target
-                FindTarget();
                 //check distance
                 enemyActions = DistanceBasedDecision();
                 break;
@@ -90,6 +107,10 @@ public class Enemy : MonoBehaviour
             case EnemyActions.RETREAT:
                 //consider possible locations
                 //move there
+                if (Vector3.Distance(transform.position, target.position) > distancePrefs.maxPrefferedDistance)
+                    MoveAwayFrom(target);
+                else
+                    enemyActions = EnemyActions.ATTACK;
                 break;
         }
     }
@@ -121,6 +142,8 @@ public class Enemy : MonoBehaviour
     protected virtual void MoveTowards(Transform target)
     {
         actionAvailability.SetBusy();
+
+        navMeshAgent.SetDestination(target.position);
     }
 
     protected virtual void MoveAwayFrom(Transform target)
