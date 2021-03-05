@@ -5,10 +5,17 @@ using UnityEngine;
 [RequireComponent(typeof(PlayerMovement))]
 public class PlayerController : MonoBehaviour
 {
+    public static PlayerController Instance = null;
+
     private PlayerMovement playerMovement = null;
 
     private void Awake()
     {
+        if (PlayerController.Instance == null)
+            PlayerController.Instance = this;
+        else
+            Destroy(this);
+
         playerMovement = GetComponent<PlayerMovement>();
     }
 
