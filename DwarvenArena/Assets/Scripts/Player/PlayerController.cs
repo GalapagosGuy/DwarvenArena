@@ -27,10 +27,16 @@ public class PlayerController : PlayerStuff
 
     private void ProcessMouseInputs()
     {
-
+        if (Input.GetMouseButtonDown(0))
+            GetComponent<Animator>()?.SetTrigger("attackTrigger");
     }
 
     private void ProcessKeyboardInputs()
+    {
+        ProcessMovement();
+    }
+
+    private void ProcessMovement()
     {
         bool isMoving = false;
 
