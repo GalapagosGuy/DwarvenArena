@@ -8,8 +8,12 @@ public class PlayerSlots : MonoBehaviour
     [SerializeField] private GameObject rightHand = null;
     public GameObject RightHand { get => rightHand; }
 
+    [SerializeField] private GameObject leftHand = null;
+    public GameObject LeftHand { get => leftHand; }
+
+    public LayerMask mouseLayer;
     public WeaponCustom equipedWeapon = null;
-    //public Spell equipedSpell = null;
+    public Spell equipedSpell = null;
 
     private Animator animator = null;
 
@@ -24,6 +28,14 @@ public class PlayerSlots : MonoBehaviour
             return;
 
         animator?.SetTrigger("attackTrigger");
+    }
+
+    public void UseSpell()
+    {
+        if (!equipedSpell)
+            return;
+
+        animator?.SetTrigger("spellTrigger");
     }
 
     public void ChangeWeapon(GameObject weapon)
@@ -49,6 +61,29 @@ public class PlayerSlots : MonoBehaviour
         animator?.SetBool(equipedWeapon.AnimatorVariable, true);
     }
 
+    public void ChangeSpell(GameObject spell)
+    {
+        if (equipedSpell)
+        {
+            animator?.SetBool(equipedSpell.AnimatorVariable, false);
+
+            if (equipedSpell.root)
+                equipedSpell.root.ReturnSpell();
+            else
+                Destroy(equipedSpell);
+        }
+
+        equipedSpell = spell.GetComponent<Spell>();
+
+        equipedSpell.transform.parent = leftHand.transform;
+        equipedSpell.transform.localPosition = Vector3.zero;
+        equipedSpell.transform.localRotation = Quaternion.identity;
+        equipedSpell.transform.localScale = Vector3.one;
+
+        equipedSpell.UpdateParentReference();
+        animator?.SetBool(equipedSpell.AnimatorVariable, true);
+    }
+
     #region Animation Events
 
     public void EnableDealingMeleeDamage()
@@ -59,6 +94,19 @@ public class PlayerSlots : MonoBehaviour
     public void DisableDealingMeleeDamage()
     {
         equipedWeapon?.DisableDealingDamage();
+    }
+
+    public void CastSpell()
+    {
+        Vector3 mousePosition = Vector3.zero;
+        Ray inputRay = Camera.main.ScreenPointToRay(Input.mousePosition);
+
+        RaycastHit hit;
+
+        if (Physics.Raycast(inputRay, out hit, mouseLayer))
+        {
+            equipedSpell?.Cast(this.transform.position, hit.point);
+        }
     }
 
     #endregion

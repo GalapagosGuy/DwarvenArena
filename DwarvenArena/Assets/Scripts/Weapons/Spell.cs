@@ -1,0 +1,27 @@
+﻿using System.Collections;
+using System.Collections.Generic;
+using UnityEngine;
+
+public class Spell : MonoBehaviour
+{
+    [SerializeField] private string animatorVariable = "";
+    public GameObject castedSpell = null;
+
+    public SpellStructure root { get; private set; } = null; // structure parent
+    public string AnimatorVariable { get => animatorVariable; }
+    private GameObject parent = null;
+
+    public void Cast(Vector3 sourcePosition, Vector3 targetPosition)
+    {
+        if (castedSpell)
+        {
+            Instantiate(castedSpell, this.transform.position, this.transform.rotation);
+            //blah blah specific spell code here
+        }
+    }
+
+    public void UpdateParentReference()
+    {
+        parent = this.transform.root.gameObject;
+    }
+}

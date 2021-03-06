@@ -29,10 +29,10 @@ public class PlayerMovement : MonoBehaviour
         tmp.y = 0.0f;
         mousePosition = tmp;
 
-        if (Vector3.Distance(mousePosition, this.transform.position) < 1.5f)
+        /*if (Vector3.Distance(mousePosition, this.transform.position) < 1.5f)
         {
             mousePosition = lastMousePosition;
-        }
+        }*/
 
         lastMousePosition = mousePosition;
 
