@@ -21,6 +21,8 @@ public class PlayerMovement : MonoBehaviour
         characterController = GetComponent<CharacterController>();
     }
 
+    private int lastQuarter = 0;
+
     public void Move(float movementLR, float movementFB, bool isMoving, Vector3 mousePosition)
     {
         Vector3 tmp = mousePosition;
@@ -56,8 +58,6 @@ public class PlayerMovement : MonoBehaviour
 
         quarterIndex = quarterIndex % 4;
 
-        Debug.Log(quarterIndex);
-
         if (quarterIndex == 0 || quarterIndex == 2)
         {
             animator.SetFloat("movingFB", movementFB * (quarterIndex == 2 ? -1.0f : 1.0f));
@@ -69,57 +69,4 @@ public class PlayerMovement : MonoBehaviour
             animator.SetFloat("movingLR", movementFB * (quarterIndex == 3 ? 1.0f : -1.0f));
         }
     }
-
-    /*private void RotatePlayer(float movementLR, float movementFB)
-    {
-        float desirableRotation = GetDesirableRotation(movementLR, movementFB);
-
-        Vector3 desirableRotationVector = new Vector3(0, desirableRotation, 0);
-
-        Quaternion angle = Quaternion.Lerp(this.transform.rotation, Quaternion.Normalize(Quaternion.Euler(desirableRotationVector.x, desirableRotationVector.y, desirableRotationVector.z)), Time.deltaTime * rotationSpeed);
-
-        this.transform.rotation = angle;
-    }
-
-    private float GetDesirableRotation(float movementLR, float movementFB)
-    {
-        float desirableRotation = 0.0f;
-
-        if (movementFB > 0.0f)
-        {
-            if (movementLR > 0.0f)
-            {
-                desirableRotation = 45.0f;
-            }
-            else if (movementLR < -0.0f)
-            {
-                desirableRotation = 315.0f;
-            }
-            else
-            {
-                desirableRotation = 0.0f;
-            }
-        }
-        else if (movementFB < -0.0f)
-        {
-            if (movementLR > 0.7f)
-            {
-                desirableRotation = 135.0f;
-            }
-            else if (movementLR < -0.0f)
-            {
-                desirableRotation = 225.0f;
-            }
-            else
-            {
-                desirableRotation = 180.0f;
-            }
-        }
-        else if (movementLR > 0.0f)
-            desirableRotation = 90.0f;
-        else if (movementLR < -0.0f)
-            desirableRotation = 270.0f;
-
-        return desirableRotation;
-    }*/
 }

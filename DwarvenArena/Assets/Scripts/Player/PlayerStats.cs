@@ -14,13 +14,13 @@ public class PlayerStats : MonoBehaviour, IHitable
     {
         hp = maxHp * .25f;
         money = 0;
-        UIManager.Instance.UpdateUI();
+        UIManager.Instance?.UpdateUI();
     }
 
     // Update is called once per frame
     void Update()
     {
-        
+
     }
 
     public void GetHit(float value)
@@ -64,6 +64,6 @@ public class PlayerStats : MonoBehaviour, IHitable
 
     public bool HasEnoughMoney(int value)
     {
-        return value <= money? true : false;
+        return value <= money ? true : false;
     }
 }
