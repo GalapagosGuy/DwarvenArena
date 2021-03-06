@@ -4,28 +4,37 @@ using UnityEngine;
 
 public class BuildManager : MonoBehaviour
 {
-    [SerializeField]
-    private GameObject[] structures;
+    public static BuildManager Instance = null;
 
     [SerializeField]
-    private GameObject[] mocks;
-
+    private TierContainer[] tierContainers;
 
     [SerializeField]
     private LayerMask hitLayers;
 
-    private int currentMock;
+    private int currentStructure;
     private bool isTurnedOn;
     private PlayerController playerController;
     private GameObject mock;
+
     void Start()
     {
+        BuildManager.Instance = this;
+
         playerController = GetComponent<PlayerController>();
     }
 
     // Update is called once per frame
     void Update()
     {
+        if (isTurnedOn)
+        {
+            ScrollingMocks();
+
+        }
+
+
+        /*
         if(isTurnedOn)
         {
             Vector3 mouse = Input.mousePosition;
@@ -41,11 +50,12 @@ public class BuildManager : MonoBehaviour
             if (!mock.GetComponent<Mock>().isColliding && Input.GetMouseButtonDown(0))
             {
                 isTurnedOn = false;
-                GameObject buildedStructure = Instantiate(structures[currentMock], mock.transform.position, mock.transform.rotation);
+               // GameObject buildedStructure = Instantiate(structures[currentMock], mock.transform.position, mock.transform.rotation);
                 Destroy(mock);
  
             }
         }
+        */
     }
 
     public void ScrollingMocks()
@@ -54,39 +64,47 @@ public class BuildManager : MonoBehaviour
 
         if (Input.GetAxis("Mouse ScrollWheel") > 0)
         {
-            currentMock++;
+            currentStructure--;
             gotChanged = true;
         }
             
         if (Input.GetAxis("Mouse ScrollWheel") < 0)
         {
             gotChanged = true;
-            currentMock--;
+            currentStructure++;
         }
-           
 
-        if (currentMock >= mocks.Length)
-            currentMock = 0;
-        if (currentMock < 0)
-            currentMock = mocks.Length -1;
+        if (currentStructure >= tierContainers.Length)
+            currentStructure = 0;
+        if (currentStructure < 0)
+            currentStructure = tierContainers.Length - 1;
 
-        if(gotChanged)
+        if (gotChanged)
         {
+            UIManager.Instance.ChangeIndicator(currentStructure);
+
             Destroy(mock);
-            mock = Instantiate(mocks[currentMock]);
+           // mock = Instantiate(mocks[currentMock]);
         }
-        
+
     }
 
-    public void TurnOn(bool isOn)
+    public void ToggleBuildingMode(bool isOn)
     {
         isTurnedOn = isOn;
-        currentMock = 0;
+        currentStructure = 0;
+
         if (isTurnedOn)
         {
-            mock = Instantiate(mocks[currentMock]);
+            UIManager.Instance.ToggleStructures(isOn);
+            UIManager.Instance.ChangeIndicator(currentStructure);
+            //mock = Instantiate(mocks[currentMock]);
         }
         else
+        {
+            UIManager.Instance.ToggleStructures(isOn);
             Destroy(mock);
+
+        }
     }
 }
