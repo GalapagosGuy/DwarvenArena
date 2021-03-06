@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-public abstract class Structure : MonoBehaviour, IHitable
+public abstract class Structure : PlayerStuff, IHitable
 {
     public int cost { get; private set; }
     public float hp { get; private set; }
@@ -27,6 +27,9 @@ public abstract class Structure : MonoBehaviour, IHitable
     {
         if (damageType == DamageType.Blunt)
             value *= 1.5f;
+
+        if (this == null)
+            return;
 
         hp -= value;
         if (hp <= 0)

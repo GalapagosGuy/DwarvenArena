@@ -5,6 +5,7 @@ using UnityEngine;
 public class DamageMock : MonoBehaviour
 {
     public WeaponCustom weaponReference;
+    public MeshRenderer meshRenderer;
 
     private MeshCollider meshCollider;
     public bool enemyWeapon = false;
@@ -12,6 +13,7 @@ public class DamageMock : MonoBehaviour
     private void Awake()
     {
         meshCollider = GetComponentInChildren<MeshCollider>();
+        meshRenderer = GetComponentInChildren<MeshRenderer>();
     }
 
     public void EnableDealingDamage()
@@ -35,16 +37,15 @@ public class DamageMock : MonoBehaviour
         if (other.transform.root.gameObject == this.transform.root.gameObject)
             return;
 
-        if (enemyWeapon && other.CompareTag("Enemy"))
+        if(enemyWeapon && other.transform.root.CompareTag("Enemy"))
             return;
 
-        if(other is IHitable iHitable)
+        IHitable iHitable = other.GetComponentInParent<IHitable>();
+
+        if (iHitable != null && !hitObjects.Contains(iHitable))
         {
-            if (iHitable != null && !hitObjects.Contains(iHitable))
-            {
-                iHitable.GetHit(weaponReference.Damage, weaponReference.DamageType);
-                hitObjects.Add(iHitable);
-            }
+            iHitable.GetHit(weaponReference.Damage, weaponReference.DamageType);
+            hitObjects.Add(iHitable);
         }
     }
 }

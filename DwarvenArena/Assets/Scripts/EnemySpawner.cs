@@ -13,6 +13,7 @@ public class EnemySpawner : MonoBehaviour
 
     [Header("Add your own spawn points")]
     public List<Transform> spawnPoints;
+    private int currentSpawnerIndex = 0;
 
     private List<Enemy> spawnedEnemies;
 
@@ -27,8 +28,6 @@ public class EnemySpawner : MonoBehaviour
             Instance = this;
         else
             Destroy(this.gameObject);
-
-        DontDestroyOnLoad(this);
 
         spawnedEnemies = new List<Enemy>();
     }
@@ -80,8 +79,11 @@ public class EnemySpawner : MonoBehaviour
 
     private void SpawnEnemy(int i)
     {
-        spawnedEnemies.Add(Instantiate(enemyPrefabs[i], spawnPoints[0].position, Quaternion.identity, null));
+        spawnedEnemies.Add(Instantiate(enemyPrefabs[i], spawnPoints[currentSpawnerIndex].position, Quaternion.identity, null));
         waveValue -= enemySpawnCost[i];
+        currentSpawnerIndex++;
+        if (currentSpawnerIndex > spawnPoints.Count - 1)
+            currentSpawnerIndex = 0;
     }
 
     private void SetWaveValue()

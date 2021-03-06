@@ -34,6 +34,8 @@ public class WeaponCustom : MonoBehaviour
         createdMock = mockGO.GetComponent<DamageMock>();
         createdMock.weaponReference = this;
         createdMock.enemyWeapon = enemyWeapon;
+        if (enemyWeapon == true)
+            createdMock.meshRenderer.enabled = false;
     }
 
     public void OnWeaponReturn()

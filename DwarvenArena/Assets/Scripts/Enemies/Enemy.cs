@@ -31,7 +31,7 @@ public class Enemy : MonoBehaviour, IHitable
         public float minPrefferedDistanceFromPlayer = 0f;
         public float maxPrefferedDistanceFromPlayer = 3.0f;
 
-        public float minPrefferedDistanceFromAlly = 8.0f;
+        public float minPrefferedDistanceFromAlly = 4.0f;
         public float maxPrefferedDistanceFromAlly = Mathf.Infinity;
     }
     public DistancePreferences distancePrefs { get; protected set; }
@@ -202,7 +202,7 @@ public class Enemy : MonoBehaviour, IHitable
     }
 
     //Weights start from pointing upwards and go clockwise
-    protected virtual void CalculateContextWeights(Transform target, Collider[] surrounding, float enemySeparationBias = 1.0f ,float playerBias = 2.0f ,bool towardsTarget = true)
+    protected virtual void CalculateContextWeights(Transform target, Collider[] surrounding, float enemySeparationBias = .3f ,float playerBias = 2.0f ,bool towardsTarget = true)
     {
         //copy original vectors
         Vector3[] weightVectors = new Vector3[8];
@@ -236,16 +236,16 @@ public class Enemy : MonoBehaviour, IHitable
         {
             behaviourWeights.weights[i] = Vector2.Dot(VectorCast.CastVector3ToVector2(weightVectors[i]),
                 targetVector.normalized) * playerBias;
-            for (int j = 0; i < allies.Count; i++)
+            for (int j = 0; j < allies.Count; j++)
             {
                 //enemy wants to separate from other enemies
                 behaviourWeights.weights[i] += Vector2.Dot(VectorCast.CastVector3ToVector2(weightVectors[i]),
-                (this.transform.position - allies[i].position).normalized) * enemySeparationBias;
+                (this.transform.position - allies[j].position).normalized) * enemySeparationBias;
             }
             //behaviourWeights.weights[i] /= 1 + allies.Count;
             
             //uncomment for turbo spam
-            //Debug.Log(behaviourWeights.weights[i] + " " + i);
+            Debug.Log(behaviourWeights.weights[i] + " " + i);
         }
     }
 
@@ -303,6 +303,9 @@ public class Enemy : MonoBehaviour, IHitable
 
     public void GetHit(float value, DamageType damageType)
     {
+        if (this == null)
+            return;
+
         hp -= value;
         if (hp <= 0)
             Destroy(this.gameObject);
