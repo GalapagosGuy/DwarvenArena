@@ -38,6 +38,9 @@ public class PlayerSlots : MonoBehaviour
 
     public void UseSpell()
     {
+        if (equipedWeapon)
+            equipedWeapon.DisableDealingDamage();
+
         if (!equipedSpell)
             return;
 
