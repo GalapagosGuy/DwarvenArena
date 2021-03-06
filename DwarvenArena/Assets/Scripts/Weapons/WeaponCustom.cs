@@ -7,12 +7,14 @@ public class WeaponCustom : MonoBehaviour
 {
     [SerializeField] private DamageType damageType;
     [SerializeField] private float damage = 0.0f;
+    [SerializeField] private float damageOffset = 1.0f;
     [SerializeField] private string animatorVariable = "";
 
     public GameObject mock;
     public WeaponStructure root { get; private set; } = null; // structure parent
     public string AnimatorVariable { get => animatorVariable; }
     public float Damage { get => damage; }
+    public float DamageOffset { get => damageOffset; }
     public DamageType DamageType { get => damageType; }
 
     private GameObject parent = null;
@@ -27,6 +29,11 @@ public class WeaponCustom : MonoBehaviour
     }
 
     private List<IHitable> hitObjects = new List<IHitable>();
+
+    public float RandomDamage()
+    {
+        return Random.Range((int)(damage - damageOffset), (int)(damage + damageOffset) + 1);
+    }
 
     public void Initialize(bool enemyWeapon = false)
     {

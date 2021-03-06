@@ -51,7 +51,7 @@ public class DamageMock : MonoBehaviour
 
         if (iHitable != null && !hitObjects.Contains(iHitable))
         {
-            iHitable.GetHit(weaponReference.Damage, weaponReference.DamageType);
+            iHitable.GetHit(weaponReference.RandomDamage(), weaponReference.DamageType);
             hitObjects.Add(iHitable);
 
             if (this.GetComponentInParent<PlayerStats>())

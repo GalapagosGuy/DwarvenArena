@@ -317,7 +317,7 @@ public class Enemy : MonoBehaviour, IHitable
     protected virtual void Attack()
     {
         navMeshAgent.isStopped = true;
-        //LookAt(target);
+        LookAt(target);
         enemyAnimator.OnStopAnimation();
         enemyAnimator.OnAttackAnimation();
         actionAvailability.SetBusy(.7f);
