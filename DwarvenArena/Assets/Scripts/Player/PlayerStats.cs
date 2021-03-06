@@ -33,6 +33,7 @@ public class PlayerStats : MonoBehaviour, IHitable
             mana += manaRegen * Time.deltaTime;
             if (mana > maxMana)
                 mana = maxMana;
+            UIManager.Instance?.UpdateUI();
         }
     }
 
@@ -71,8 +72,14 @@ public class PlayerStats : MonoBehaviour, IHitable
         money -= value;
         if (money < 0)
             money = 0;
-        UIManager.Instance.UpdateUI();
 
+    }
+
+    public void SubstractMana(float value)
+    {
+        mana -= value;
+        if (mana < 0)
+            mana = 0;
     }
 
     public bool HasEnoughMoney(int value)

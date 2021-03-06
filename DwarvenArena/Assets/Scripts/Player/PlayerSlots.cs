@@ -15,13 +15,14 @@ public class PlayerSlots : MonoBehaviour
     public WeaponCustom equipedWeapon = null;
     public Spell equipedSpell = null;
 
-    
+    private PlayerStats playerStats;
     private Animator animator = null;
 
     private List<CastedSpell> hearingSpells = new List<CastedSpell>();
 
     private void Start()
     {
+        playerStats = GetComponent<PlayerStats>();
         animator = GetComponent<Animator>();
     }
 
@@ -36,6 +37,9 @@ public class PlayerSlots : MonoBehaviour
     public void UseSpell()
     {
         if (!equipedSpell)
+            return;
+
+        if (!playerStats.HasEnoughMana(equipedSpell.castedSpell.GetComponent<CastedSpell>().cost))
             return;
 
         animator?.SetTrigger("spellTrigger");
