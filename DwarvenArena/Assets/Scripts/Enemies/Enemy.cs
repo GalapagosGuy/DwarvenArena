@@ -3,13 +3,17 @@ using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
 using UnityEngine.AI;
-using System;
+using UnityEngine.UI;
 
 public class Enemy : MonoBehaviour, IHitable
 {
     protected NavMeshAgent navMeshAgent;
     protected EnemyAnimator enemyAnimator;
     protected WeaponCustom weaponCustom;
+    [SerializeField]
+    private Image hpBar;
+    [SerializeField]
+    private GameObject hpObject;
 
     protected Transform target = null;
     protected string allyTag = "Enemy";
@@ -99,6 +103,7 @@ public class Enemy : MonoBehaviour, IHitable
         GetComponentInChildren<EnemyAnimEventsHandler>().OnEndAttack += ToggleAttackHitbox;
 
         hp = maxHp;
+        UpdateUI();
     }
 
     // Update is called once per frame
@@ -245,8 +250,9 @@ public class Enemy : MonoBehaviour, IHitable
 
     protected virtual void Move(Transform target, bool awayFromTarget = false)
     {
+        navMeshAgent.isStopped = false;
         enemyAnimator.OnRunAnimation();
-        actionAvailability.SetBusy(.5f);
+        actionAvailability.SetBusy(.25f);
 
         Collider[] allies = Physics.OverlapSphere(transform.position, distancePrefs.minPrefferedDistanceFromAlly);
         if (awayFromTarget)
@@ -279,9 +285,10 @@ public class Enemy : MonoBehaviour, IHitable
 
     protected virtual void Attack()
     {
+        navMeshAgent.isStopped = true;
         enemyAnimator.OnStopAnimation();
         enemyAnimator.OnAttackAnimation();
-        actionAvailability.SetBusy();
+        actionAvailability.SetBusy(.15f);
     }
 
     protected virtual void ToggleAttackHitbox(bool toggle)
@@ -298,6 +305,17 @@ public class Enemy : MonoBehaviour, IHitable
         hp -= value;
         if (hp <= 0)
             Destroy(this.gameObject);
+        UpdateUI();
+    }
+
+    public void UpdateUI()
+    {
+        hpBar.fillAmount = hp / maxHp;
+        if (hp == maxHp)
+            hpObject.SetActive(false);
+        else
+            hpObject.SetActive(true);
+
     }
 
     /// /////////////////////////////////////////////////////////////////////////////////////////////////////////
