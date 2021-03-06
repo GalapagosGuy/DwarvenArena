@@ -13,5 +13,5 @@ MonoBehaviour:
   m_Name: SpellContainer
   m_EditorClassIdentifier: 
   structureContainers:
-  - {fileID: 11400000, guid: 2b49c39272411d94f98105323242afc4, type: 2}
   - {fileID: 11400000, guid: 8e07bff3b18546e45ac98fc2a0d6c071, type: 2}
+  - {fileID: 11400000, guid: 2b49c39272411d94f98105323242afc4, type: 2}
