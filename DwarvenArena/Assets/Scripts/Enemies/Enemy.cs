@@ -287,9 +287,10 @@ public class Enemy : MonoBehaviour, IHitable
     protected virtual void Attack()
     {
         navMeshAgent.isStopped = true;
+        transform.rotation = Quaternion.LookRotation((target.position - transform.position).normalized, Vector3.up);
         enemyAnimator.OnStopAnimation();
         enemyAnimator.OnAttackAnimation();
-        actionAvailability.SetBusy(.25f);
+        actionAvailability.SetBusy(.4f);
     }
 
     protected virtual void ToggleAttackHitbox(bool toggle)
