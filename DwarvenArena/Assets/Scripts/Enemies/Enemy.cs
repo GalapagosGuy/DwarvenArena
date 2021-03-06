@@ -230,7 +230,7 @@ public class Enemy : MonoBehaviour
 
     protected virtual void MoveTowards(Transform target)
     {
-        actionAvailability.SetBusy();
+        actionAvailability.SetBusy(.5f);
 
         Collider[] allies = Physics.OverlapSphere(transform.position, distancePrefs.minPrefferedDistanceFromAlly);
         CalculateContextWeights(target, allies);
