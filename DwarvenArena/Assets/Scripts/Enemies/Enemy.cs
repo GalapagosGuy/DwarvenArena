@@ -21,7 +21,7 @@ public class Enemy : MonoBehaviour
         public float minPrefferedDistanceFromPlayer = 2.0f;
         public float maxPrefferedDistanceFromPlayer = 5.0f;
 
-        public float minPrefferedDistanceFromAlly = 25.0f;
+        public float minPrefferedDistanceFromAlly = 5.0f;
         public float maxPrefferedDistanceFromAlly = Mathf.Infinity;
     }
     public DistancePreferences distancePrefs { get; protected set; }
@@ -182,7 +182,7 @@ public class Enemy : MonoBehaviour
     }
 
     //Weights start from pointing upwards and go clockwise
-    protected virtual void CalculateContextWeights(Transform target, Collider[] surrounding, bool towardsTarget = true)
+    protected virtual void CalculateContextWeights(Transform target, Collider[] surrounding, float enemySeparationBias = 1.0f ,float playerBias = 2.0f ,bool towardsTarget = true)
     {
         //copy original vectors
         Vector3[] weightVectors = new Vector3[8];
@@ -196,7 +196,7 @@ public class Enemy : MonoBehaviour
         List<Transform> allies = new List<Transform>();
         foreach(Collider c in surrounding)
         {
-            if (c.CompareTag(allyTag))
+            if (c.CompareTag(allyTag) && c.gameObject != this.gameObject)
                 allies.Add(c.gameObject.transform);
         }
 
@@ -215,14 +215,14 @@ public class Enemy : MonoBehaviour
         for(int i = 0; i < behaviourWeights.weights.Length; i++)
         {
             behaviourWeights.weights[i] = Vector2.Dot(VectorCast.CastVector3ToVector2(weightVectors[i]),
-                targetVector.normalized);
+                targetVector.normalized) * playerBias;
             for (int j = 0; i < allies.Count; i++)
             {
                 //enemy wants to separate from other enemies
                 behaviourWeights.weights[i] += Vector2.Dot(VectorCast.CastVector3ToVector2(weightVectors[i]),
-                (this.transform.position).normalized - allies[i].position);
+                (this.transform.position - allies[i].position).normalized) * enemySeparationBias;
             }
-            behaviourWeights.weights[i] /= 1 + allies.Count;
+            //behaviourWeights.weights[i] /= 1 + allies.Count;
             
             Debug.Log(behaviourWeights.weights[i] + " " + i);
         }
@@ -234,15 +234,7 @@ public class Enemy : MonoBehaviour
 
         Collider[] allies = Physics.OverlapSphere(transform.position, distancePrefs.minPrefferedDistanceFromAlly);
         CalculateContextWeights(target, allies);
-        float max = -2; //dot product ranges from -1 to 1
-        //for(int i = 0; i < 8; i++)
-        //{
-        //    if (behaviourWeights.weights[i] > max)
-        //    {
-        //        max = behaviourWeights.weights[i];
-        //        chosenDir = ContextBasedSteeringBehaviourWeights.weightVectors[i];
-        //    }     
-        //}
+
         float[] weightOffsets = new float[8] { 0, 0, 0, 0, 0, 0, 0, 0 };
         Vector3 chosenDir = CalculatePath(weightOffsets);
         navMeshAgent.SetDestination(transform.position + chosenDir * 2);
@@ -254,7 +246,7 @@ public class Enemy : MonoBehaviour
     }
 
     // weight offsets start from Vec3.forward and going clockwise
-    protected virtual Vector3 CalculatePath(float[] weightOffsets, float minWeightRange = 0.5f, float maxWeightRange = Mathf.Infinity, float maxConsideredVectors = 8)
+    protected virtual Vector3 CalculatePath(float[] weightOffsets, float minWeightRange = 0.2f, float maxWeightRange = Mathf.Infinity, float maxConsideredVectors = 8)
     {
         Vector3 combinedResult = Vector3.zero;
         for(int i = 0; i < 8; i++)
@@ -278,19 +270,14 @@ public class Enemy : MonoBehaviour
     {
         if(Application.isPlaying)
         {
-            Vector3[] weightVectors = new Vector3[8];
-            for (int i = 0; i < 8; i++)
-            {
-                weightVectors[i] = new Vector3(ContextBasedSteeringBehaviourWeights.weightVectors[i].x,
-                    ContextBasedSteeringBehaviourWeights.weightVectors[i].y,
-                    ContextBasedSteeringBehaviourWeights.weightVectors[i].z);
-            }
-
             for (int i = 0; i < 8; i++)
             {
                 Gizmos.color = Color.red;
-                Gizmos.DrawLine(transform.position, (transform.position + weightVectors[i]) * behaviourWeights.weights[i]);
+                Gizmos.DrawLine(transform.position, transform.position + (ContextBasedSteeringBehaviourWeights.weightVectors[i] * behaviourWeights.weights[i]));
             }
+
+            Gizmos.color = Color.blue;
+            Gizmos.DrawWireSphere(this.transform.position, distancePrefs.minPrefferedDistanceFromAlly);
         }
     }       
 }
