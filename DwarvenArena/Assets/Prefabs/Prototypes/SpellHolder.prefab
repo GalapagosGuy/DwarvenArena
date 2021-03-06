@@ -368,7 +368,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 8301159042805792069}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 5fea29bb7c508c244a1f805a5fd3fc4d, type: 3}
   m_Name: 
@@ -425,7 +425,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   animatorVariable: hasFireballEquiped
-  castedSpell: {fileID: 0}
+  castedSpell: {fileID: 2254138527515297277, guid: 6ff7a23104c6d094ca29b48a32084a1f,
+    type: 3}
 --- !u!198 &8301159044157990942
 ParticleSystem:
   m_ObjectHideFlags: 0

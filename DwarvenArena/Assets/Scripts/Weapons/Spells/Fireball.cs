@@ -6,6 +6,10 @@ public class Fireball : CastedSpell
 {
     [SerializeField] private float speed = 1.0f;
     [SerializeField] private float damage = 50.0f;
+    [SerializeField] private float explosionRange = 2.0f;
+    [SerializeField] private DamageType damageType;
+
+    public GameObject explosionParticles = null;
 
     private Vector3 targetPosition;
 
@@ -28,9 +32,25 @@ public class Fireball : CastedSpell
     {
         if (other.transform.root.gameObject != PlayerController.Instance.gameObject)
         {
-            Debug.Log(other.gameObject.name);
-            //Damage
             Destroy(this.gameObject);
         }
+    }
+
+    private void OnDestroy()
+    {
+        Collider[] hitColliders = Physics.OverlapSphere(this.transform.position, explosionRange);
+        foreach (var hitCollider in hitColliders)
+        {
+            IHitable iHitable = hitCollider.GetComponentInParent<IHitable>();
+            IHitable playerHitable = PlayerController.Instance.gameObject.GetComponent<PlayerStats>();
+
+            if (iHitable != null && playerHitable != iHitable)
+            {
+                iHitable.GetHit(damage, damageType);
+            }
+        }
+
+        GameObject explosion = Instantiate(explosionParticles, this.transform.position, this.transform.rotation);
+        Destroy(explosion, 2.0f);
     }
 }

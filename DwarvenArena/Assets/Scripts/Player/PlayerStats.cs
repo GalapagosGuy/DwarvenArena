@@ -23,7 +23,7 @@ public class PlayerStats : MonoBehaviour, IHitable
 
     }
 
-    public void GetHit(float value)
+    public void GetHit(float value, DamageType damageType)
     {
         hp -= value;
         if (hp <= 0)

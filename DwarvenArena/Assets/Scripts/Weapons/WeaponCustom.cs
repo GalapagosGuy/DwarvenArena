@@ -47,7 +47,7 @@ public class WeaponCustom : MonoBehaviour
 
         if (iHitable != null && !hitObjects.Contains(iHitable))
         {
-            iHitable.GetHit(damage);
+            iHitable.GetHit(damage, damageType);
             hitObjects.Add(iHitable);
         }
     }
