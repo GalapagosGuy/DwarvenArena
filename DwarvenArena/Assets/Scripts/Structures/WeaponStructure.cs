@@ -4,8 +4,9 @@ using UnityEngine;
 
 public class WeaponStructure : Structure
 {
-    [SerializeField]
-    private Weapon.WeaponType weaponType;
+    public GameObject weaponReference = null;
+
+    private bool weaponCanBeTaken = true;
 
     protected override void Start()
     {
@@ -15,6 +16,21 @@ public class WeaponStructure : Structure
 
     public override void Use(GameObject hero)
     {
-        hero.GetComponent<Weapon>().ChangeWeapon(weaponType);
+        if (weaponCanBeTaken)
+        {
+            PlayerSlots playerSlots = hero.GetComponent<PlayerSlots>();
+
+            if (playerSlots)
+            {
+                playerSlots.ChangeWeapon(weaponReference);
+                weaponCanBeTaken = false;
+            }
+        }
+    }
+
+    public void ReturnWeapon()
+    {
+        //return weapon to structure
+        weaponCanBeTaken = true;
     }
 }

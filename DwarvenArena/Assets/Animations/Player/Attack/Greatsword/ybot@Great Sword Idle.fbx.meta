@@ -1,11 +1,11 @@
 fileFormatVersion: 2
-guid: 5481ceee07242dc4aa350af2e344554d
+guid: aeeb7f7a04c68d344a85bb789e0a7d15
 ModelImporter:
   serializedVersion: 19301
   internalIDToNameTable:
   - first:
       74: -203655887218126122
-    second: Sword And Shield Slash(1)
+    second: Great Sword Idle
   externalObjects: {}
   materials:
     materialImportMode: 1
@@ -35,11 +35,11 @@ ModelImporter:
     extraUserProperties: []
     clipAnimations:
     - serializedVersion: 16
-      name: Sword And Shield Slash(1)
+      name: Great Sword Idle
       takeName: mixamo.com
       internalID: 0
       firstFrame: 0
-      lastFrame: 90
+      lastFrame: 120
       wrapMode: 0
       orientationOffsetY: 0
       level: 0

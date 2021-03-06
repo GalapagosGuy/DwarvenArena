@@ -1,6 +1,6 @@
 ﻿using UnityEngine;
 
-public  class Weapon
+public class Weapon
 {
     public void ChangeWeapon(WeaponType weaponType)
     {

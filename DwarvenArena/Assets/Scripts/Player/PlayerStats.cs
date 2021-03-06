@@ -32,7 +32,7 @@ public class PlayerStats : MonoBehaviour, IHitable
             Destroy(this.gameObject);
         }
 
-        UIManager.Instance.UpdateUI();
+        UIManager.Instance?.UpdateUI();
     }
 
     public void HealUp(float value)

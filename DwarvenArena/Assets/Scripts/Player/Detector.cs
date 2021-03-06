@@ -9,13 +9,13 @@ public class Detector : MonoBehaviour
 
     public void Use()
     {
-        if(interactiveInRange)
-            detectedStructure.Use(this.gameObject);
+        if (interactiveInRange)
+            detectedStructure.Use(this.transform.root.gameObject);
     }
 
     private void OnTriggerStay(Collider other)
     {
-        if(other.GetComponentInParent<Structure>())
+        if (other.GetComponentInParent<Structure>())
         {
 
             interactiveInRange = true;

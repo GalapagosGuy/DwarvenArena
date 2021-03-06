@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-[RequireComponent(typeof(PlayerMovement))]
+[RequireComponent(typeof(PlayerMovement), typeof(PlayerSlots))]
 public class PlayerController : PlayerStuff
 {
     public static PlayerController Instance = null;
@@ -10,6 +10,7 @@ public class PlayerController : PlayerStuff
     public LayerMask mouseLayer;
 
     private PlayerMovement playerMovement = null;
+    private PlayerSlots playerSlots = null;
     private Vector3 mousePosition = Vector3.zero;
     private Detector detector;
 
@@ -21,6 +22,7 @@ public class PlayerController : PlayerStuff
             Destroy(this);
 
         playerMovement = GetComponent<PlayerMovement>();
+        playerSlots = GetComponent<PlayerSlots>();
         detector = GetComponentInChildren<Detector>();
     }
 
@@ -43,7 +45,9 @@ public class PlayerController : PlayerStuff
     private void ProcessMouseInputs()
     {
         if (Input.GetMouseButtonDown(0))
-            GetComponent<Animator>()?.SetTrigger("attackTrigger");
+            playerSlots?.UseWeapon();
+        else if (Input.GetMouseButtonDown(1))
+            GetComponent<Animator>()?.SetTrigger("spellTrigger");
     }
 
     private void ProcessKeyboardInputs()
