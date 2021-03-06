@@ -6,5 +6,9 @@ public abstract class CastedSpell : MonoBehaviour
 {
     public abstract void Initialize(Vector3 source, Vector3 target);
 
+    public float cost;
+
+
     public abstract void OnCastingSpellStop();
+
 }

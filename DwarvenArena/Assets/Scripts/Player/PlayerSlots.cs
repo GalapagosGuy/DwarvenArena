@@ -15,6 +15,7 @@ public class PlayerSlots : MonoBehaviour
     public WeaponCustom equipedWeapon = null;
     public Spell equipedSpell = null;
 
+    
     private Animator animator = null;
 
     private List<CastedSpell> hearingSpells = new List<CastedSpell>();
