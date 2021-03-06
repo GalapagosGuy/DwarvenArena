@@ -37,6 +37,8 @@ public class Fireball : CastedSpell
         }
     }
 
+    private List<IHitable> targetsHit = new List<IHitable>();
+
     private void OnDestroy()
     {
         Collider[] hitColliders = Physics.OverlapSphere(this.transform.position, explosionRange);
@@ -45,8 +47,9 @@ public class Fireball : CastedSpell
             IHitable iHitable = hitCollider.GetComponentInParent<IHitable>();
             IHitable playerHitable = PlayerController.Instance.gameObject.GetComponent<PlayerStats>();
 
-            if (iHitable != null && playerHitable != iHitable)
+            if (iHitable != null && playerHitable != iHitable && !targetsHit.Contains(iHitable))
             {
+                targetsHit.Add(iHitable);
                 iHitable.GetHit(damage, damageType);
             }
         }
