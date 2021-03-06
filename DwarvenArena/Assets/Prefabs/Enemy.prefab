@@ -171,6 +171,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b476dc03d84273e47bfa0e96f31aac9b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  damageTextPrefab: {fileID: 8170462971797649146, guid: b4eb3c0ad4e1a2842906c693b5394b81,
+    type: 3}
   hpBar: {fileID: 5615021329896371989}
   hpObject: {fileID: 1559488418734634758}
   debugSetTarget: {fileID: 0}
