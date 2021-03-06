@@ -940,7 +940,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1231795106, guid: df95f7e03e18a4f43a919c831db7c54e, type: 3}
       propertyPath: manaRegen
-      value: 1
+      value: 5
       objectReference: {fileID: 0}
     - target: {fileID: 455553100538910315, guid: df95f7e03e18a4f43a919c831db7c54e,
         type: 3}

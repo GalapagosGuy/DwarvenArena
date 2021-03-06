@@ -41,23 +41,16 @@ public class PlayerSlots : MonoBehaviour
         if (!equipedSpell)
             return;
 
-        if (!playerStats.HasEnoughMana(equipedSpell.castedSpell.GetComponent<CastedSpell>().cost) || spellsLocked)
+        if (!playerStats.HasEnoughMana(equipedSpell.castedSpell.GetComponent<CastedSpell>().cost))
             return;
 
-        spellsLocked = true;
         animator?.SetTrigger("spellTrigger");
         animator?.SetBool("usingSpell", true);
-    }
-
-    public void UnlockSpells()
-    {
-        spellsLocked = false;
     }
 
     public void StopUsingSpell()
     {
         animator?.SetBool("usingSpell", false);
-        spellsLocked = false;
 
         CastedSpell[] spells = hearingSpells.ToArray();
 
@@ -130,6 +123,9 @@ public class PlayerSlots : MonoBehaviour
 
     public void CastSpell()
     {
+        if (!playerStats.HasEnoughMana(equipedSpell.castedSpell.GetComponent<CastedSpell>().cost))
+            return;
+
         Vector3 mousePosition = Vector3.zero;
         Ray inputRay = Camera.main.ScreenPointToRay(Input.mousePosition);
 

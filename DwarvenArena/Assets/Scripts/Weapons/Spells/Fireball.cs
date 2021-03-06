@@ -16,7 +16,6 @@ public class Fireball : CastedSpell
     public override void Initialize(Vector3 source, Vector3 target)
     {
         PlayerStats.Instance.SubstractMana(cost);
-        PlayerController.Instance.GetComponent<PlayerSlots>().UnlockSpells();
         targetPosition = target;
     }
 
