@@ -8,11 +8,13 @@ public class PlayerController : PlayerStuff
     public static PlayerController Instance = null;
 
     public LayerMask mouseLayer;
+    public bool mouseLocked;
 
     private PlayerMovement playerMovement = null;
     private PlayerSlots playerSlots = null;
     public Vector3 mousePosition { get; private set; }
     private Detector detector;
+    private BuildManager buildManager;
 
     private void Awake()
     {
@@ -23,10 +25,12 @@ public class PlayerController : PlayerStuff
         
         // To bylo nad Awake
         mousePosition = Vector3.zero;
-
+        mouseLocked = false;
+        
         playerMovement = GetComponent<PlayerMovement>();
         playerSlots = GetComponent<PlayerSlots>();
         detector = GetComponentInChildren<Detector>();
+        buildManager = GetComponent<BuildManager>();
     }
 
     private void Update()
@@ -40,8 +44,8 @@ public class PlayerController : PlayerStuff
         {
             mousePosition = hit.point;
         }
-
-        ProcessMouseInputs();
+        if(!mouseLocked)
+            ProcessMouseInputs();
         ProcessKeyboardInputs();
     }
 
@@ -60,6 +64,11 @@ public class PlayerController : PlayerStuff
         if (Input.GetKeyDown(InputMap.Action))
             detector.Use();
 
+        if (Input.GetKeyDown(InputMap.Build))
+            buildManager.TurnOn(true);
+
+        if (Input.GetKeyUp(InputMap.Build))
+            buildManager.TurnOn(false);
     }
 
     private void ProcessMovement()
