@@ -12,6 +12,9 @@ public class UIManager : MonoBehaviour
     private Image hpBar;
 
     [SerializeField]
+    private Image manaBar;
+
+    [SerializeField]
     private TextMeshProUGUI moneyText;
 
     [SerializeField]
@@ -39,6 +42,7 @@ public class UIManager : MonoBehaviour
     public void UpdateUI()
     {
         hpBar.fillAmount = playerStats.hp / playerStats.MaxHp;
+        manaBar.fillAmount = playerStats.mana / playerStats.MaxMana;
         moneyText.text = playerStats.money.ToString();
     }
 

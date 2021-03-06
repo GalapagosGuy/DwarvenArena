@@ -11,6 +11,12 @@ public class Spell : MonoBehaviour
     public string AnimatorVariable { get => animatorVariable; }
     private GameObject parent = null;
 
+    private void Start()
+    {
+        root = GetComponentInParent<SpellStructure>();
+        parent = this.transform.root.gameObject;
+    }
+
     public void Cast(Vector3 sourcePosition, Vector3 targetPosition)
     {
         if (castedSpell)
