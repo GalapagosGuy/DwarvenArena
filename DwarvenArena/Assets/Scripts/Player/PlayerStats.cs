@@ -12,7 +12,7 @@ public class PlayerStats : MonoBehaviour, IHitable
 
     void Start()
     {
-        hp = maxHp * .25f;
+        hp = maxHp;//* .25f;
         money = 0;
         UIManager.Instance?.UpdateUI();
     }

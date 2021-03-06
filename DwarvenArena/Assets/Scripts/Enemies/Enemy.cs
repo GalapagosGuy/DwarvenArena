@@ -3,14 +3,19 @@ using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
 using UnityEngine.AI;
+using System;
 
-public class Enemy : MonoBehaviour
+public class Enemy : MonoBehaviour, IHitable
 {
     protected NavMeshAgent navMeshAgent;
+    protected EnemyAnimator enemyAnimator;
 
     protected Transform target = null;
     protected string allyTag = "Enemy";
     [Tooltip("Use for manual target setup")] public Transform debugSetTarget;
+
+    public float maxHp = 100;
+    protected float hp;
 
     public EnemyActions enemyActions { get; protected set; }
 
@@ -18,10 +23,10 @@ public class Enemy : MonoBehaviour
 
     public class DistancePreferences
     {
-        public float minPrefferedDistanceFromPlayer = 2.0f;
-        public float maxPrefferedDistanceFromPlayer = Mathf.Infinity;
+        public float minPrefferedDistanceFromPlayer = 0f;
+        public float maxPrefferedDistanceFromPlayer = 3.0f;
 
-        public float minPrefferedDistanceFromAlly = 5.0f;
+        public float minPrefferedDistanceFromAlly = 8.0f;
         public float maxPrefferedDistanceFromAlly = Mathf.Infinity;
     }
     public DistancePreferences distancePrefs { get; protected set; }
@@ -79,12 +84,18 @@ public class Enemy : MonoBehaviour
     protected virtual void Awake()
     {
         navMeshAgent = GetComponent<NavMeshAgent>();
+        enemyAnimator = GetComponent<EnemyAnimator>();
         enemyActions = EnemyActions.NOTHING;
 
         distancePrefs = new DistancePreferences();
         actionAvailability = new ActionAvailability();
 
         behaviourWeights = new ContextBasedSteeringBehaviourWeights();
+
+        GetComponentInChildren<EnemyAnimEventsHandler>().OnStartAttack += ToggleAttackHitbox;
+        GetComponentInChildren<EnemyAnimEventsHandler>().OnEndAttack += ToggleAttackHitbox;
+
+        hp = maxHp;
     }
 
     // Update is called once per frame
@@ -224,12 +235,14 @@ public class Enemy : MonoBehaviour
             }
             //behaviourWeights.weights[i] /= 1 + allies.Count;
             
-            Debug.Log(behaviourWeights.weights[i] + " " + i);
+            //uncomment for turbo spam
+            //Debug.Log(behaviourWeights.weights[i] + " " + i);
         }
     }
 
     protected virtual void MoveTowards(Transform target)
     {
+        enemyAnimator.OnRunAnimation();
         actionAvailability.SetBusy(.5f);
 
         Collider[] allies = Physics.OverlapSphere(transform.position, distancePrefs.minPrefferedDistanceFromAlly);
@@ -263,7 +276,14 @@ public class Enemy : MonoBehaviour
 
     protected virtual void Attack()
     {
+        enemyAnimator.OnStopAnimation();
+        enemyAnimator.OnAttackAnimation();
         actionAvailability.SetBusy();
+    }
+
+    protected virtual void ToggleAttackHitbox(bool toggle)
+    {
+        Debug.Log("Attack " + toggle);
     }
 
     private void OnDrawGizmos()
@@ -279,5 +299,12 @@ public class Enemy : MonoBehaviour
             Gizmos.color = Color.blue;
             Gizmos.DrawWireSphere(this.transform.position, distancePrefs.minPrefferedDistanceFromAlly);
         }
-    }       
+    }
+
+    public void GetHit(float value, DamageType damageType)
+    {
+        hp -= value;
+        if (hp <= 0)
+            Destroy(this.gameObject);
+    }
 }
