@@ -4,11 +4,13 @@ using System.Linq;
 using UnityEngine;
 using UnityEngine.AI;
 using UnityEngine.UI;
+using TMPro;
 
 public class Enemy : MonoBehaviour, IHitable
 {
     protected NavMeshAgent navMeshAgent;
     protected EnemyAnimator enemyAnimator;
+    [SerializeField] protected TextMeshProUGUI damageTextPrefab;
     protected WeaponCustom weaponCustom;
     [SerializeField]
     private Image hpBar;
@@ -29,7 +31,7 @@ public class Enemy : MonoBehaviour, IHitable
     public class DistancePreferences
     {
         public float minPrefferedDistanceFromPlayer = 0f;
-        public float maxPrefferedDistanceFromPlayer = 3.0f;
+        public float maxPrefferedDistanceFromPlayer = 2.0f;
 
         public float minPrefferedDistanceFromAlly = 4.0f;
         public float maxPrefferedDistanceFromAlly = Mathf.Infinity;
@@ -104,7 +106,7 @@ public class Enemy : MonoBehaviour, IHitable
         GetComponentInChildren<EnemyAnimEventsHandler>().OnEndAttack += ToggleAttackHitbox;
 
         hp = maxHp;
-        UpdateUI();
+        UpdateUI(0);
     }
 
     // Update is called once per frame
@@ -256,7 +258,7 @@ public class Enemy : MonoBehaviour, IHitable
     {
         navMeshAgent.isStopped = false;
         enemyAnimator.OnRunAnimation();
-        actionAvailability.SetBusy(.25f);
+        actionAvailability.SetBusy(.1f);
 
         Collider[] allies = Physics.OverlapSphere(transform.position, distancePrefs.minPrefferedDistanceFromAlly);
         if (awayFromTarget)
@@ -287,12 +289,20 @@ public class Enemy : MonoBehaviour, IHitable
 
     /// //////////////////////////////////////////////////////////////////////////////////////////
 
+    private void LookAt(Transform target)
+    {
+        Vector3 direction = (target.position - transform.position).normalized;
+        Quaternion lookRotation = Quaternion.LookRotation(new Vector3(direction.x, 0, direction.z));    // flattens the vector3
+        transform.rotation = Quaternion.Slerp(transform.rotation, lookRotation, Time.deltaTime * 10f);
+    }
+
     protected virtual void Attack()
     {
         navMeshAgent.isStopped = true;
+        LookAt(target);
         enemyAnimator.OnStopAnimation();
         enemyAnimator.OnAttackAnimation();
-        actionAvailability.SetBusy(.4f);
+        actionAvailability.SetBusy();
     }
 
     protected virtual void ToggleAttackHitbox(bool toggle)
@@ -309,12 +319,14 @@ public class Enemy : MonoBehaviour, IHitable
         if (this == null)
             return;
 
-        HandleStagger();
+        if(damageType != DamageType.Electric)
+            HandleStagger();
 
         hp -= value;
         if (hp <= 0)
             Destroy(this.gameObject);
-        UpdateUI();
+        else
+            UpdateUI(value);
     }
 
     protected virtual void HandleStagger()
@@ -323,7 +335,7 @@ public class Enemy : MonoBehaviour, IHitable
         actionAvailability.SetBusy(.75f);
     }
 
-    public void UpdateUI()
+    public void UpdateUI(float value)
     {
         hpBar.fillAmount = hp / maxHp;
         if (hp == maxHp)
@@ -331,6 +343,11 @@ public class Enemy : MonoBehaviour, IHitable
         else
             hpObject.SetActive(true);
 
+        if (value == 0)
+            return;
+        TextMeshProUGUI damageText = Instantiate(damageTextPrefab, hpBar.canvas.transform);
+        damageText.text = value.ToString();
+        Destroy(damageText, 1f);
     }
 
     /// /////////////////////////////////////////////////////////////////////////////////////////////////////////

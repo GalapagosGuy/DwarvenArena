@@ -171,6 +171,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b476dc03d84273e47bfa0e96f31aac9b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  damageTextPrefab: {fileID: 8170462971797649146, guid: b4eb3c0ad4e1a2842906c693b5394b81,
+    type: 3}
   hpBar: {fileID: 5615021329896371989}
   hpObject: {fileID: 1559488418734634758}
   debugSetTarget: {fileID: 0}
@@ -471,6 +473,7 @@ GameObject:
   - component: {fileID: 5600435037441603629}
   - component: {fileID: 8830891172946893749}
   - component: {fileID: 6773092449347406576}
+  - component: {fileID: 5055882769126716355}
   m_Layer: 0
   m_Name: Canvas
   m_TagString: Untagged
@@ -558,6 +561,18 @@ MonoBehaviour:
   m_BlockingMask:
     serializedVersion: 2
     m_Bits: 4294967295
+--- !u!114 &5055882769126716355
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2292640078405177556}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 76920f46f9a561b4c940e378bb9e2b19, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &406318012298359078
 PrefabInstance:
   m_ObjectHideFlags: 0
