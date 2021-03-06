@@ -8,6 +8,7 @@ public class EnemyAnimator : MonoBehaviour
 
     public string runAnimTrigger = "Run";
     public string attackAnimTrigger = "Attack";
+    public string staggerAnimTrigger = "Stagger";
 
     protected void Awake()
     {
@@ -17,6 +18,11 @@ public class EnemyAnimator : MonoBehaviour
     public void OnAttackAnimation()
     {
         animator.SetTrigger(attackAnimTrigger);
+    }
+
+    public void OnGetHitAnimation()
+    {
+        animator.SetTrigger(staggerAnimTrigger);
     }
 
     public void OnRunAnimation()

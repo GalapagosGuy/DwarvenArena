@@ -128,7 +128,10 @@ public class Enemy : MonoBehaviour, IHitable
         FindTarget();
 
         if (target == null)
+        {
+            enemyActions = EnemyActions.NOTHING;
             return;
+        }
 
         switch (enemyActions)
         {
@@ -287,7 +290,6 @@ public class Enemy : MonoBehaviour, IHitable
     protected virtual void Attack()
     {
         navMeshAgent.isStopped = true;
-        transform.rotation = Quaternion.LookRotation((target.position - transform.position).normalized, Vector3.up);
         enemyAnimator.OnStopAnimation();
         enemyAnimator.OnAttackAnimation();
         actionAvailability.SetBusy(.4f);
@@ -307,10 +309,18 @@ public class Enemy : MonoBehaviour, IHitable
         if (this == null)
             return;
 
+        HandleStagger();
+
         hp -= value;
         if (hp <= 0)
             Destroy(this.gameObject);
         UpdateUI();
+    }
+
+    protected virtual void HandleStagger()
+    {
+        enemyAnimator.OnGetHitAnimation();
+        actionAvailability.SetBusy(.75f);
     }
 
     public void UpdateUI()
