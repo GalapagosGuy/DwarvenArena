@@ -334,6 +334,7 @@ MonoBehaviour:
   damageType: 2
   damage: 10
   animatorVariable: 
+  mock: {fileID: 2118756153646113578, guid: abb10dbe21e55714eb8fed299c1ae986, type: 3}
 --- !u!114 &406318010908409432
 MonoBehaviour:
   m_ObjectHideFlags: 0
