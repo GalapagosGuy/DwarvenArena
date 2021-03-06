@@ -7,7 +7,10 @@ public class PlayerController : PlayerStuff
 {
     public static PlayerController Instance = null;
 
+    public LayerMask mouseLayer;
+
     private PlayerMovement playerMovement = null;
+    private Vector3 mousePosition = Vector3.zero;
 
     private void Awake()
     {
@@ -21,6 +24,16 @@ public class PlayerController : PlayerStuff
 
     private void Update()
     {
+        mousePosition = Vector3.zero;
+        Ray inputRay = Camera.main.ScreenPointToRay(Input.mousePosition);
+
+        RaycastHit hit;
+
+        if (Physics.Raycast(inputRay, out hit, mouseLayer))
+        {
+            mousePosition = hit.point;
+        }
+
         ProcessMouseInputs();
         ProcessKeyboardInputs();
     }
@@ -43,6 +56,6 @@ public class PlayerController : PlayerStuff
         if (Input.GetKey(InputMap.MovementForward) || Input.GetKey(InputMap.MovementBackward) || Input.GetKey(InputMap.MovementLeft) || Input.GetKey(InputMap.MovementRight))
             isMoving = true;
 
-        playerMovement?.Move(Input.GetAxis(InputMap.MovementHorizontal), Input.GetAxis(InputMap.MovementVertical), isMoving);
+        playerMovement?.Move(Input.GetAxis(InputMap.MovementHorizontal), Input.GetAxis(InputMap.MovementVertical), isMoving, mousePosition);
     }
 }
