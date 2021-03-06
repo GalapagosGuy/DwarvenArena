@@ -319,10 +319,14 @@ public class Enemy : MonoBehaviour, IHitable
     protected virtual void Attack()
     {
         navMeshAgent.isStopped = true;
-        LookAt(target);
+        if(Vector3.Dot(target.forward, this.transform.forward) < .5f)
+        {
+            LookAt(target);
+            return;
+        }
         enemyAnimator.OnStopAnimation();
         enemyAnimator.OnAttackAnimation();
-        actionAvailability.SetBusy(.7f);
+        actionAvailability.SetBusy(1.3f);
     }
 
     protected virtual void ToggleAttackHitbox(bool toggle)

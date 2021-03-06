@@ -10,6 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 9219096822164369812}
   - component: {fileID: 6134653532828063340}
+  - component: {fileID: 8485072231092400641}
   m_Layer: 0
   m_Name: FoodTier2
   m_TagString: Untagged
@@ -51,6 +52,22 @@ MonoBehaviour:
   healingPower: 80
   cooldownTime: 10
   cooldownBar: {fileID: 4171135142302761140}
+--- !u!208 &8485072231092400641
+NavMeshObstacle:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1365109985413271589}
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Shape: 1
+  m_Extents: {x: 0.4, y: 0.4, z: 0.4}
+  m_MoveThreshold: 0.1
+  m_Carve: 1
+  m_CarveOnlyStationary: 1
+  m_Center: {x: 0, y: 0, z: 0}
+  m_TimeToStationary: 0.5
 --- !u!1 &2671471983712569670
 GameObject:
   m_ObjectHideFlags: 0
