@@ -14,6 +14,7 @@ public class PlayerSlots : MonoBehaviour
     public LayerMask mouseLayer;
     public WeaponCustom equipedWeapon = null;
     public Spell equipedSpell = null;
+    public Transform transformForWeapon;
 
     private PlayerStats playerStats;
     private Animator animator = null;
@@ -79,9 +80,9 @@ public class PlayerSlots : MonoBehaviour
         equipedWeapon = weapon.GetComponent<WeaponCustom>();
 
         equipedWeapon.transform.parent = rightHand.transform;
-        equipedWeapon.transform.localPosition = Vector3.zero;
-        equipedWeapon.transform.localRotation = Quaternion.identity;
-        equipedWeapon.transform.localScale = Vector3.one;
+        equipedWeapon.transform.localPosition = transformForWeapon.localPosition;
+        equipedWeapon.transform.localRotation = transformForWeapon.localRotation;
+        equipedWeapon.transform.localScale = transformForWeapon.localScale;
 
         equipedWeapon.UpdateParentReference();
         animator?.SetBool(equipedWeapon.AnimatorVariable, true);
