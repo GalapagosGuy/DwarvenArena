@@ -15,6 +15,7 @@ public class Lightning : CastedSpell
     public override void Initialize(Vector3 source, Vector3 target)
     {
         PlayerController.Instance?.GetComponent<PlayerSlots>().AddSpellHearingForStopCasting(this);
+        PlayerController.Instance.GetComponent<PlayerSlots>().UnlockSpells();
 
         this.transform.parent = PlayerController.Instance.GetComponent<PlayerSlots>().LeftHand.transform;
     }
@@ -64,7 +65,8 @@ public class Lightning : CastedSpell
 
             foreach (IHitable iHitable in targetsToDealDamage)
             {
-                iHitable.GetHit(damage, damageType);
+                if (iHitable != null)
+                    iHitable.GetHit(damage, damageType);
             }
 
             currentIntervalTime = 0.0f;
