@@ -29,6 +29,7 @@ public class Detector : MonoBehaviour
         }
     }
 
+
     private void OnTriggerExit(Collider other)
     {
         if (other.GetComponentInParent<Structure>())
