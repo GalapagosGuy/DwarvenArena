@@ -61,13 +61,19 @@ public class Enemy : MonoBehaviour
     
     public class ContextBasedSteeringBehaviourWeights
     {
-        float[] weights;
+        public float[] weights;
+        public static Vector3[] weightVectors;
 
-        ContextBasedSteeringBehaviourWeights(int size)
+        public ContextBasedSteeringBehaviourWeights()
         {
-            weights = new float[size];
+            weights = new float[8];
+            weightVectors = new Vector3[8] {Vector3.forward, Vector3.RotateTowards(Vector3.forward, Vector3.right, 45.0f * Mathf.Deg2Rad, 0),
+            Vector3.right, Vector3.RotateTowards(Vector3.right, Vector3.back, 45.0f * Mathf.Deg2Rad, 0),
+            Vector3.back, Vector3.RotateTowards(Vector3.back, Vector3.left, 45.0f * Mathf.Deg2Rad, 0),
+            Vector3.left, Vector3.RotateTowards(Vector3.left, Vector3.forward, 45.0f * Mathf.Deg2Rad, 0)};
         }
     }
+    public ContextBasedSteeringBehaviourWeights behaviourWeights { get; private set; }
 
     // Start is called before the first frame update
     protected virtual void Awake()
@@ -77,6 +83,8 @@ public class Enemy : MonoBehaviour
 
         distancePrefs = new DistancePreferences();
         actionAvailability = new ActionAvailability();
+
+        behaviourWeights = new ContextBasedSteeringBehaviourWeights();
     }
 
     // Update is called once per frame
@@ -173,14 +181,50 @@ public class Enemy : MonoBehaviour
         target = targetTransform;
     }
 
+    //Weights start from pointing upwards and go clockwise
+    protected virtual void CalculateContextWeights(Transform target, Collider[] surrounding, bool towardsTarget = true)
+    {
+        if(towardsTarget)
+        {
+            Vector3[] weightVectors = new Vector3[8];
+            for(int i = 0; i < 8; i++)
+            {
+                weightVectors[i] = new Vector3(ContextBasedSteeringBehaviourWeights.weightVectors[i].x,
+                    ContextBasedSteeringBehaviourWeights.weightVectors[i].y,
+                    ContextBasedSteeringBehaviourWeights.weightVectors[i].z);
+            }
+
+            Vector2 targetVector = VectorCast.CastVector3ToVector2(target.transform.position) 
+                - VectorCast.CastVector3ToVector2(this.transform.position);
+            for(int i = 0; i < behaviourWeights.weights.Length; i++)
+            {
+
+                behaviourWeights.weights[i] = Vector2.Dot(VectorCast.CastVector3ToVector2(weightVectors[i]), 
+                    targetVector.normalized);
+                Debug.Log(behaviourWeights.weights[i] + " " + i);
+            }
+        }
+    }
+
     protected virtual void MoveTowards(Transform target)
     {
         actionAvailability.SetBusy();
 
         Collider[] allies = Physics.OverlapSphere(transform.position, distancePrefs.minPrefferedDistanceFromAlly);
+        CalculateContextWeights(target, allies);
+        float max = -2; //dot product ranges from -1 to 1
+        Vector3 chosenDir = Vector3.zero;
+        for(int i = 0; i < 8; i++)
+        {
+            if (behaviourWeights.weights[i] > max)
+            {
+                max = behaviourWeights.weights[i];
+                chosenDir = ContextBasedSteeringBehaviourWeights.weightVectors[i];
+            }
+                
+        }
 
-
-        navMeshAgent.SetDestination(target.position);
+        navMeshAgent.SetDestination(transform.position + chosenDir * 5);
     }
 
     protected virtual void MoveAwayFrom(Transform target)
@@ -192,4 +236,24 @@ public class Enemy : MonoBehaviour
     {
         actionAvailability.SetBusy();
     }
+
+    private void OnDrawGizmos()
+    {
+        if(Application.isPlaying)
+        {
+            Vector3[] weightVectors = new Vector3[8];
+            for (int i = 0; i < 8; i++)
+            {
+                weightVectors[i] = new Vector3(ContextBasedSteeringBehaviourWeights.weightVectors[i].x,
+                    ContextBasedSteeringBehaviourWeights.weightVectors[i].y,
+                    ContextBasedSteeringBehaviourWeights.weightVectors[i].z);
+            }
+
+            for (int i = 0; i < 8; i++)
+            {
+                Gizmos.color = Color.red;
+                Gizmos.DrawLine(transform.position, (transform.position + weightVectors[i]) * behaviourWeights.weights[i]);
+            }
+        }
+    }       
 }
