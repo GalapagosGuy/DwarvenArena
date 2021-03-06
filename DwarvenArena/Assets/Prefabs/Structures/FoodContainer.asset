@@ -12,4 +12,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1e1c5801b5b44264b8e3e20047b228c9, type: 3}
   m_Name: FoodContainer
   m_EditorClassIdentifier: 
-  structureContainers: []
+  structureContainers:
+  - {fileID: 11400000, guid: bc1a447ec61ec15459ad03129a7fb6dd, type: 2}

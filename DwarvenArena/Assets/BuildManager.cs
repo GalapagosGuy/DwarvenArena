@@ -7,12 +7,13 @@ public class BuildManager : MonoBehaviour
     public static BuildManager Instance = null;
 
     [SerializeField]
-    private TierContainer[] tierContainers;
+    public TierContainer[] tierContainers;
 
     [SerializeField]
     private LayerMask hitLayers;
+    public Material structureMaterial;
 
-    private int currentStructure;
+    private int currentCategory;
     private bool isTurnedOn;
     private PlayerController playerController;
     private GameObject mock;
@@ -27,16 +28,14 @@ public class BuildManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        BuildingModeUpdate();
+    }
+
+    public void BuildingModeUpdate()
+    {
         if (isTurnedOn)
         {
             ScrollingMocks();
-
-        }
-
-
-        /*
-        if(isTurnedOn)
-        {
             Vector3 mouse = Input.mousePosition;
             Ray castPoint = Camera.main.ScreenPointToRay(mouse);
             RaycastHit hit;
@@ -45,17 +44,24 @@ public class BuildManager : MonoBehaviour
                 mock.transform.position = hit.point + new Vector3(0f, 0.5f, 0f);
             }
 
-            ScrollingMocks();
-
-            if (!mock.GetComponent<Mock>().isColliding && Input.GetMouseButtonDown(0))
+            if (mock.GetComponent<Mock>().isColliding)
             {
-                isTurnedOn = false;
-               // GameObject buildedStructure = Instantiate(structures[currentMock], mock.transform.position, mock.transform.rotation);
-                Destroy(mock);
- 
+                // Red
+                structureMaterial.color = new Color(1f, 0, 0, 0.5f);
             }
+            else
+            {
+                // white
+                structureMaterial.color = new Color(1f, 1f, 1f, 0.5f);
+                if(Input.GetMouseButtonDown(0))
+                {
+                    isTurnedOn = false;
+                    GameObject buildedStructure = Instantiate(tierContainers[currentCategory].structureContainers[0].structureObject, mock.transform.position, mock.transform.rotation);
+                    Destroy(mock);
+                }
+            }
+
         }
-        */
     }
 
     public void ScrollingMocks()
@@ -64,27 +70,27 @@ public class BuildManager : MonoBehaviour
 
         if (Input.GetAxis("Mouse ScrollWheel") > 0)
         {
-            currentStructure--;
+            currentCategory--;
             gotChanged = true;
         }
             
         if (Input.GetAxis("Mouse ScrollWheel") < 0)
         {
             gotChanged = true;
-            currentStructure++;
+            currentCategory++;
         }
 
-        if (currentStructure >= tierContainers.Length)
-            currentStructure = 0;
-        if (currentStructure < 0)
-            currentStructure = tierContainers.Length - 1;
+        if (currentCategory >= tierContainers.Length)
+            currentCategory = 0;
+        if (currentCategory < 0)
+            currentCategory = tierContainers.Length - 1;
 
         if (gotChanged)
         {
-            UIManager.Instance.ChangeIndicator(currentStructure);
+            UIManager.Instance.ChangeIndicator(currentCategory);
 
             Destroy(mock);
-           // mock = Instantiate(mocks[currentMock]);
+            mock = Instantiate(tierContainers[currentCategory].structureContainers[0].structureMock);
         }
 
     }
@@ -92,13 +98,13 @@ public class BuildManager : MonoBehaviour
     public void ToggleBuildingMode(bool isOn)
     {
         isTurnedOn = isOn;
-        currentStructure = 0;
+        currentCategory = 0;
 
         if (isTurnedOn)
         {
             UIManager.Instance.ToggleStructures(isOn);
-            UIManager.Instance.ChangeIndicator(currentStructure);
-            //mock = Instantiate(mocks[currentMock]);
+            UIManager.Instance.ChangeIndicator(currentCategory);
+            mock = Instantiate(tierContainers[currentCategory].structureContainers[0].structureMock);
         }
         else
         {

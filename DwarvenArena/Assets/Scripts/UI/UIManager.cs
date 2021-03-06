@@ -75,14 +75,17 @@ public class UIManager : MonoBehaviour
         structuresUIObject.SetActive(isOn);
     }
 
-    public void ChangeIndicator(int structure)
+    public void ChangeIndicator(int category)
     {
-        for (int i = 0; i < structuresUI.Length; i++)
+        for (int i = 0; i < structuresUI.Length-2; i++)
         {
             structuresUI[i].GetComponent<StructureUI>().activeIndicator.SetActive(false);
+            structuresUI[i].GetComponent<StructureUI>().tierText.text = "Tier " + (BuildManager.Instance.tierContainers[i].structureContainers[0].tier + 1);
+            structuresUI[i].GetComponent<StructureUI>().costText.text = BuildManager.Instance.tierContainers[i].structureContainers[0].cost.ToString();
         }
 
-        structuresUI[structure].GetComponent<StructureUI>().activeIndicator.SetActive(true);
+        structuresUI[category].GetComponent<StructureUI>().activeIndicator.SetActive(true);
+
     }
 
 
