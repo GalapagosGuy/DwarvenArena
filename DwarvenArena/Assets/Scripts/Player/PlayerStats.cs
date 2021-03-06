@@ -27,7 +27,7 @@ public class PlayerStats : MonoBehaviour, IHitable
         playerSlots = GetComponent<PlayerSlots>();
         hp = maxHp;//* .25f;
         mana = maxMana;
-        money = 0;
+        money = 100;
         UIManager.Instance?.UpdateUI();
     }
 
