@@ -67,10 +67,8 @@ public class PlayerController : PlayerStuff
             detector.Use();
 
         if (Input.GetKeyDown(InputMap.Build))
-            BuildManager.Instance.ToggleBuildingMode(true);
+            BuildManager.Instance.ToggleBuildingMode();
 
-        if (Input.GetKeyUp(InputMap.Build))
-            BuildManager.Instance.ToggleBuildingMode(false);
     }
 
     private void ProcessMovement()
