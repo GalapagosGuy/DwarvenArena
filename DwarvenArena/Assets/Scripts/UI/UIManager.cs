@@ -77,11 +77,12 @@ public class UIManager : MonoBehaviour
 
     public void ChangeIndicator(int category)
     {
-        for (int i = 0; i < structuresUI.Length-2; i++)
+        for (int i = 0; i < structuresUI.Length-1; i++)
         {
             structuresUI[i].GetComponent<StructureUI>().activeIndicator.SetActive(false);
-            structuresUI[i].GetComponent<StructureUI>().tierText.text = "Tier " + (BuildManager.Instance.tierContainers[i].structureContainers[0].tier + 1);
-            structuresUI[i].GetComponent<StructureUI>().costText.text = BuildManager.Instance.tierContainers[i].structureContainers[0].cost.ToString();
+            structuresUI[i].GetComponent<StructureUI>().tierText.text = "Tier " + (BuildManager.Instance.tierContainers[i].structureContainers[BuildManager.Instance.tiersToBuild[i]].tier + 1);
+            structuresUI[i].GetComponent<StructureUI>().costText.text = BuildManager.Instance.tierContainers[i].structureContainers[BuildManager.Instance.tiersToBuild[i]].cost.ToString();
+            structuresUI[i].GetComponent<StructureUI>().structureImage.sprite = BuildManager.Instance.tierContainers[i].structureContainers[BuildManager.Instance.tiersToBuild[i]].structureSprite;
         }
 
         structuresUI[category].GetComponent<StructureUI>().activeIndicator.SetActive(true);

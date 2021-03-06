@@ -12,4 +12,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1e1c5801b5b44264b8e3e20047b228c9, type: 3}
   m_Name: SpellContainer
   m_EditorClassIdentifier: 
-  structureContainers: []
+  structureContainers:
+  - {fileID: 11400000, guid: 2b49c39272411d94f98105323242afc4, type: 2}
+  - {fileID: 11400000, guid: 8e07bff3b18546e45ac98fc2a0d6c071, type: 2}
