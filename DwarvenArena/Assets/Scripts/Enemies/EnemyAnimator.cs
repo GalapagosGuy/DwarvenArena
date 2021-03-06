@@ -17,12 +17,14 @@ public class EnemyAnimator : MonoBehaviour
 
     public void OnAttackAnimation()
     {
-        animator.SetTrigger(attackAnimTrigger);
+        //animator.SetTrigger(attackAnimTrigger);
+        animator.Play("Attack");
     }
 
     public void OnGetHitAnimation()
     {
-        animator.SetTrigger(staggerAnimTrigger);
+        //animator.SetTrigger(staggerAnimTrigger);
+        animator.Play("Hit");
     }
 
     public void OnRunAnimation()
