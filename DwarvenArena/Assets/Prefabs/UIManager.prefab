@@ -3876,6 +3876,8 @@ MonoBehaviour:
   gameEndPanel: {fileID: 2820442914709261528}
   gameWonText: {fileID: 4542060844131906914}
   gameLostText: {fileID: 813516323563923472}
+  waveEndText: {fileID: 3835911215245252495}
+  monsterKilledText: {fileID: 3922491099502526635}
   structuresUI:
   - {fileID: 4544031465937332150}
   - {fileID: 2032542864904897106}
