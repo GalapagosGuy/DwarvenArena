@@ -127,12 +127,15 @@ public class Enemy : MonoBehaviour, IHitable
         }
 
         //find target
-        FindTarget();
-
         if (target == null)
         {
-            enemyActions = EnemyActions.NOTHING;
-            return;
+            FindTarget();
+            //if still null
+            if (target == null)
+            {
+                enemyActions = EnemyActions.NOTHING;
+                return;
+            }
         }
 
         switch (enemyActions)
@@ -179,7 +182,9 @@ public class Enemy : MonoBehaviour, IHitable
 
     protected virtual void FindPlayer()
     {
-        target = PlayerController.Instance.transform;
+        float random = Random.Range(0.0f, 1.0f);
+        if (random > .4f)
+            target = PlayerController.Instance.transform;
     }
 
     protected virtual void FindTarget()
@@ -193,16 +198,29 @@ public class Enemy : MonoBehaviour, IHitable
         List<PlayerStuff> possibleTargets = FindObjectsOfType<PlayerStuff>().ToList();
         if (possibleTargets.Count == 0)
             Debug.Log("No PlayerStuff on Scene!");
+
+        float random = Random.Range(0.0f, 1.0f);
         float minDistance = Mathf.Infinity;
-        foreach(PlayerStuff target in possibleTargets)
+        foreach(PlayerStuff p in possibleTargets)
         {
-            float distance = Vector3.Distance(target.transform.position, transform.position);
-            if (distance < minDistance)
+            if (p is PlayerController player)
             {
-                minDistance = distance;
-                targetTransform = target.transform;
+                if(random < .9f)
+                {
+                    target = player.transform;
+                    return;
+                }
+            }
+            else
+            {
+                if(Vector3.Distance(p.transform.position, this.transform.position) < minDistance)
+                {
+                    targetTransform = p.transform;
+                    minDistance = Vector3.Distance(p.transform.position, this.transform.position);
+                }
             }
         }
+
         target = targetTransform;
     }
 
@@ -343,6 +361,7 @@ public class Enemy : MonoBehaviour, IHitable
         else
             hpObject.SetActive(true);
 
+        FindPlayer();
         if (value == 0)
             return;
         TextMeshProUGUI damageText = Instantiate(damageTextPrefab, hpBar.canvas.transform);
