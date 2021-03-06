@@ -120,21 +120,21 @@ public class BuildManager : MonoBehaviour
         }
         return 0;
     }
-    public void ToggleBuildingMode(bool isOn)
+    public void ToggleBuildingMode()
     {
-        isTurnedOn = isOn;
+        isTurnedOn = !isTurnedOn;
         currentCategory = 0;
 
         if (isTurnedOn)
         {
-            UIManager.Instance.ToggleStructures(isOn);
+            UIManager.Instance.ToggleStructures(isTurnedOn);
             UIManager.Instance.ChangeIndicator(currentCategory);
             UpdateTiersToBuild();
             mock = Instantiate(tierContainers[currentCategory].structureContainers[tiersToBuild[currentCategory]].structureMock);
         }
         else
         {
-            UIManager.Instance.ToggleStructures(isOn);
+            UIManager.Instance.ToggleStructures(isTurnedOn);
             Destroy(mock);
 
         }

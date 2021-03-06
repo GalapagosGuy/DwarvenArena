@@ -10,12 +10,12 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: c7bd8e5861f3a3348a724b0c0c0a3462, type: 3}
-  m_Name: FoodTier1
+  m_Name: FoodTier2
   m_EditorClassIdentifier: 
-  structureObject: {fileID: 5315432807929588936, guid: eede007f4507fdc47b3cdc3a7485f7d0,
+  structureObject: {fileID: 1365109985413271589, guid: 3ffdeaa66b55fe14290d58a2efa8079e,
     type: 3}
-  structureMock: {fileID: 5315432807929588936, guid: 603aca15f3d1361428270fa1ae793804,
+  structureMock: {fileID: 1365109985413271589, guid: cf319a026d0a2954da11be3c6a1780e5,
     type: 3}
-  cost: 0
-  tier: 0
-  structureSprite: {fileID: 21300000, guid: 67a9f26b9e9fff040baaadbf6560cacd, type: 3}
+  cost: 30
+  tier: 1
+  structureSprite: {fileID: 21300000, guid: 8c227f7a689c5f440a5fa73c0e8f0f8d, type: 3}
