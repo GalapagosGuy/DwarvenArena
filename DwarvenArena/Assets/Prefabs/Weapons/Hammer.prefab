@@ -158,6 +158,7 @@ MonoBehaviour:
   damageType: 2
   damage: 20
   animatorVariable: hasHammerEquiped
+  mock: {fileID: 2974407520560463130, guid: 1bf7028c759fd6149923b297118df835, type: 3}
 --- !u!1 &1858206899350290461
 GameObject:
   m_ObjectHideFlags: 0

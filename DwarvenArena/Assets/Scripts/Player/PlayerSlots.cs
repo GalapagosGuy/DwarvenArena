@@ -63,6 +63,7 @@ public class PlayerSlots : MonoBehaviour
         if (equipedWeapon)
         {
             animator?.SetBool(equipedWeapon.AnimatorVariable, false);
+            equipedWeapon.OnWeaponReturn();
 
             if (equipedWeapon.root)
                 equipedWeapon.root.ReturnWeapon();
@@ -79,6 +80,8 @@ public class PlayerSlots : MonoBehaviour
 
         equipedWeapon.UpdateParentReference();
         animator?.SetBool(equipedWeapon.AnimatorVariable, true);
+
+        equipedWeapon.Initialize();
     }
 
     public void ChangeSpell(GameObject spell)

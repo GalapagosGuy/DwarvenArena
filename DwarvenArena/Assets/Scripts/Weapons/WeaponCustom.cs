@@ -9,11 +9,15 @@ public class WeaponCustom : MonoBehaviour
     [SerializeField] private float damage = 0.0f;
     [SerializeField] private string animatorVariable = "";
 
+    public GameObject mock;
     public WeaponStructure root { get; private set; } = null; // structure parent
     public string AnimatorVariable { get => animatorVariable; }
+    public float Damage { get => damage; }
+    public DamageType DamageType { get => damageType; }
 
     private GameObject parent = null;
     private BoxCollider boxCollider = null;
+    private DamageMock createdMock = null;
 
     private void Start()
     {
@@ -24,21 +28,36 @@ public class WeaponCustom : MonoBehaviour
 
     private List<IHitable> hitObjects = new List<IHitable>();
 
+    public void Initialize()
+    {
+        GameObject mockGO = Instantiate(mock, this.transform.root.transform);
+        createdMock = mockGO.GetComponent<DamageMock>();
+        createdMock.weaponReference = this;
+    }
+
+    public void OnWeaponReturn()
+    {
+        if (createdMock)
+            Destroy(createdMock.gameObject);
+    }
+
     public void EnableDealingDamage()
     {
-        if (boxCollider)
+        createdMock.EnableDealingDamage();
+        /*if (boxCollider)
             boxCollider.enabled = true;
 
-        hitObjects.Clear();
+        hitObjects.Clear();*/
     }
 
     public void DisableDealingDamage()
     {
-        if (boxCollider)
-            boxCollider.enabled = false;
+        createdMock.DisableDealingDamage();
+        //if (boxCollider)
+        //    boxCollider.enabled = false;
     }
 
-    private void OnTriggerEnter(Collider other)
+    /*private void OnTriggerEnter(Collider other)
     {
         if (other.transform.root.gameObject == parent)
             return;
@@ -50,7 +69,7 @@ public class WeaponCustom : MonoBehaviour
             iHitable.GetHit(damage, damageType);
             hitObjects.Add(iHitable);
         }
-    }
+    }*/
 
     public void UpdateParentReference()
     {
