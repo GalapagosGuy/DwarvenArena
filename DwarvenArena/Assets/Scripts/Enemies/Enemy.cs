@@ -9,6 +9,7 @@ public class Enemy : MonoBehaviour, IHitable
 {
     protected NavMeshAgent navMeshAgent;
     protected EnemyAnimator enemyAnimator;
+    protected WeaponCustom weaponCustom;
 
     protected Transform target = null;
     protected string allyTag = "Enemy";
@@ -85,6 +86,8 @@ public class Enemy : MonoBehaviour, IHitable
     {
         navMeshAgent = GetComponent<NavMeshAgent>();
         enemyAnimator = GetComponent<EnemyAnimator>();
+        weaponCustom = GetComponentInChildren<WeaponCustom>();
+        weaponCustom.DisableDealingDamage();
         enemyActions = EnemyActions.NOTHING;
 
         distancePrefs = new DistancePreferences();
@@ -130,7 +133,7 @@ public class Enemy : MonoBehaviour, IHitable
             case EnemyActions.FOLLOW:
                 //move
                 if (Vector3.Distance(transform.position, target.position) > distancePrefs.maxPrefferedDistanceFromPlayer)
-                    MoveTowards(target);
+                    Move(target);
                 else
                     enemyActions = EnemyActions.ATTACK;
                 break;
@@ -144,7 +147,7 @@ public class Enemy : MonoBehaviour, IHitable
                 //consider possible locations
                 //move there
                 if (Vector3.Distance(transform.position, target.position) > distancePrefs.maxPrefferedDistanceFromPlayer)
-                    MoveAwayFrom(target);
+                    Move(target, true);
                 else
                     enemyActions = EnemyActions.ATTACK;
                 break;
@@ -240,22 +243,20 @@ public class Enemy : MonoBehaviour, IHitable
         }
     }
 
-    protected virtual void MoveTowards(Transform target)
+    protected virtual void Move(Transform target, bool awayFromTarget = false)
     {
         enemyAnimator.OnRunAnimation();
         actionAvailability.SetBusy(.5f);
 
         Collider[] allies = Physics.OverlapSphere(transform.position, distancePrefs.minPrefferedDistanceFromAlly);
-        CalculateContextWeights(target, allies);
+        if (awayFromTarget)
+            CalculateContextWeights(target, allies, 0.5f, 2.0f, false);
+        else
+            CalculateContextWeights(target, allies);
 
         float[] weightOffsets = new float[8] { 0, 0, 0, 0, 0, 0, 0, 0 };
         Vector3 chosenDir = CalculatePath(weightOffsets);
         navMeshAgent.SetDestination(transform.position + chosenDir * 2);
-    }
-
-    protected virtual void MoveAwayFrom(Transform target)
-    {
-        actionAvailability.SetBusy();
     }
 
     // weight offsets start from Vec3.forward and going clockwise
@@ -274,6 +275,8 @@ public class Enemy : MonoBehaviour, IHitable
         return combinedResult.normalized;
     }
 
+    /// //////////////////////////////////////////////////////////////////////////////////////////
+
     protected virtual void Attack()
     {
         enemyAnimator.OnStopAnimation();
@@ -284,7 +287,20 @@ public class Enemy : MonoBehaviour, IHitable
     protected virtual void ToggleAttackHitbox(bool toggle)
     {
         Debug.Log("Attack " + toggle);
+        if (toggle)
+            weaponCustom.EnableDealingDamage();
+        else
+            weaponCustom.DisableDealingDamage();
     }
+
+    public void GetHit(float value, DamageType damageType)
+    {
+        hp -= value;
+        if (hp <= 0)
+            Destroy(this.gameObject);
+    }
+
+    /// /////////////////////////////////////////////////////////////////////////////////////////////////////////
 
     private void OnDrawGizmos()
     {
@@ -299,12 +315,5 @@ public class Enemy : MonoBehaviour, IHitable
             Gizmos.color = Color.blue;
             Gizmos.DrawWireSphere(this.transform.position, distancePrefs.minPrefferedDistanceFromAlly);
         }
-    }
-
-    public void GetHit(float value, DamageType damageType)
-    {
-        hp -= value;
-        if (hp <= 0)
-            Destroy(this.gameObject);
     }
 }
