@@ -20,7 +20,7 @@ public class PlayerController : PlayerStuff
             PlayerController.Instance = this;
         else
             Destroy(this);
-        
+
         // To bylo nad Awake
         mousePosition = Vector3.zero;
 
@@ -36,7 +36,7 @@ public class PlayerController : PlayerStuff
 
         RaycastHit hit;
 
-        if (Physics.Raycast(inputRay, out hit, mouseLayer))
+        if (Physics.Raycast(inputRay, out hit, Mathf.Infinity, mouseLayer))
         {
             mousePosition = hit.point;
         }
@@ -50,7 +50,10 @@ public class PlayerController : PlayerStuff
         if (Input.GetMouseButtonDown(0))
             playerSlots?.UseWeapon();
         else if (Input.GetMouseButtonDown(1))
-            GetComponent<Animator>()?.SetTrigger("spellTrigger");
+            playerSlots?.UseSpell();
+
+        if (!Input.GetMouseButton(1))
+            playerSlots?.StopUsingSpell();
     }
 
     private void ProcessKeyboardInputs()

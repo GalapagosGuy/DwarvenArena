@@ -23,6 +23,8 @@ public class PlayerMovement : MonoBehaviour
 
     private int lastQuarter = 0;
 
+    public Vector3 LastMousePosition { get => lastMousePosition; }
+
     public void Move(float movementLR, float movementFB, bool isMoving, Vector3 mousePosition)
     {
         Vector3 tmp = mousePosition;
