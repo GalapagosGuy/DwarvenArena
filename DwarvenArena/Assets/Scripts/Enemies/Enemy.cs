@@ -19,7 +19,7 @@ public class Enemy : MonoBehaviour
     public class DistancePreferences
     {
         public float minPrefferedDistanceFromPlayer = 2.0f;
-        public float maxPrefferedDistanceFromPlayer = 5.0f;
+        public float maxPrefferedDistanceFromPlayer = Mathf.Infinity;
 
         public float minPrefferedDistanceFromAlly = 5.0f;
         public float maxPrefferedDistanceFromAlly = Mathf.Infinity;
