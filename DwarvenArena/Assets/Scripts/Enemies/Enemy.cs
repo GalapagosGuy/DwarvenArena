@@ -17,6 +17,8 @@ public class Enemy : MonoBehaviour, IHitable
     [SerializeField]
     private GameObject hpObject;
 
+    public DamageType weakness;
+
     protected Transform target = null;
     protected string allyTag = "Enemy";
     [Tooltip("Use for manual target setup")] public Transform debugSetTarget;
@@ -340,11 +342,17 @@ public class Enemy : MonoBehaviour, IHitable
         if(damageType != DamageType.Electric)
             HandleStagger();
 
+        bool isCrit = false;
+        if (damageType == weakness)
+        {
+            value *= 1.5f;
+            isCrit = true;
+        }
         hp -= value;
         if (hp <= 0)
             Destroy(this.gameObject);
         else
-            UpdateUI(value);
+            UpdateUI(Mathf.Round(value), isCrit);
     }
 
     protected virtual void HandleStagger()
@@ -353,7 +361,7 @@ public class Enemy : MonoBehaviour, IHitable
         actionAvailability.SetBusy(.75f);
     }
 
-    public void UpdateUI(float value)
+    public void UpdateUI(float value, bool crit = false)
     {
         hpBar.fillAmount = hp / maxHp;
         if (hp == maxHp)
@@ -366,6 +374,8 @@ public class Enemy : MonoBehaviour, IHitable
             return;
         TextMeshProUGUI damageText = Instantiate(damageTextPrefab, hpBar.canvas.transform);
         damageText.text = value.ToString();
+        if (crit)
+            damageText.color = new Color(1f, 0.5906301f, 0f);
         Destroy(damageText, 1f);
     }
 

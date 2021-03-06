@@ -176,6 +176,7 @@ MonoBehaviour:
     type: 3}
   hpBar: {fileID: 5615021329896371989}
   hpObject: {fileID: 1559488418734634758}
+  weakness: 2
   debugSetTarget: {fileID: 0}
   maxHp: 100
 --- !u!195 &406318012314030327

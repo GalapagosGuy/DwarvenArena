@@ -158,6 +158,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   damageType: 2
   damage: 20
+  damageOffset: 5
   animatorVariable: hasHammerEquiped
   mock: {fileID: 2974407520560463130, guid: 7babc8ab48e1c9b4291772839b1a7bfe, type: 3}
 --- !u!1 &1858206899350290461
