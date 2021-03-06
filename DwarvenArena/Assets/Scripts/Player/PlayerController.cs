@@ -15,6 +15,7 @@ public class PlayerController : PlayerStuff
     public Vector3 mousePosition { get; private set; }
     private Detector detector;
 
+    private float startY;
     private void Awake()
     {
         if (PlayerController.Instance == null)
@@ -29,7 +30,7 @@ public class PlayerController : PlayerStuff
         playerMovement = GetComponent<PlayerMovement>();
         playerSlots = GetComponent<PlayerSlots>();
         detector = GetComponentInChildren<Detector>();
-
+        startY = transform.position.y;
     }
 
     private void Update()
@@ -79,6 +80,7 @@ public class PlayerController : PlayerStuff
             isMoving = true;
 
         playerMovement?.Move(Input.GetAxis(InputMap.MovementHorizontal), Input.GetAxis(InputMap.MovementVertical), isMoving, mousePosition);
+        transform.position = new Vector3(transform.position.x, startY, transform.position.z);
 
     }
 

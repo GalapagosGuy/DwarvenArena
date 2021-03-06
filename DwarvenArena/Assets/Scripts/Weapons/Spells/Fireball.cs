@@ -6,12 +6,18 @@ public class Fireball : CastedSpell
 {
     [SerializeField] private float speed = 1.0f;
     [SerializeField] private float damage = 50.0f;
+    [SerializeField] private float damageOffset;
     [SerializeField] private float explosionRange = 2.0f;
     [SerializeField] private DamageType damageType;
 
     public GameObject explosionParticles = null;
 
     private Vector3 targetPosition;
+
+    public float RandomDamage()
+    {
+        return Random.Range((int)(damage - damageOffset), (int)(damage + damageOffset) + 1);
+    }
 
     public override void Initialize(Vector3 source, Vector3 target)
     {
@@ -53,7 +59,7 @@ public class Fireball : CastedSpell
             if (iHitable != null && playerHitable != iHitable && !targetsHit.Contains(iHitable))
             {
                 targetsHit.Add(iHitable);
-                iHitable.GetHit(damage, damageType);
+                iHitable.GetHit(RandomDamage(), damageType);
             }
         }
 

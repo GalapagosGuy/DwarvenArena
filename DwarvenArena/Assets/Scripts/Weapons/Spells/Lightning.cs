@@ -7,10 +7,16 @@ public class Lightning : CastedSpell
     public Transform overlapBoxCenter;
 
     [SerializeField] private float damage;
+    [SerializeField] private float damageOffset;
     [SerializeField] private DamageType damageType;
     [SerializeField] private float interval;
 
     private float currentIntervalTime = 0.0f;
+
+    public float RandomDamage()
+    {
+        return Random.Range((int)(damage - damageOffset), (int)(damage + damageOffset) + 1);
+    }
 
     public override void Initialize(Vector3 source, Vector3 target)
     {
@@ -68,7 +74,7 @@ public class Lightning : CastedSpell
             foreach (IHitable iHitable in targetsToDealDamage)
             {
                 if (iHitable != null)
-                    iHitable.GetHit(damage, damageType);
+                    iHitable.GetHit(RandomDamage(), damageType);
             }
 
             currentIntervalTime = 0.0f;

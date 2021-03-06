@@ -47,9 +47,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 441d7a09ae2f3c44888336d1c8fcc4a1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  cost: 25
+  cost: 30
   speed: 10
   damage: 50
+  damageOffset: 10
   explosionRange: 2
   damageType: 3
   explosionParticles: {fileID: 5140519395458318797, guid: 0b81a266d54969043b8609385f06eda4,
