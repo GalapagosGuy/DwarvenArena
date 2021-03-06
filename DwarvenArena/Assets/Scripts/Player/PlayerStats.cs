@@ -34,7 +34,7 @@ public class PlayerStats : MonoBehaviour, IHitable
     // Update is called once per frame
     void Update()
     {
-        if(mana < maxMana)
+        if (mana < maxMana)
         {
             mana += manaRegen * Time.deltaTime;
             if (mana > maxMana)
@@ -65,6 +65,14 @@ public class PlayerStats : MonoBehaviour, IHitable
         }
         UIManager.Instance.UpdateUI();
 
+    }
+
+    public void AddMana(float value)
+    {
+        mana += value;
+        if (mana > maxMana)
+            mana = maxMana;
+        UIManager.Instance?.UpdateUI();
     }
 
     public void AddMoney(int value)

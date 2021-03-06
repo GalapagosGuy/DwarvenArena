@@ -63,6 +63,7 @@ MonoBehaviour:
   meshRenderer: {fileID: 0}
   enemyWeapon: 0
   canDestroyStructures: 0
+  manaRestoreRatio: 0.5
 --- !u!54 &8354313888450898836
 Rigidbody:
   m_ObjectHideFlags: 0

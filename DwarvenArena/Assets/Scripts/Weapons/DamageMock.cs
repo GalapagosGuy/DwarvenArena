@@ -12,6 +12,8 @@ public class DamageMock : MonoBehaviour
 
     public bool canDestroyStructures = true;
 
+    [SerializeField] private float manaRestoreRatio = 0.05f;
+
     private void Awake()
     {
         meshCollider = GetComponentInChildren<MeshCollider>();
@@ -51,6 +53,11 @@ public class DamageMock : MonoBehaviour
         {
             iHitable.GetHit(weaponReference.Damage, weaponReference.DamageType);
             hitObjects.Add(iHitable);
+
+            if (this.GetComponentInParent<PlayerStats>())
+            {
+                GetComponentInParent<PlayerStats>()?.AddMana(weaponReference.Damage * manaRestoreRatio);
+            }
         }
     }
 }
