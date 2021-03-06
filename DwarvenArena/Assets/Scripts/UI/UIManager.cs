@@ -30,7 +30,7 @@ public class UIManager : MonoBehaviour
 
     public void UpdateUI()
     {
-        hpBar.fillAmount = playerStats.hp / playerStats.maxHp;
+        hpBar.fillAmount = playerStats.hp / playerStats.MaxHp;
         moneyText.text = playerStats.money.ToString();
     }
 }

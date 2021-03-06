@@ -4,14 +4,17 @@ using UnityEngine;
 
 public class PlayerStats : MonoBehaviour
 {
-    public float maxHp { get; private set; }
+    [SerializeField]
+    private float maxHp;
     public float hp { get; private set; }
     public int money { get; private set; }
+    public float MaxHp { get => maxHp; private set => maxHp = value; }
 
     void Start()
     {
-        hp = maxHp;
+        hp = maxHp * .25f;
         money = 0;
+        UIManager.Instance.UpdateUI();
     }
 
     // Update is called once per frame

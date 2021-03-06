@@ -12,12 +12,20 @@ public class Detector : MonoBehaviour
         detectedStructure.Use(this.gameObject);
     }
 
-    private void OnTriggerEnter(Collider other)
+    private void OnTriggerStay(Collider other)
     {
         if(other.GetComponentInParent<Structure>())
         {
+
             interactiveInRange = true;
             detectedStructure = other.GetComponentInParent<Structure>();
+            if (other.GetComponent<Outline>())
+                other.GetComponent<Outline>().enabled = true;
+
+            if (Input.GetKeyDown(KeyCode.E))
+            {
+                detectedStructure.Use(this.gameObject);
+            }
         }
     }
 
@@ -27,6 +35,9 @@ public class Detector : MonoBehaviour
         {
             interactiveInRange = false;
             detectedStructure = null;
+
+            if (other.GetComponent<Outline>())
+                other.GetComponent<Outline>().enabled = false;
         }
     }
 }
