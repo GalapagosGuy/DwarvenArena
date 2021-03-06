@@ -4,6 +4,8 @@ using UnityEngine;
 
 public class PlayerStats : MonoBehaviour, IHitable
 {
+    public static PlayerStats Instance = null;
+
     [SerializeField]
     private float maxHp;
     [SerializeField]
@@ -17,8 +19,12 @@ public class PlayerStats : MonoBehaviour, IHitable
     public float MaxHp { get => maxHp; private set => maxHp = value; }
     public float MaxMana { get => maxMana; private set => maxMana = value; }
 
+    public PlayerSlots playerSlots;
+
     void Start()
     {
+        PlayerStats.Instance = this;
+        playerSlots = GetComponent<PlayerSlots>();
         hp = maxHp;//* .25f;
         mana = maxMana;
         money = 0;

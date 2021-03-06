@@ -49,6 +49,10 @@ public class Lightning : CastedSpell
 
     private void Update()
     {
+        if (!PlayerStats.Instance.HasEnoughMana(cost))
+            PlayerStats.Instance.playerSlots.StopUsingSpell();
+
+
         this.transform.forward = PlayerController.Instance.transform.forward;
         //this.transform.rotation = Quaternion.Euler(PlayerController.Instance.transform.forward + Vector3.up);
 
@@ -65,5 +69,6 @@ public class Lightning : CastedSpell
 
             currentIntervalTime = 0.0f;
         }
+        PlayerStats.Instance.SubstractMana(cost);
     }
 }
