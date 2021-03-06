@@ -4813,9 +4813,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4ad9187fb39c64d48892cd5b37a43b98, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  cost: 0.2
+  cost: 0.05
   overlapBoxCenter: {fileID: 4070558520251072592}
-  damage: 1
+  damage: 2
   damageType: 5
   interval: 0.05
 --- !u!54 &5090283116707428446

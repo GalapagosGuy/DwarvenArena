@@ -49,6 +49,7 @@ public class PlayerStats : MonoBehaviour, IHitable
         if (hp <= 0)
         {
             Debug.Log("PLAYER IS DEAD");
+            UIManager.Instance.GameLost();
             Destroy(this.gameObject);
         }
 

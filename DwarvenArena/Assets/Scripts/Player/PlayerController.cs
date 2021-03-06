@@ -14,7 +14,6 @@ public class PlayerController : PlayerStuff
     private PlayerSlots playerSlots = null;
     public Vector3 mousePosition { get; private set; }
     private Detector detector;
-    private BuildManager buildManager;
 
     private void Awake()
     {
@@ -30,7 +29,7 @@ public class PlayerController : PlayerStuff
         playerMovement = GetComponent<PlayerMovement>();
         playerSlots = GetComponent<PlayerSlots>();
         detector = GetComponentInChildren<Detector>();
-        buildManager = GetComponent<BuildManager>();
+
     }
 
     private void Update()
@@ -68,10 +67,10 @@ public class PlayerController : PlayerStuff
             detector.Use();
 
         if (Input.GetKeyDown(InputMap.Build))
-            buildManager.TurnOn(true);
+            BuildManager.Instance.ToggleBuildingMode(true);
 
         if (Input.GetKeyUp(InputMap.Build))
-            buildManager.TurnOn(false);
+            BuildManager.Instance.ToggleBuildingMode(false);
     }
 
     private void ProcessMovement()

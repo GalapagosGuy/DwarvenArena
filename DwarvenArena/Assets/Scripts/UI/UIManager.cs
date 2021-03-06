@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
+using UnityEngine.SceneManagement;
 
 public class UIManager : MonoBehaviour
 {
@@ -25,6 +26,11 @@ public class UIManager : MonoBehaviour
 
     [SerializeField]
     private GameObject gameLostText;
+
+    [Header("Structures UI")]
+    public GameObject[] structuresUI;
+
+    public GameObject structuresUIObject;
 
     private PlayerStats playerStats;
 
@@ -58,5 +64,26 @@ public class UIManager : MonoBehaviour
         gameEndPanel.SetActive(true);
         gameLostText.SetActive(true);
     }
+
+    public void ReloadGame()
+    {
+        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
+    }
+
+    public void ToggleStructures(bool isOn)
+    {
+        structuresUIObject.SetActive(isOn);
+    }
+
+    public void ChangeIndicator(int structure)
+    {
+        for (int i = 0; i < structuresUI.Length; i++)
+        {
+            structuresUI[i].GetComponent<StructureUI>().activeIndicator.SetActive(false);
+        }
+
+        structuresUI[structure].GetComponent<StructureUI>().activeIndicator.SetActive(true);
+    }
+
 
 }
