@@ -9,7 +9,8 @@ public class Detector : MonoBehaviour
 
     public void Use()
     {
-        detectedStructure.Use(this.gameObject);
+        if(interactiveInRange)
+            detectedStructure.Use(this.gameObject);
     }
 
     private void OnTriggerStay(Collider other)
@@ -21,11 +22,6 @@ public class Detector : MonoBehaviour
             detectedStructure = other.GetComponentInParent<Structure>();
             if (other.GetComponent<Outline>())
                 other.GetComponent<Outline>().enabled = true;
-
-            if (Input.GetKeyDown(KeyCode.E))
-            {
-                detectedStructure.Use(this.gameObject);
-            }
         }
     }
 
@@ -40,5 +36,11 @@ public class Detector : MonoBehaviour
             if (other.GetComponent<Outline>())
                 other.GetComponent<Outline>().enabled = false;
         }
+    }
+
+    public void DeleteItem()
+    {
+        interactiveInRange = false;
+        detectedStructure = null;
     }
 }

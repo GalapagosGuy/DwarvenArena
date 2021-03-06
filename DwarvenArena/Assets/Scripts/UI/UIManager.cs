@@ -14,6 +14,14 @@ public class UIManager : MonoBehaviour
     [SerializeField]
     private TextMeshProUGUI moneyText;
 
+    [SerializeField]
+    private GameObject gameEndPanel;
+
+    [SerializeField]
+    private GameObject gameWonText;
+
+    [SerializeField]
+    private GameObject gameLostText;
 
     private PlayerStats playerStats;
 
@@ -33,4 +41,18 @@ public class UIManager : MonoBehaviour
         hpBar.fillAmount = playerStats.hp / playerStats.MaxHp;
         moneyText.text = playerStats.money.ToString();
     }
+
+    public void GameWon()
+    {
+        gameEndPanel.SetActive(true);
+        gameWonText.SetActive(true);
+
+    }
+
+    public void GameLost()
+    {
+        gameEndPanel.SetActive(true);
+        gameLostText.SetActive(true);
+    }
+
 }

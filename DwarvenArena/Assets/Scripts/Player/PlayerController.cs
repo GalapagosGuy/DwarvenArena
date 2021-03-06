@@ -11,6 +11,7 @@ public class PlayerController : PlayerStuff
 
     private PlayerMovement playerMovement = null;
     private Vector3 mousePosition = Vector3.zero;
+    private Detector detector;
 
     private void Awake()
     {
@@ -20,6 +21,7 @@ public class PlayerController : PlayerStuff
             Destroy(this);
 
         playerMovement = GetComponent<PlayerMovement>();
+        detector = GetComponentInChildren<Detector>();
     }
 
     private void Update()
@@ -47,6 +49,10 @@ public class PlayerController : PlayerStuff
     private void ProcessKeyboardInputs()
     {
         ProcessMovement();
+
+        if (Input.GetKeyDown(InputMap.Action))
+            detector.Use();
+
     }
 
     private void ProcessMovement()
@@ -57,5 +63,7 @@ public class PlayerController : PlayerStuff
             isMoving = true;
 
         playerMovement?.Move(Input.GetAxis(InputMap.MovementHorizontal), Input.GetAxis(InputMap.MovementVertical), isMoving, mousePosition);
+
     }
+
 }
