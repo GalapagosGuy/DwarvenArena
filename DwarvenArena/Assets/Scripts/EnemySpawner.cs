@@ -20,6 +20,10 @@ public class EnemySpawner : MonoBehaviour
     public int wave = 0;        //wave number
     public int waveValue;   //how many points to use spawning wave
 
+    public bool debugSpawnNow = false;
+    public float timeToNextWave = 5f;
+    private float currentTime = 0;
+
     public WaveStatus waveStatus = WaveStatus.UNKNOWN;
 
     private void Awake()
@@ -30,6 +34,8 @@ public class EnemySpawner : MonoBehaviour
             Destroy(this.gameObject);
 
         spawnedEnemies = new List<Enemy>();
+        if(!debugSpawnNow)
+            currentTime = timeToNextWave;
     }
 
     private void Update()
@@ -37,7 +43,19 @@ public class EnemySpawner : MonoBehaviour
         if (waveStatus == WaveStatus.INPROGRESS)
         {
             if (CheckIfWaveFinished())
+            {
+                waveStatus = WaveStatus.WAITING;
+                currentTime = timeToNextWave;
+            }
+        }
+        else
+        {
+            currentTime -= Time.deltaTime;
+            if(currentTime <= 0)
+            {
+                waveStatus = WaveStatus.INPROGRESS;
                 SpawnWave();
+            }
         }
     }
 
