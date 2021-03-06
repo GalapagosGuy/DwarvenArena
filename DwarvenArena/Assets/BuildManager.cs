@@ -69,7 +69,7 @@ public class BuildManager : MonoBehaviour
                     Destroy(mock);
                     mock = Instantiate(tierContainers[currentCategory].structureContainers[tiersToBuild[currentCategory]].structureMock);
 
-                    
+                    ToggleBuildingMode();
                 }
             }
             else

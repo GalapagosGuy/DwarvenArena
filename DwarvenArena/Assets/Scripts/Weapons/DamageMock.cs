@@ -56,7 +56,7 @@ public class DamageMock : MonoBehaviour
 
             if (this.GetComponentInParent<PlayerStats>())
             {
-                GetComponentInParent<PlayerStats>()?.AddMana(weaponReference.Damage * manaRestoreRatio);
+                PlayerStats.Instance.AddMana(weaponReference.Damage * manaRestoreRatio);
             }
         }
     }
