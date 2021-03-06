@@ -6,6 +6,9 @@ public enum DamageType
 {
     Pierce,
     Slash,
-    Blunt
+    Blunt,
+    Fire,
+    Cold,
+    Electric
 }
 

@@ -1,4 +1,4 @@
 ﻿public interface IHitable
 {
-    void GetHit(float value);
+    void GetHit(float value, DamageType damageType);
 }

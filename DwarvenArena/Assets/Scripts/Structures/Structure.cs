@@ -23,8 +23,11 @@ public abstract class Structure : MonoBehaviour, IHitable
         UpdateUI();
     }
 
-    public void GetHit(float value)
+    public void GetHit(float value, DamageType damageType)
     {
+        if (damageType == DamageType.Blunt)
+            value *= 1.5f;
+
         hp -= value;
         if (hp <= 0)
         {

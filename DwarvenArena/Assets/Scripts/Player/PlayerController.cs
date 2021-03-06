@@ -11,7 +11,7 @@ public class PlayerController : PlayerStuff
 
     private PlayerMovement playerMovement = null;
     private PlayerSlots playerSlots = null;
-    private Vector3 mousePosition = Vector3.zero;
+    public Vector3 mousePosition { get; private set; }
     private Detector detector;
 
     private void Awake()
@@ -20,6 +20,9 @@ public class PlayerController : PlayerStuff
             PlayerController.Instance = this;
         else
             Destroy(this);
+        
+        // To bylo nad Awake
+        mousePosition = Vector3.zero;
 
         playerMovement = GetComponent<PlayerMovement>();
         playerSlots = GetComponent<PlayerSlots>();
