@@ -34,21 +34,30 @@ public class PlayerSlots : MonoBehaviour
         animator?.SetTrigger("attackTrigger");
     }
 
+    private bool spellsLocked = false;
+
     public void UseSpell()
     {
         if (!equipedSpell)
             return;
 
-        if (!playerStats.HasEnoughMana(equipedSpell.castedSpell.GetComponent<CastedSpell>().cost))
+        if (!playerStats.HasEnoughMana(equipedSpell.castedSpell.GetComponent<CastedSpell>().cost) || spellsLocked)
             return;
 
+        spellsLocked = true;
         animator?.SetTrigger("spellTrigger");
         animator?.SetBool("usingSpell", true);
+    }
+
+    public void UnlockSpells()
+    {
+        spellsLocked = false;
     }
 
     public void StopUsingSpell()
     {
         animator?.SetBool("usingSpell", false);
+        spellsLocked = false;
 
         CastedSpell[] spells = hearingSpells.ToArray();
 
