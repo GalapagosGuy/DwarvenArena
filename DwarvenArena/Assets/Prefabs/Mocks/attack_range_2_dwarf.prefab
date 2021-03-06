@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 5058379095665061493}
   - component: {fileID: 5174669681180816804}
   m_Layer: 0
-  m_Name: attack_range_3
+  m_Name: attack_range_2_dwarf
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -48,6 +48,7 @@ MonoBehaviour:
   weaponReference: {fileID: 0}
   meshRenderer: {fileID: 0}
   enemyWeapon: 0
+  canDestroyStructures: 0
 --- !u!54 &5174669681180816804
 Rigidbody:
   m_ObjectHideFlags: 0

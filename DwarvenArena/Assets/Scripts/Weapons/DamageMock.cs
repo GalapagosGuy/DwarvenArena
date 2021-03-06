@@ -10,6 +10,8 @@ public class DamageMock : MonoBehaviour
     private MeshCollider meshCollider;
     public bool enemyWeapon = false;
 
+    public bool canDestroyStructures = true;
+
     private void Awake()
     {
         meshCollider = GetComponentInChildren<MeshCollider>();
@@ -37,7 +39,10 @@ public class DamageMock : MonoBehaviour
         if (other.transform.root.gameObject == this.transform.root.gameObject)
             return;
 
-        if(enemyWeapon && other.transform.root.CompareTag("Enemy"))
+        if (other.GetComponentInParent<Structure>() && !canDestroyStructures)
+            return;
+
+        if (enemyWeapon && other.transform.root.CompareTag("Enemy"))
             return;
 
         IHitable iHitable = other.GetComponentInParent<IHitable>();

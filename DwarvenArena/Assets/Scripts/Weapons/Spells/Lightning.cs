@@ -29,6 +29,9 @@ public class Lightning : CastedSpell
 
     private void OnTriggerStay(Collider other)
     {
+        if (other.GetComponentInParent<Structure>())
+            return;
+
         IHitable iHitable = other.GetComponentInParent<IHitable>();
 
         if (iHitable != null && iHitable != PlayerController.Instance.GetComponent<IHitable>() && !targets.Contains(iHitable))

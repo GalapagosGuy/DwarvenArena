@@ -44,6 +44,9 @@ public class Fireball : CastedSpell
         Collider[] hitColliders = Physics.OverlapSphere(this.transform.position, explosionRange);
         foreach (var hitCollider in hitColliders)
         {
+            if (hitCollider.GetComponentInParent<Structure>())
+                continue;
+
             IHitable iHitable = hitCollider.GetComponentInParent<IHitable>();
             IHitable playerHitable = PlayerController.Instance.gameObject.GetComponent<PlayerStats>();
 
