@@ -18,10 +18,10 @@ public class Enemy : MonoBehaviour
 
     public class DistancePreferences
     {
-        public float minPrefferedDistanceFromPlayer = 0;
-        public float maxPrefferedDistanceFromPlayer = 1;
+        public float minPrefferedDistanceFromPlayer = 2.0f;
+        public float maxPrefferedDistanceFromPlayer = 5.0f;
 
-        public float minPrefferedDistanceFromAlly = 1;
+        public float minPrefferedDistanceFromAlly = 25.0f;
         public float maxPrefferedDistanceFromAlly = Mathf.Infinity;
     }
     public DistancePreferences distancePrefs { get; protected set; }
@@ -184,25 +184,47 @@ public class Enemy : MonoBehaviour
     //Weights start from pointing upwards and go clockwise
     protected virtual void CalculateContextWeights(Transform target, Collider[] surrounding, bool towardsTarget = true)
     {
-        if(towardsTarget)
+        //copy original vectors
+        Vector3[] weightVectors = new Vector3[8];
+        for(int i = 0; i < 8; i++)
         {
-            Vector3[] weightVectors = new Vector3[8];
-            for(int i = 0; i < 8; i++)
-            {
-                weightVectors[i] = new Vector3(ContextBasedSteeringBehaviourWeights.weightVectors[i].x,
-                    ContextBasedSteeringBehaviourWeights.weightVectors[i].y,
-                    ContextBasedSteeringBehaviourWeights.weightVectors[i].z);
-            }
+            weightVectors[i] = new Vector3(ContextBasedSteeringBehaviourWeights.weightVectors[i].x,
+                ContextBasedSteeringBehaviourWeights.weightVectors[i].y,
+                ContextBasedSteeringBehaviourWeights.weightVectors[i].z);
+        }
+        //find all neighbours
+        List<Transform> allies = new List<Transform>();
+        foreach(Collider c in surrounding)
+        {
+            if (c.CompareTag(allyTag))
+                allies.Add(c.gameObject.transform);
+        }
 
-            Vector2 targetVector = VectorCast.CastVector3ToVector2(target.transform.position) 
+        Vector2 targetVector = Vector3.zero;
+        if (towardsTarget)
+        {
+            targetVector = VectorCast.CastVector3ToVector2(target.transform.position)
                 - VectorCast.CastVector3ToVector2(this.transform.position);
-            for(int i = 0; i < behaviourWeights.weights.Length; i++)
+        }
+        else
+        {
+            targetVector = VectorCast.CastVector3ToVector2(this.transform.position)
+                - VectorCast.CastVector3ToVector2(target.transform.position);
+        }
+            
+        for(int i = 0; i < behaviourWeights.weights.Length; i++)
+        {
+            behaviourWeights.weights[i] = Vector2.Dot(VectorCast.CastVector3ToVector2(weightVectors[i]),
+                targetVector.normalized);
+            for (int j = 0; i < allies.Count; i++)
             {
-
-                behaviourWeights.weights[i] = Vector2.Dot(VectorCast.CastVector3ToVector2(weightVectors[i]), 
-                    targetVector.normalized);
-                Debug.Log(behaviourWeights.weights[i] + " " + i);
+                //enemy wants to separate from other enemies
+                behaviourWeights.weights[i] += Vector2.Dot(VectorCast.CastVector3ToVector2(weightVectors[i]),
+                (this.transform.position).normalized - allies[i].position);
             }
+            behaviourWeights.weights[i] /= 1 + allies.Count;
+            
+            Debug.Log(behaviourWeights.weights[i] + " " + i);
         }
     }
 
@@ -213,23 +235,38 @@ public class Enemy : MonoBehaviour
         Collider[] allies = Physics.OverlapSphere(transform.position, distancePrefs.minPrefferedDistanceFromAlly);
         CalculateContextWeights(target, allies);
         float max = -2; //dot product ranges from -1 to 1
-        Vector3 chosenDir = Vector3.zero;
-        for(int i = 0; i < 8; i++)
-        {
-            if (behaviourWeights.weights[i] > max)
-            {
-                max = behaviourWeights.weights[i];
-                chosenDir = ContextBasedSteeringBehaviourWeights.weightVectors[i];
-            }
-                
-        }
-
-        navMeshAgent.SetDestination(transform.position + chosenDir * 5);
+        //for(int i = 0; i < 8; i++)
+        //{
+        //    if (behaviourWeights.weights[i] > max)
+        //    {
+        //        max = behaviourWeights.weights[i];
+        //        chosenDir = ContextBasedSteeringBehaviourWeights.weightVectors[i];
+        //    }     
+        //}
+        float[] weightOffsets = new float[8] { 0, 0, 0, 0, 0, 0, 0, 0 };
+        Vector3 chosenDir = CalculatePath(weightOffsets);
+        navMeshAgent.SetDestination(transform.position + chosenDir * 2);
     }
 
     protected virtual void MoveAwayFrom(Transform target)
     {
         actionAvailability.SetBusy();
+    }
+
+    // weight offsets start from Vec3.forward and going clockwise
+    protected virtual Vector3 CalculatePath(float[] weightOffsets, float minWeightRange = 0.5f, float maxWeightRange = Mathf.Infinity, float maxConsideredVectors = 8)
+    {
+        Vector3 combinedResult = Vector3.zero;
+        for(int i = 0; i < 8; i++)
+        {
+            //offset weights to prefer certain directions
+            behaviourWeights.weights[i] += weightOffsets[i];
+
+            if(behaviourWeights.weights[i] > minWeightRange && behaviourWeights.weights[i] < maxWeightRange)
+                combinedResult += ContextBasedSteeringBehaviourWeights.weightVectors[i] * behaviourWeights.weights[i];
+        }
+
+        return combinedResult.normalized;
     }
 
     protected virtual void Attack()
