@@ -49,7 +49,7 @@ public class PlayerStats : MonoBehaviour, IHitable
     public void AddMoney(int value)
     {
         money += value;
-        UIManager.Instance.UpdateUI();
+        UIManager.Instance?.UpdateUI();
 
     }
 

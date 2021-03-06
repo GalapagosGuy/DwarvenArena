@@ -9,8 +9,8 @@ public class PackageFromAudiance : Structure
 
     public override void Use(GameObject hero)
     {
-        hero.GetComponentInParent<PlayerStats>().AddMoney(moneyAward);
-        hero.GetComponent<Detector>().DeleteItem();
+        hero.GetComponent<PlayerStats>().AddMoney(moneyAward);
+        hero.GetComponentInChildren<Detector>().DeleteItem();
         Destroy(this.gameObject);
     }
 }

@@ -76,7 +76,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   damageType: 1
-  damage: 50
+  damage: 10
   animatorVariable: hasSwordEquiped
 --- !u!1 &2938031577424036237
 GameObject:

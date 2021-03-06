@@ -1,17 +1,26 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public abstract class Structure : MonoBehaviour, IHitable
 {
     public int cost { get; private set; }
     public float hp { get; private set; }
+    
     [SerializeField]
     private float maxHp;
+
+    [SerializeField]
+    private GameObject hpObject;
+
+    [SerializeField]
+    private Image hpBar;
 
     protected virtual void Start()
     {
         hp = maxHp;
+        UpdateUI();
     }
 
     public void GetHit(float value)
@@ -22,6 +31,7 @@ public abstract class Structure : MonoBehaviour, IHitable
             Debug.Log("Structure " + this.gameObject.name + " got destroyed");
             Destroy(this.gameObject);
         }
+        UpdateUI();
             
     }
 
@@ -33,9 +43,19 @@ public abstract class Structure : MonoBehaviour, IHitable
             Debug.Log("Structure " + this.gameObject.name + " got fully repaired");
             hp = maxHp;
         }
-            
+        UpdateUI();   
 
     }
     public abstract void Use(GameObject hero);
+
+    public void UpdateUI()
+    {
+        hpBar.fillAmount = hp / maxHp;
+        if (hp == maxHp)
+            hpObject.SetActive(false);
+        else
+            hpObject.SetActive(true);
+
+    }
 
 }

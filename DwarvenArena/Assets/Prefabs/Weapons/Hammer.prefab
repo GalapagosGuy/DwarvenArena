@@ -156,7 +156,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   damageType: 2
-  damage: 75
+  damage: 20
   animatorVariable: hasHammerEquiped
 --- !u!1 &1858206899350290461
 GameObject:

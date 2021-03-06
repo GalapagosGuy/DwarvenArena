@@ -15,8 +15,9 @@ public class Spell : MonoBehaviour
     {
         if (castedSpell)
         {
-            Instantiate(castedSpell, this.transform.position, this.transform.rotation);
-            //blah blah specific spell code here
+            GameObject go = Instantiate(castedSpell, this.transform.position, this.transform.rotation);
+
+            go.GetComponent<CastedSpell>()?.Initialize(sourcePosition, targetPosition);
         }
     }
 

@@ -17,11 +17,10 @@ public class Detector : MonoBehaviour
     {
         if (other.GetComponentInParent<Structure>())
         {
-
             interactiveInRange = true;
             detectedStructure = other.GetComponentInParent<Structure>();
-            if (other.GetComponent<Outline>())
-                other.GetComponent<Outline>().enabled = true;
+            if (other.GetComponentInChildren<Outline>())
+                other.GetComponentInChildren<Outline>().enabled = true;
         }
     }
 
@@ -33,8 +32,8 @@ public class Detector : MonoBehaviour
             interactiveInRange = false;
             detectedStructure = null;
 
-            if (other.GetComponent<Outline>())
-                other.GetComponent<Outline>().enabled = false;
+            if (other.GetComponentInChildren<Outline>())
+                other.GetComponentInChildren<Outline>().enabled = false;
         }
     }
 
