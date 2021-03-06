@@ -78,7 +78,7 @@ MonoBehaviour:
   damageType: 1
   damage: 10
   animatorVariable: hasSwordEquiped
-  mock: {fileID: 2118756153646113578, guid: abb10dbe21e55714eb8fed299c1ae986, type: 3}
+  mock: {fileID: 2118756153646113578, guid: 205ee6b653cea354ca9741ad64efa69d, type: 3}
 --- !u!1 &2938031577424036237
 GameObject:
   m_ObjectHideFlags: 0
