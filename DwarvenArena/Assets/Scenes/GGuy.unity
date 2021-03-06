@@ -5927,6 +5927,20 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 1231795111, guid: df95f7e03e18a4f43a919c831db7c54e, type: 3}
+      propertyPath: m_IsKinematic
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 573706740660338649, guid: df95f7e03e18a4f43a919c831db7c54e,
+        type: 3}
+      propertyPath: m_ApplyRootMotion
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4697724999344893974, guid: df95f7e03e18a4f43a919c831db7c54e,
+        type: 3}
+      propertyPath: m_Avatar
+      value: 
+      objectReference: {fileID: 9000000, guid: a1a22f8d716ff56489605772fd30861a, type: 3}
     - target: {fileID: 5751310362414710840, guid: df95f7e03e18a4f43a919c831db7c54e,
         type: 3}
       propertyPath: mouseLayer.m_Bits
@@ -5985,6 +5999,16 @@ PrefabInstance:
     - target: {fileID: 5842888255027258787, guid: df95f7e03e18a4f43a919c831db7c54e,
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6241041941810885101, guid: df95f7e03e18a4f43a919c831db7c54e,
+        type: 3}
+      propertyPath: m_StepOffset
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6241041941810885101, guid: df95f7e03e18a4f43a919c831db7c54e,
+        type: 3}
+      propertyPath: m_SlopeLimit
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 6511584136371896089, guid: df95f7e03e18a4f43a919c831db7c54e,
