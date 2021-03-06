@@ -91,7 +91,7 @@ public class Enemy : MonoBehaviour, IHitable
         navMeshAgent = GetComponent<NavMeshAgent>();
         enemyAnimator = GetComponent<EnemyAnimator>();
         weaponCustom = GetComponentInChildren<WeaponCustom>();
-        weaponCustom.Initialize();
+        weaponCustom.Initialize(true);
         weaponCustom.DisableDealingDamage();
         enemyActions = EnemyActions.NOTHING;
 

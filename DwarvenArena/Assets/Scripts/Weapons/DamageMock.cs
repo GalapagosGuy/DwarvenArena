@@ -7,6 +7,7 @@ public class DamageMock : MonoBehaviour
     public WeaponCustom weaponReference;
 
     private MeshCollider meshCollider;
+    public bool enemyWeapon = false;
 
     private void Awake()
     {
@@ -34,12 +35,16 @@ public class DamageMock : MonoBehaviour
         if (other.transform.root.gameObject == this.transform.root.gameObject)
             return;
 
-        IHitable iHitable = other.GetComponentInParent<IHitable>();
+        if (enemyWeapon && other.CompareTag("Enemy"))
+            return;
 
-        if (iHitable != null && !hitObjects.Contains(iHitable))
+        if(other is IHitable iHitable)
         {
-            iHitable.GetHit(weaponReference.Damage, weaponReference.DamageType);
-            hitObjects.Add(iHitable);
+            if (iHitable != null && !hitObjects.Contains(iHitable))
+            {
+                iHitable.GetHit(weaponReference.Damage, weaponReference.DamageType);
+                hitObjects.Add(iHitable);
+            }
         }
     }
 }

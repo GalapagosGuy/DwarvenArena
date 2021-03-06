@@ -28,11 +28,12 @@ public class WeaponCustom : MonoBehaviour
 
     private List<IHitable> hitObjects = new List<IHitable>();
 
-    public void Initialize()
+    public void Initialize(bool enemyWeapon = false)
     {
         GameObject mockGO = Instantiate(mock, this.transform.root.transform);
         createdMock = mockGO.GetComponent<DamageMock>();
         createdMock.weaponReference = this;
+        createdMock.enemyWeapon = enemyWeapon;
     }
 
     public void OnWeaponReturn()
