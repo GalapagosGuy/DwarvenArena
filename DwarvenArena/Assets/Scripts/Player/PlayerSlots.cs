@@ -18,6 +18,8 @@ public class PlayerSlots : MonoBehaviour
     
     private Animator animator = null;
 
+    private List<CastedSpell> hearingSpells = new List<CastedSpell>();
+
     private void Start()
     {
         animator = GetComponent<Animator>();
@@ -37,6 +39,19 @@ public class PlayerSlots : MonoBehaviour
             return;
 
         animator?.SetTrigger("spellTrigger");
+        animator?.SetBool("usingSpell", true);
+    }
+
+    public void StopUsingSpell()
+    {
+        animator?.SetBool("usingSpell", false);
+
+        CastedSpell[] spells = hearingSpells.ToArray();
+
+        foreach (CastedSpell cs in spells)
+        {
+            cs.OnCastingSpellStop();
+        }
     }
 
     public void ChangeWeapon(GameObject weapon)
@@ -108,6 +123,18 @@ public class PlayerSlots : MonoBehaviour
         {
             equipedSpell?.Cast(this.transform.position, hit.point);
         }
+    }
+
+    public void AddSpellHearingForStopCasting(CastedSpell spell)
+    {
+        if (!hearingSpells.Contains(spell))
+            hearingSpells.Add(spell);
+    }
+
+    public void RemoveSpellHearingForStopCasting(CastedSpell spell)
+    {
+        if (hearingSpells.Contains(spell))
+            hearingSpells.Remove(spell);
     }
 
     #endregion

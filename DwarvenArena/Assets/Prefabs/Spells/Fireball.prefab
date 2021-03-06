@@ -4851,6 +4851,7 @@ MonoBehaviour:
   speed: 10
   damage: 50
   explosionRange: 2
+  damageType: 3
   explosionParticles: {fileID: 2873284718978455871, guid: c0aa55c8126b31643a108eb16c85a3ab,
     type: 3}
 --- !u!135 &8043782283553451154

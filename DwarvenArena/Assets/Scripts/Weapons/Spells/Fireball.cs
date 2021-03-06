@@ -53,4 +53,9 @@ public class Fireball : CastedSpell
         GameObject explosion = Instantiate(explosionParticles, this.transform.position, this.transform.rotation);
         Destroy(explosion, 2.0f);
     }
+
+    public override void OnCastingSpellStop()
+    {
+
+    }
 }
