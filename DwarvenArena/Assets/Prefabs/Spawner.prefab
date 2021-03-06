@@ -52,4 +52,4 @@ MonoBehaviour:
   - {fileID: 0}
   wave: 0
   waveValue: 0
-  waveStatus: 0
+  waveStatus: 1

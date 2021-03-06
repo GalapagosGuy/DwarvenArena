@@ -288,7 +288,7 @@ public class Enemy : MonoBehaviour, IHitable
         navMeshAgent.isStopped = true;
         enemyAnimator.OnStopAnimation();
         enemyAnimator.OnAttackAnimation();
-        actionAvailability.SetBusy(.15f);
+        actionAvailability.SetBusy(.25f);
     }
 
     protected virtual void ToggleAttackHitbox(bool toggle)
