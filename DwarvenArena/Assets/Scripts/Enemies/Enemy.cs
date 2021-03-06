@@ -350,7 +350,11 @@ public class Enemy : MonoBehaviour, IHitable
         }
         hp -= value;
         if (hp <= 0)
+        {
+            PlayerStats.Instance.AddKill();
             Destroy(this.gameObject);
+        }
+          
         else
             UpdateUI(Mathf.Round(value), isCrit);
     }
