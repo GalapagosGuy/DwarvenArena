@@ -31,7 +31,11 @@ public class PlayerSlots : MonoBehaviour
         if (equipedWeapon)
         {
             animator?.SetBool(equipedWeapon.AnimatorVariable, false);
-            equipedWeapon.root.ReturnWeapon();
+
+            if (equipedWeapon.root)
+                equipedWeapon.root.ReturnWeapon();
+            else
+                Destroy(equipedWeapon);
         }
 
         equipedWeapon = weapon.GetComponent<WeaponCustom>();

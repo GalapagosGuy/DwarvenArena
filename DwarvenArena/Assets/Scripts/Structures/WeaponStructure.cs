@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class WeaponStructure : Structure
 {
+    public GameObject holder = null;
     public GameObject weaponReference = null;
 
     private bool weaponCanBeTaken = true;
@@ -30,7 +31,12 @@ public class WeaponStructure : Structure
 
     public void ReturnWeapon()
     {
-        //return weapon to structure
+        if (holder)
+            weaponReference.transform.parent = holder.transform;
+        weaponReference.transform.localPosition = Vector3.zero;
+        weaponReference.transform.localRotation = Quaternion.identity;
+        weaponReference.transform.localScale = Vector3.one;
+
         weaponCanBeTaken = true;
     }
 }
