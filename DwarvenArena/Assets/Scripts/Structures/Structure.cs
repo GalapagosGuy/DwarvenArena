@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public abstract class Structure : MonoBehaviour
+public abstract class Structure : MonoBehaviour, IHitable
 {
     public int cost { get; private set; }
     public float hp { get; private set; }
