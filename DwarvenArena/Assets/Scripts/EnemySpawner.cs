@@ -86,7 +86,7 @@ public class EnemySpawner : MonoBehaviour
 
     private void SetWaveValue()
     {
-        waveValue = 1;
+        waveValue = wave * 2;
     }
 
     private List<int> GetEnemyIndexesForValue(int value)
