@@ -78,7 +78,7 @@ public class Lightning : CastedSpell
             foreach (GameObject go in targetsToDealDamage)
             {
                 if (go == null)
-                    return;
+                    continue;
 
                 IHitable iHitable = go.GetComponent<IHitable>();
 
