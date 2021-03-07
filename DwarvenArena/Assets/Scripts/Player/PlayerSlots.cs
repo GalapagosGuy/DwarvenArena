@@ -80,9 +80,9 @@ public class PlayerSlots : MonoBehaviour
         equipedWeapon = weapon.GetComponent<WeaponCustom>();
 
         equipedWeapon.transform.parent = rightHand.transform;
-        equipedWeapon.transform.localPosition = transformForWeapon.localPosition;
-        equipedWeapon.transform.localRotation = transformForWeapon.localRotation;
-        equipedWeapon.transform.localScale = transformForWeapon.localScale;
+        equipedWeapon.transform.localPosition = Vector3.zero;
+        equipedWeapon.transform.localRotation = Quaternion.identity;
+        equipedWeapon.transform.localScale = Vector3.one;
 
         equipedWeapon.UpdateParentReference();
         animator?.SetBool(equipedWeapon.AnimatorVariable, true);
