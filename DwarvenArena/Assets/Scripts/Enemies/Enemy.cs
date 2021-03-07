@@ -363,7 +363,11 @@ public class Enemy : MonoBehaviour, IHitable
         bool isCrit = false;
         if (damageType == weakness)
         {
-            value *= 1.5f;
+            if(weakness == DamageType.Pierce)
+                value *= 3.0f;
+            else
+                value *= 1.5f;
+
             isCrit = true;
         }
         hp -= value;

@@ -65,6 +65,7 @@ public class UIManager : MonoBehaviour
 
     void Start()
     {
+        Time.timeScale = 1;
         UpdateUI();
         UpdateWaveText();
     }
@@ -96,6 +97,8 @@ public class UIManager : MonoBehaviour
     {
         gameEndPanel.SetActive(true);
         gameWonText.SetActive(true);
+        Time.timeScale = 0;
+        Cursor.visible = true;
         UpdateEndGameStatistics();
 
     }
@@ -104,6 +107,9 @@ public class UIManager : MonoBehaviour
     {
         gameEndPanel.SetActive(true);
         gameLostText.SetActive(true);
+        Cursor.visible = true;
+        Time.timeScale = 0;
+
         UpdateEndGameStatistics();
     }
 

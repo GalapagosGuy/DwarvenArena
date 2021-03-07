@@ -17,6 +17,8 @@ public class TutorialManager : MonoBehaviour
             Instance = this;
         else
             Destroy(this.gameObject);
+
+        Cursor.visible = true;
     }
 
     private void Start()
@@ -28,11 +30,25 @@ public class TutorialManager : MonoBehaviour
     public void SpawnTextWindow()
     {
         tutorialPopups[nextPopupIndex].SetActive(true);
-        nextPopupIndex++;
+        
     }
 
     public void ContinueTutorial()
     {
-        tutorialPopups[nextPopupIndex - 1].SetActive(false);
+        nextPopupIndex++;
+        // TUTORIAL END
+        if (nextPopupIndex == tutorialPopups.Count)
+        {
+            tutorialPopups[nextPopupIndex - 1].SetActive(false);
+            Cursor.visible = false;
+            EnemySpawner.Instance.waveStatus = WaveStatus.WAITING;
+        }
+        else
+        {
+            tutorialPopups[nextPopupIndex - 1].SetActive(false);
+            tutorialPopups[nextPopupIndex].SetActive(true);
+
+        }  
+       
     }
 }
