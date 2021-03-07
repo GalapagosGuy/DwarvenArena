@@ -52,7 +52,7 @@ public class EnemySpawner : MonoBehaviour
                 currentTime = timeToNextWave;
             }
         }
-        else
+        else if(waveStatus == WaveStatus.WAITING)
         {
             currentTime -= Time.deltaTime;
             UIManager.Instance.UpdateWaveTimeText(currentTime);
