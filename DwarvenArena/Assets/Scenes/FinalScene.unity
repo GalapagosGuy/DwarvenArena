@@ -2647,6 +2647,16 @@ PrefabInstance:
       propertyPath: timeToNextWave
       value: 15
       objectReference: {fileID: 0}
+    - target: {fileID: 2001288496284493559, guid: 024d364fd17b0ea4baf29fecb52a7b2d,
+        type: 3}
+      propertyPath: enemySpawnCost.Array.data[1]
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 2001288496284493559, guid: 024d364fd17b0ea4baf29fecb52a7b2d,
+        type: 3}
+      propertyPath: enemyChoicePriority.Array.data[1]
+      value: 0.25
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 024d364fd17b0ea4baf29fecb52a7b2d, type: 3}
 --- !u!1 &1638358616
