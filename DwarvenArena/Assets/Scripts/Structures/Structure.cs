@@ -19,6 +19,7 @@ public abstract class Structure : PlayerStuff, IHitable
 
     protected virtual void Start()
     {
+        hpObject.GetComponentInParent<Canvas>().gameObject.AddComponent<CanvasBillboard>();
         hp = maxHp;
         UpdateUI();
     }
