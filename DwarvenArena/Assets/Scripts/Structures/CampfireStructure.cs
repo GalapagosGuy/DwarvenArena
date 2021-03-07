@@ -72,6 +72,7 @@ public class CampfireStructure : Structure
             isReady = false;
             currentTime = 0;
             mead.SetActive(false);
+            GetComponent<AudioSource>()?.Play();
         }
 
     }

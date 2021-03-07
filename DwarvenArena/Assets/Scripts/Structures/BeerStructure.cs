@@ -70,6 +70,7 @@ public class BeerStructure : Structure
             isReady = false;
             currentTime = 0;
             beer.SetActive(false);
+            GetComponent<AudioSource>()?.Play();
         }
 
     }

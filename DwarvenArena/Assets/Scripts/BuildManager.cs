@@ -54,12 +54,13 @@ public class BuildManager : MonoBehaviour
                 mock.transform.position = hit.point + new Vector3(0f, 0.5f, 0f);
             }
 
-            if (!mock.GetComponent<Mock>().isColliding && buildedStructures[currentCategory, tiersToBuild[currentCategory]] == null )
+            if (!mock.GetComponent<Mock>().isColliding && buildedStructures[currentCategory, tiersToBuild[currentCategory]] == null)
             {
 
                 structureMaterial.color = new Color(1f, 1f, 1f, 0.5f);  // WHITE COLOR, CAN BUILD
                 if (PlayerStats.Instance.HasEnoughMoney(tierContainers[currentCategory].structureContainers[tiersToBuild[currentCategory]].cost) && Input.GetMouseButtonDown(0))
                 {
+                    GetComponent<AudioSource>()?.Play();
 
                     // TAKE MONEY FROM DWARF'S POCKET
                     PlayerStats.Instance.SubstractMoney(tierContainers[currentCategory].structureContainers[tiersToBuild[currentCategory]].cost);
@@ -92,7 +93,7 @@ public class BuildManager : MonoBehaviour
             currentCategory--;
             gotChanged = true;
         }
-            
+
         if (Input.GetAxis("Mouse ScrollWheel") < 0)
         {
             gotChanged = true;
@@ -120,7 +121,7 @@ public class BuildManager : MonoBehaviour
             if (buildedStructures[category, i] == null)
                 return i;
         }
-        return numberOfTiers -1;
+        return numberOfTiers - 1;
     }
     public void ToggleBuildingMode()
     {
@@ -132,7 +133,7 @@ public class BuildManager : MonoBehaviour
             UpdateTiersToBuild();
             UIManager.Instance.ToggleStructures(isTurnedOn);
             UIManager.Instance.ChangeIndicator(currentCategory);
-            
+
             mock = Instantiate(tierContainers[currentCategory].structureContainers[tiersToBuild[currentCategory]].structureMock);
         }
         else
