@@ -10,6 +10,7 @@ public class DamageMock : MonoBehaviour
 
     private MeshCollider meshCollider;
     public bool enemyWeapon = false;
+    public bool addedMana = false;
 
     public bool canDestroyStructures = true;
 
@@ -27,6 +28,7 @@ public class DamageMock : MonoBehaviour
             meshCollider.enabled = true;
 
         hitObjects.Clear();
+        addedMana = false;
     }
 
     public void DisableDealingDamage()
@@ -64,9 +66,10 @@ public class DamageMock : MonoBehaviour
 
             hitObjects.Add(iHitable);
 
-            if (this.GetComponentInParent<PlayerStats>())
+            if (this.GetComponentInParent<PlayerStats>() && !addedMana)
             {
                 PlayerStats.Instance.AddMana(weaponReference.Damage * manaRestoreRatio);
+                addedMana = true;
             }
         }
     }
