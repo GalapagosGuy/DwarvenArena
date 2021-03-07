@@ -98,7 +98,7 @@ LightmapSettings:
     m_TrainingDataDestination: TrainingData
     m_LightProbeSampleCountMultiplier: 4
   m_LightingDataAsset: {fileID: 0}
-  m_UseShadowmask: 0
+  m_UseShadowmask: 1
 --- !u!196 &4
 NavMeshSettings:
   serializedVersion: 2
@@ -348,7 +348,7 @@ GameObject:
   - component: {fileID: 444142682}
   - component: {fileID: 444142681}
   m_Layer: 0
-  m_Name: GameObject
+  m_Name: PackageThrower
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -367,10 +367,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   start: {fileID: 444142682}
-  target: {fileID: 0}
   packagePrefab: {fileID: 6738702016938509465, guid: 00db0d58ca007374d908295a2b97225d,
     type: 3}
-  force: 300
+  minForce: 200
+  maxForce: 400
 --- !u!4 &444142682
 Transform:
   m_ObjectHideFlags: 0
@@ -738,7 +738,7 @@ PrefabInstance:
     - target: {fileID: 2994132990247292128, guid: f4bcb62d28708564894abf9462c84de1,
         type: 3}
       propertyPath: m_RootOrder
-      value: 1
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 2994132990247292128, guid: f4bcb62d28708564894abf9462c84de1,
         type: 3}
@@ -2012,7 +2012,7 @@ PrefabInstance:
     - target: {fileID: 2964984883527371598, guid: 7f76bef3a2cf07149b4b370a58ee912b,
         type: 3}
       propertyPath: m_RootOrder
-      value: 16
+      value: 17
       objectReference: {fileID: 0}
     - target: {fileID: 2964984883527371598, guid: 7f76bef3a2cf07149b4b370a58ee912b,
         type: 3}
@@ -2059,7 +2059,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 14
+  m_RootOrder: 15
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1072344045
 GameObject:
@@ -2600,7 +2600,7 @@ PrefabInstance:
     - target: {fileID: 2001288496284493556, guid: 024d364fd17b0ea4baf29fecb52a7b2d,
         type: 3}
       propertyPath: m_RootOrder
-      value: 15
+      value: 16
       objectReference: {fileID: 0}
     - target: {fileID: 2001288496284493556, guid: 024d364fd17b0ea4baf29fecb52a7b2d,
         type: 3}
@@ -2621,31 +2621,6 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: Spawner
-      objectReference: {fileID: 0}
-    - target: {fileID: 2001288496284493558, guid: 024d364fd17b0ea4baf29fecb52a7b2d,
-        type: 3}
-      propertyPath: m_IsActive
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 2001288496284493559, guid: 024d364fd17b0ea4baf29fecb52a7b2d,
-        type: 3}
-      propertyPath: spawnPoints.Array.size
-      value: 4
-      objectReference: {fileID: 0}
-    - target: {fileID: 2001288496284493559, guid: 024d364fd17b0ea4baf29fecb52a7b2d,
-        type: 3}
-      propertyPath: enemyPrefabs.Array.size
-      value: 2
-      objectReference: {fileID: 0}
-    - target: {fileID: 2001288496284493559, guid: 024d364fd17b0ea4baf29fecb52a7b2d,
-        type: 3}
-      propertyPath: enemySpawnCost.Array.size
-      value: 2
-      objectReference: {fileID: 0}
-    - target: {fileID: 2001288496284493559, guid: 024d364fd17b0ea4baf29fecb52a7b2d,
-        type: 3}
-      propertyPath: enemyChoicePriority.Array.size
-      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 2001288496284493559, guid: 024d364fd17b0ea4baf29fecb52a7b2d,
         type: 3}
@@ -2669,24 +2644,8 @@ PrefabInstance:
       objectReference: {fileID: 862413005}
     - target: {fileID: 2001288496284493559, guid: 024d364fd17b0ea4baf29fecb52a7b2d,
         type: 3}
-      propertyPath: waveStatus
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 2001288496284493559, guid: 024d364fd17b0ea4baf29fecb52a7b2d,
-        type: 3}
-      propertyPath: enemyPrefabs.Array.data[1]
-      value: 
-      objectReference: {fileID: 2560019468074000850, guid: 1d76bd1a88118a24989570d2dc7cde21,
-        type: 3}
-    - target: {fileID: 2001288496284493559, guid: 024d364fd17b0ea4baf29fecb52a7b2d,
-        type: 3}
-      propertyPath: enemySpawnCost.Array.data[1]
-      value: 2
-      objectReference: {fileID: 0}
-    - target: {fileID: 2001288496284493559, guid: 024d364fd17b0ea4baf29fecb52a7b2d,
-        type: 3}
-      propertyPath: enemyChoicePriority.Array.data[1]
-      value: 0.5
+      propertyPath: timeToNextWave
+      value: 15
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 024d364fd17b0ea4baf29fecb52a7b2d, type: 3}
@@ -3054,6 +3013,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: SpearHolder
       objectReference: {fileID: 0}
+    - target: {fileID: 4668154444071237491, guid: afd177039495ad241b16eb68afcafdcf,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 4668154444071237495, guid: afd177039495ad241b16eb68afcafdcf,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -3268,7 +3232,7 @@ PrefabInstance:
     - target: {fileID: 5842888255027258787, guid: df95f7e03e18a4f43a919c831db7c54e,
         type: 3}
       propertyPath: m_RootOrder
-      value: 2
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 5842888255027258787, guid: df95f7e03e18a4f43a919c831db7c54e,
         type: 3}

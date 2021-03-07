@@ -46,7 +46,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 226dbbaea7704f640bde6edf47df71fa, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  maxHp: 100
+  maxHp: 200
   hpObject: {fileID: 0}
   hpBar: {fileID: 0}
   healingPower: 80
