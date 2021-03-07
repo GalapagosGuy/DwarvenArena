@@ -82,7 +82,7 @@ public class PlayerStats : MonoBehaviour, IHitable
 
     public void PercentHealUp(float percent)
     {
-        hp += maxHp * percent;
+        hp += maxHp * (percent/100f);
         if (hp > maxHp)
         {
             hp = maxHp;
