@@ -129,9 +129,10 @@ public class BuildManager : MonoBehaviour
 
         if (isTurnedOn)
         {
+            UpdateTiersToBuild();
             UIManager.Instance.ToggleStructures(isTurnedOn);
             UIManager.Instance.ChangeIndicator(currentCategory);
-            UpdateTiersToBuild();
+            
             mock = Instantiate(tierContainers[currentCategory].structureContainers[tiersToBuild[currentCategory]].structureMock);
         }
         else
