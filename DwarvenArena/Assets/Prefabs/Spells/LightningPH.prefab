@@ -4913,6 +4913,9 @@ MonoBehaviour:
   damageOffset: 5
   damageType: 5
   interval: 0.2
+  chancesForCritical: 15
+  criticalDamage: 30
+  lightningCritical: {fileID: 106988, guid: 4dbde9e3d1a598b4dab9af9fea266ba1, type: 3}
 --- !u!54 &5090283116707428446
 Rigidbody:
   m_ObjectHideFlags: 0
