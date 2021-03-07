@@ -54,6 +54,7 @@ MonoBehaviour:
   damageOffset: 10
   explosionRange: 2
   damageType: 3
+  fire: {fileID: 4169794480223118310, guid: c69b04857a4ff354181165c8d7c9610c, type: 3}
   explosionParticles: {fileID: 5140519395458318797, guid: 0b81a266d54969043b8609385f06eda4,
     type: 3}
 --- !u!135 &8043782283553451154

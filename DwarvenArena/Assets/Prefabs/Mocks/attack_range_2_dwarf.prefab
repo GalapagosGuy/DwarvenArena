@@ -47,6 +47,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   weaponReference: {fileID: 0}
   meshRenderer: {fileID: 0}
+  bloodSplash: {fileID: 3311653165523806969, guid: c72884389392ce4448aa8b5876f9bf8c,
+    type: 3}
   enemyWeapon: 0
   canDestroyStructures: 0
   manaRestoreRatio: 0.4

@@ -2861,6 +2861,81 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 00db0d58ca007374d908295a2b97225d, type: 3}
+--- !u!1 &1638358616
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1638358618}
+  - component: {fileID: 1638358617}
+  m_Layer: 0
+  m_Name: BloodManager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &1638358617
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1638358616}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 15e922011b9178d4dae15af94e8af46b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  bloodYposition: 0.01
+  bloodChance: 100
+  xzAxisRandomizer: 1
+  bloodOnGround: {fileID: 5322160657768915479, guid: d90f7e35356cf2a438e9977e0b7000d3,
+    type: 3}
+  bloodSprites:
+  - {fileID: 21300000, guid: 4d4868b4be6a9264883570b5a3be1e3a, type: 3}
+  - {fileID: 21300000, guid: ce17044a8e752d548b643933fcdbfacf, type: 3}
+  - {fileID: 21300000, guid: 9663a86a2b8012648ab8e70d74007e83, type: 3}
+  - {fileID: 21300000, guid: 40957e213126f0948a924c9aa41b48ce, type: 3}
+  - {fileID: 21300000, guid: e14b60db1c0c5dc42827e72976266f2e, type: 3}
+  - {fileID: 21300000, guid: d36a878b19734df4bbe69c00faef8546, type: 3}
+  - {fileID: 21300000, guid: 429978e05ca60ed4994362e6a44a7b0d, type: 3}
+  - {fileID: 21300000, guid: 32c638771d9c6f74eb1fe58d300b7ac8, type: 3}
+  - {fileID: 21300000, guid: 865cc1b344b1aab41998e0610a944597, type: 3}
+  - {fileID: 21300000, guid: a3447f25241972d40b42d091bb46de45, type: 3}
+  - {fileID: 21300000, guid: e98e439db40082f418e4e5d942a87feb, type: 3}
+  - {fileID: 21300000, guid: d569ae8b972e1db41a185aa4a1b1be1b, type: 3}
+  - {fileID: 21300000, guid: cb34751f64a4d7a4eba11b0f8bc063e2, type: 3}
+  - {fileID: 21300000, guid: 77d8cf32898931946868e1024a502e77, type: 3}
+  - {fileID: 21300000, guid: d10d62faceea39842956d6a78b500476, type: 3}
+  - {fileID: 21300000, guid: 021a61e376ab3cb4cb48eee108e3d10f, type: 3}
+  - {fileID: 21300000, guid: 7a789294f4660d24f8f8ea0af177aefd, type: 3}
+  - {fileID: 21300000, guid: f642a7cca3db9954b82cd858b2af6b4c, type: 3}
+  - {fileID: 21300000, guid: b43a65ed8ce0ff744a3bd21da1adedde, type: 3}
+  - {fileID: 21300000, guid: 2e69e10dc9ec72845aa8d02b9a849120, type: 3}
+  - {fileID: 21300000, guid: 5f44cefc76ce5f648959063b24ad4384, type: 3}
+  - {fileID: 21300000, guid: ccdb1731360934d46a15d36f20d7d988, type: 3}
+  - {fileID: 21300000, guid: 2bb09a9fc4d6f8443b2ecea6934ce14e, type: 3}
+  - {fileID: 21300000, guid: 2a83716cb587ef6479a9fc36e18b5eba, type: 3}
+  - {fileID: 21300000, guid: 2a71a3d77a7ca9043a2fe91da911ebf1, type: 3}
+  bloodColor: {r: 0.3584906, g: 0, b: 0, a: 1}
+--- !u!4 &1638358618
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1638358616}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 12.435362, y: -12.3991995, z: -3.280056}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 24
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1670641037
 GameObject:
   m_ObjectHideFlags: 0

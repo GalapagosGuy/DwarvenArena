@@ -6,6 +6,7 @@ public class DamageMock : MonoBehaviour
 {
     public WeaponCustom weaponReference;
     public MeshRenderer meshRenderer;
+    public GameObject bloodSplash;
 
     private MeshCollider meshCollider;
     public bool enemyWeapon = false;
@@ -52,6 +53,15 @@ public class DamageMock : MonoBehaviour
         if (iHitable != null && !hitObjects.Contains(iHitable))
         {
             iHitable.GetHit(weaponReference.RandomDamage(), weaponReference.DamageType);
+
+            if (bloodSplash && !other.GetComponentInParent<Structure>())
+            {
+                GameObject bloodSplashGO = Instantiate(bloodSplash, other.transform.root.position + Vector3.up, transform.rotation);
+                Destroy(bloodSplashGO, 2.0f);
+
+                BloodManager.Instance.CreateBloodSplash(other.transform.position);
+            }
+
             hitObjects.Add(iHitable);
 
             if (this.GetComponentInParent<PlayerStats>())
