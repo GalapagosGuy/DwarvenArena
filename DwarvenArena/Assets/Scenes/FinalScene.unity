@@ -2384,11 +2384,6 @@ PrefabInstance:
       propertyPath: spawnPoints.Array.data[3]
       value: 
       objectReference: {fileID: 862413005}
-    - target: {fileID: 2001288496284493559, guid: 024d364fd17b0ea4baf29fecb52a7b2d,
-        type: 3}
-      propertyPath: enemySpawnCost.Array.data[1]
-      value: 3
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 024d364fd17b0ea4baf29fecb52a7b2d, type: 3}
 --- !u!1 &1638358616
@@ -7984,11 +7979,6 @@ PrefabInstance:
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
       objectReference: {fileID: 2074140261}
-    - target: {fileID: 105155779061522203, guid: e6dfe1062eee32341b3cba4334bdb318,
-        type: 3}
-      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
-      value: ContinueTutorial
-      objectReference: {fileID: 0}
     - target: {fileID: 1369508184455335149, guid: e6dfe1062eee32341b3cba4334bdb318,
         type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
@@ -7999,36 +7989,6 @@ PrefabInstance:
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
       objectReference: {fileID: 2074140261}
-    - target: {fileID: 1860206992107646758, guid: e6dfe1062eee32341b3cba4334bdb318,
-        type: 3}
-      propertyPath: m_IsActive
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 1860206992107646758, guid: e6dfe1062eee32341b3cba4334bdb318,
-        type: 3}
-      propertyPath: m_Name
-      value: RewardsAndInteration
-      objectReference: {fileID: 0}
-    - target: {fileID: 2513127696912373937, guid: e6dfe1062eee32341b3cba4334bdb318,
-        type: 3}
-      propertyPath: m_IsActive
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 2513127696912373937, guid: e6dfe1062eee32341b3cba4334bdb318,
-        type: 3}
-      propertyPath: m_Name
-      value: MoveAndFight
-      objectReference: {fileID: 0}
-    - target: {fileID: 2873280345267632742, guid: e6dfe1062eee32341b3cba4334bdb318,
-        type: 3}
-      propertyPath: m_Name
-      value: FlavorStuff
-      objectReference: {fileID: 0}
-    - target: {fileID: 2873280345267632742, guid: e6dfe1062eee32341b3cba4334bdb318,
-        type: 3}
-      propertyPath: m_IsActive
-      value: 1
-      objectReference: {fileID: 0}
     - target: {fileID: 2894225056381279262, guid: e6dfe1062eee32341b3cba4334bdb318,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -8089,63 +8049,6 @@ PrefabInstance:
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
       objectReference: {fileID: 2074140261}
-    - target: {fileID: 3341816948590753404, guid: e6dfe1062eee32341b3cba4334bdb318,
-        type: 3}
-      propertyPath: m_LocalPosition.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 3867219543750355344, guid: e6dfe1062eee32341b3cba4334bdb318,
-        type: 3}
-      propertyPath: m_IsActive
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 3867219543750355344, guid: e6dfe1062eee32341b3cba4334bdb318,
-        type: 3}
-      propertyPath: m_Name
-      value: Building
-      objectReference: {fileID: 0}
-    - target: {fileID: 4680914468438412614, guid: e6dfe1062eee32341b3cba4334bdb318,
-        type: 3}
-      propertyPath: m_fontAsset
-      value: 
-      objectReference: {fileID: 11400000, guid: 113b3e2e1ed721b4b843a61e6456ce1c,
-        type: 2}
-    - target: {fileID: 4680914468438412614, guid: e6dfe1062eee32341b3cba4334bdb318,
-        type: 3}
-      propertyPath: m_sharedMaterial
-      value: 
-      objectReference: {fileID: -8224954240428865887, guid: 113b3e2e1ed721b4b843a61e6456ce1c,
-        type: 2}
-    - target: {fileID: 4680914468438412614, guid: e6dfe1062eee32341b3cba4334bdb318,
-        type: 3}
-      propertyPath: m_fontColor.r
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 4680914468438412614, guid: e6dfe1062eee32341b3cba4334bdb318,
-        type: 3}
-      propertyPath: m_fontColor.g
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 4680914468438412614, guid: e6dfe1062eee32341b3cba4334bdb318,
-        type: 3}
-      propertyPath: m_fontColor.b
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 4680914468438412614, guid: e6dfe1062eee32341b3cba4334bdb318,
-        type: 3}
-      propertyPath: m_fontColor32.rgba
-      value: 4294967295
-      objectReference: {fileID: 0}
-    - target: {fileID: 4680914468438412614, guid: e6dfe1062eee32341b3cba4334bdb318,
-        type: 3}
-      propertyPath: m_fontSize
-      value: 36
-      objectReference: {fileID: 0}
-    - target: {fileID: 4680914468438412614, guid: e6dfe1062eee32341b3cba4334bdb318,
-        type: 3}
-      propertyPath: m_fontSizeBase
-      value: 36
-      objectReference: {fileID: 0}
     - target: {fileID: 5727710350869893000, guid: e6dfe1062eee32341b3cba4334bdb318,
         type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
@@ -8155,16 +8058,6 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: UIManager
-      objectReference: {fileID: 0}
-    - target: {fileID: 8908791897214368003, guid: e6dfe1062eee32341b3cba4334bdb318,
-        type: 3}
-      propertyPath: m_IsActive
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 8908791897214368003, guid: e6dfe1062eee32341b3cba4334bdb318,
-        type: 3}
-      propertyPath: m_Name
-      value: TutorialEnd
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: e6dfe1062eee32341b3cba4334bdb318, type: 3}
