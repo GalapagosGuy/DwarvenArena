@@ -270,7 +270,7 @@ public class Enemy : MonoBehaviour, IHitable
             //behaviourWeights.weights[i] /= 1 + allies.Count;
             
             //uncomment for turbo spam
-            Debug.Log(behaviourWeights.weights[i] + " " + i);
+            //Debug.Log(behaviourWeights.weights[i] + " " + i);
         }
     }
 
@@ -319,7 +319,9 @@ public class Enemy : MonoBehaviour, IHitable
     protected virtual void Attack()
     {
         navMeshAgent.isStopped = true;
-        if(Vector3.Dot(target.forward, this.transform.forward) < .5f)
+        float dot = Vector3.Dot((this.transform.position - target.position).normalized, this.transform.forward);
+        Debug.Log(dot);
+        if (dot > -.6f)
         {
             LookAt(target);
             return;
