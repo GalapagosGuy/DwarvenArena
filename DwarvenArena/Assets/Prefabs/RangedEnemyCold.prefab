@@ -235,7 +235,7 @@ MonoBehaviour:
   maxPlayerDistance: 12
   minAllyDistance: 2
   maxAllyDistance: Infinity
-  projectilePrefab: {fileID: 7821536015419693969, guid: af88f6010a407ab4da6baf19b8357d78,
+  projectilePrefab: {fileID: 7821536015419693969, guid: 4eb51e94c6781ca4aabe8f8532a74c3e,
     type: 3}
   attackCooldown: 2
   projectileSpeed: 300

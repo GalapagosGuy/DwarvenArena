@@ -108,6 +108,7 @@ public class RangedEnemy : Enemy
     protected void CreateProjectile(bool yes)
     {
         Projectile p = Instantiate<Projectile>(projectilePrefab, this.transform.position, Quaternion.identity, null);
+        p.transform.forward = (target.position - this.transform.position).normalized;
         p.Initialize((target.position - this.transform.position).normalized, projectileSpeed, RandomDamage(), damageType);
     }
 }
