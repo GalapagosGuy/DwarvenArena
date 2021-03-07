@@ -75,7 +75,8 @@ public class PlayerController : PlayerStuff
             UIManager.Instance.ToggleSkip(false);
             EnemySpawner.Instance.SkipWave();
         }
-           
+        if (Input.GetKeyDown(KeyCode.Escape))
+            Application.Quit();
 
     }
 
