@@ -76,7 +76,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8eb9ab0e2fe82464f9729395f3549fdd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  damageType: 0
+  damageType: 1
   damage: 18
   damageOffset: 2
   animatorVariable: hasSwordEquiped
