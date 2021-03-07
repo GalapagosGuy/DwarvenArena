@@ -12,4 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1e1c5801b5b44264b8e3e20047b228c9, type: 3}
   m_Name: ArmorContainer
   m_EditorClassIdentifier: 
-  structureContainers: []
+  structureContainers:
+  - {fileID: 11400000, guid: 37b2afb2c9102fb4e8651e76c0de1aa3, type: 2}
+  - {fileID: 11400000, guid: 556cec4aa38cda14994ccb6f65f85d43, type: 2}
+  - {fileID: 11400000, guid: 3b94cb5188c05fe4c8923f3f8f02c6ba, type: 2}

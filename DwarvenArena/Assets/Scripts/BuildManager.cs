@@ -99,10 +99,10 @@ public class BuildManager : MonoBehaviour
             currentCategory++;
         }
 
-        if (currentCategory >= tierContainers.Length - 1)
+        if (currentCategory >= tierContainers.Length)
             currentCategory = 0;
         if (currentCategory < 0)
-            currentCategory = tierContainers.Length - 2;
+            currentCategory = tierContainers.Length - 1;
 
         if (gotChanged)
         {
