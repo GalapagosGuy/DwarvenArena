@@ -33,7 +33,7 @@ public class CampfireStructure : Structure
             if(currentTime >= cooldownTime)
             {
                 isReady = true;
-                currentTime = 0;
+                
             }
             UpdateUI();
         }
@@ -51,6 +51,7 @@ public class CampfireStructure : Structure
             Debug.Log("Player got healed from " + this.gameObject.name);
             hero.GetComponentInParent<PlayerStats>().HealUp(healingPower);
             isReady = false;
+            currentTime = 0;
         }
        
     }
