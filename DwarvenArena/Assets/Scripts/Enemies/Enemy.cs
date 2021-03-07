@@ -37,6 +37,17 @@ public class Enemy : MonoBehaviour, IHitable
 
         public float minPrefferedDistanceFromAlly = 4.0f;
         public float maxPrefferedDistanceFromAlly = Mathf.Infinity;
+
+        public DistancePreferences()
+        { }
+
+        public DistancePreferences(float minPlayer, float maxPlayer, float minAlly, float maxAlly)
+        {
+            minPrefferedDistanceFromPlayer = minPlayer;
+            maxPrefferedDistanceFromPlayer = maxPlayer;
+            minPrefferedDistanceFromAlly = minAlly;
+            maxPrefferedDistanceFromAlly = maxAlly;
+        }
     }
     public DistancePreferences distancePrefs { get; protected set; }
 
@@ -69,7 +80,7 @@ public class Enemy : MonoBehaviour, IHitable
             return isFree;
         }
     }
-    public ActionAvailability actionAvailability { get; private set; }
+    public ActionAvailability actionAvailability { get; protected set; }
 
     ///////////////////////////////////////////////////////////////////////////////////////////
     
@@ -87,7 +98,7 @@ public class Enemy : MonoBehaviour, IHitable
             Vector3.left, Vector3.RotateTowards(Vector3.left, Vector3.forward, 45.0f * Mathf.Deg2Rad, 0)};
         }
     }
-    public ContextBasedSteeringBehaviourWeights behaviourWeights { get; private set; }
+    public ContextBasedSteeringBehaviourWeights behaviourWeights { get; protected set; }
 
     // Start is called before the first frame update
     protected virtual void Awake()
