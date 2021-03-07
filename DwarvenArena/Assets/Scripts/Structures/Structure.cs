@@ -21,7 +21,7 @@ public abstract class Structure : PlayerStuff, IHitable
     {
         //hpObject.GetComponentInParent<Canvas>().gameObject.AddComponent<CanvasBillboard>();
         hpObject = GetComponentInChildren<hpObject>().gameObject;
-        hpBar = FindObjectOfType<Image>();
+        hpBar = GetComponentInChildren<hpBar>().transform.gameObject.GetComponent<Image>();
         hp = maxHp;
         UpdateUI();
     }

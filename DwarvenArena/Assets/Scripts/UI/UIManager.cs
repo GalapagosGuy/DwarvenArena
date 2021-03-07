@@ -21,6 +21,9 @@ public class UIManager : MonoBehaviour
     [SerializeField]
     private TextMeshProUGUI waveText;
 
+    [SerializeField]
+    private Animator animator;
+
     [Header("End game")]
     [SerializeField]
     private GameObject gameEndPanel;
@@ -111,6 +114,11 @@ public class UIManager : MonoBehaviour
 
         structuresUI[category].GetComponent<StructureUI>().activeIndicator.SetActive(true);
 
+    }
+
+    public void GetHitEffect()
+    {
+        animator.SetTrigger("Blink");
     }
 
 

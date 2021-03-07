@@ -85,6 +85,7 @@ GameObject:
   - component: {fileID: 4347293472639252553}
   - component: {fileID: 4596150482110661423}
   - component: {fileID: 7232742528004386917}
+  - component: {fileID: 6579648196137977855}
   m_Layer: 0
   m_Name: Hp bar
   m_TagString: Untagged
@@ -148,6 +149,18 @@ MonoBehaviour:
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
   m_PixelsPerUnitMultiplier: 1
+--- !u!114 &6579648196137977855
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3180428159666948947}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 941953b2759a90741ba682f929e62382, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &3918788244981094308
 GameObject:
   m_ObjectHideFlags: 0
