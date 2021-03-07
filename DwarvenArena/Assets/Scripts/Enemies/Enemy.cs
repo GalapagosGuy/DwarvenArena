@@ -72,7 +72,7 @@ public class Enemy : MonoBehaviour, IHitable
     public ActionAvailability actionAvailability { get; private set; }
 
     ///////////////////////////////////////////////////////////////////////////////////////////
-    
+
     public class ContextBasedSteeringBehaviourWeights
     {
         public float[] weights;
@@ -114,7 +114,7 @@ public class Enemy : MonoBehaviour, IHitable
     // Update is called once per frame
     void Update()
     {
-        if(actionAvailability.CheckIfFree())
+        if (actionAvailability.CheckIfFree())
             Act();
 
     }
@@ -122,7 +122,7 @@ public class Enemy : MonoBehaviour, IHitable
     protected virtual void Act()
     {
         //debug
-        if(debugSetTarget != null)
+        if (debugSetTarget != null)
         {
             target = debugSetTarget;
             debugSetTarget = null;
@@ -203,11 +203,11 @@ public class Enemy : MonoBehaviour, IHitable
 
         float random = Random.Range(0.0f, 1.0f);
         float minDistance = Mathf.Infinity;
-        foreach(PlayerStuff p in possibleTargets)
+        foreach (PlayerStuff p in possibleTargets)
         {
             if (p is PlayerController player)
             {
-                if(random < .9f)
+                if (random < .9f)
                 {
                     target = player.transform;
                     return;
@@ -215,7 +215,7 @@ public class Enemy : MonoBehaviour, IHitable
             }
             else
             {
-                if(Vector3.Distance(p.transform.position, this.transform.position) < minDistance)
+                if (Vector3.Distance(p.transform.position, this.transform.position) < minDistance)
                 {
                     targetTransform = p.transform;
                     minDistance = Vector3.Distance(p.transform.position, this.transform.position);
@@ -227,11 +227,11 @@ public class Enemy : MonoBehaviour, IHitable
     }
 
     //Weights start from pointing upwards and go clockwise
-    protected virtual void CalculateContextWeights(Transform target, Collider[] surrounding, float enemySeparationBias = .3f ,float playerBias = 2.0f ,bool towardsTarget = true)
+    protected virtual void CalculateContextWeights(Transform target, Collider[] surrounding, float enemySeparationBias = .3f, float playerBias = 2.0f, bool towardsTarget = true)
     {
         //copy original vectors
         Vector3[] weightVectors = new Vector3[8];
-        for(int i = 0; i < 8; i++)
+        for (int i = 0; i < 8; i++)
         {
             weightVectors[i] = new Vector3(ContextBasedSteeringBehaviourWeights.weightVectors[i].x,
                 ContextBasedSteeringBehaviourWeights.weightVectors[i].y,
@@ -239,7 +239,7 @@ public class Enemy : MonoBehaviour, IHitable
         }
         //find all neighbours
         List<Transform> allies = new List<Transform>();
-        foreach(Collider c in surrounding)
+        foreach (Collider c in surrounding)
         {
             if (c.CompareTag(allyTag) && c.gameObject != this.gameObject)
                 allies.Add(c.gameObject.transform);
@@ -256,8 +256,8 @@ public class Enemy : MonoBehaviour, IHitable
             targetVector = VectorCast.CastVector3ToVector2(this.transform.position)
                 - VectorCast.CastVector3ToVector2(target.transform.position);
         }
-            
-        for(int i = 0; i < behaviourWeights.weights.Length; i++)
+
+        for (int i = 0; i < behaviourWeights.weights.Length; i++)
         {
             behaviourWeights.weights[i] = Vector2.Dot(VectorCast.CastVector3ToVector2(weightVectors[i]),
                 targetVector.normalized) * playerBias;
@@ -268,7 +268,7 @@ public class Enemy : MonoBehaviour, IHitable
                 (this.transform.position - allies[j].position).normalized) * enemySeparationBias;
             }
             //behaviourWeights.weights[i] /= 1 + allies.Count;
-            
+
             //uncomment for turbo spam
             Debug.Log(behaviourWeights.weights[i] + " " + i);
         }
@@ -295,12 +295,12 @@ public class Enemy : MonoBehaviour, IHitable
     protected virtual Vector3 CalculatePath(float[] weightOffsets, float minWeightRange = 0.2f, float maxWeightRange = Mathf.Infinity, float maxConsideredVectors = 8)
     {
         Vector3 combinedResult = Vector3.zero;
-        for(int i = 0; i < 8; i++)
+        for (int i = 0; i < 8; i++)
         {
             //offset weights to prefer certain directions
             behaviourWeights.weights[i] += weightOffsets[i];
 
-            if(behaviourWeights.weights[i] > minWeightRange && behaviourWeights.weights[i] < maxWeightRange)
+            if (behaviourWeights.weights[i] > minWeightRange && behaviourWeights.weights[i] < maxWeightRange)
                 combinedResult += ContextBasedSteeringBehaviourWeights.weightVectors[i] * behaviourWeights.weights[i];
         }
 
@@ -339,7 +339,7 @@ public class Enemy : MonoBehaviour, IHitable
         if (this == null)
             return;
 
-        if(damageType != DamageType.Electric)
+        if (damageType != DamageType.Electric)
             HandleStagger();
 
         bool isCrit = false;
@@ -383,7 +383,7 @@ public class Enemy : MonoBehaviour, IHitable
 
     private void OnDrawGizmos()
     {
-        if(Application.isPlaying)
+        if (Application.isPlaying)
         {
             for (int i = 0; i < 8; i++)
             {
@@ -393,6 +393,18 @@ public class Enemy : MonoBehaviour, IHitable
 
             Gizmos.color = Color.blue;
             Gizmos.DrawWireSphere(this.transform.position, distancePrefs.minPrefferedDistanceFromAlly);
+        }
+    }
+
+    public void BurnMaterial()
+    {
+        SkinnedMeshRenderer[] smrs = GetComponentsInChildren<SkinnedMeshRenderer>();
+
+        foreach (SkinnedMeshRenderer smr in smrs)
+        {
+            Material mat = smr.material;
+            mat.color = new Color(0.13f, 0.13f, 0.13f);
+            smr.material = mat;
         }
     }
 }

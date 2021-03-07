@@ -10,6 +10,8 @@ public class Fireball : CastedSpell
     [SerializeField] private float explosionRange = 2.0f;
     [SerializeField] private DamageType damageType;
 
+    public GameObject fire;
+
     public GameObject explosionParticles = null;
 
     private Vector3 targetPosition;
@@ -60,6 +62,14 @@ public class Fireball : CastedSpell
             {
                 targetsHit.Add(iHitable);
                 iHitable.GetHit(RandomDamage(), damageType);
+
+                if (fire)
+                {
+                    GameObject wildfire = Instantiate(fire, hitCollider.transform.root.transform.position, fire.transform.rotation, hitCollider.transform.root.transform);
+                    Destroy(wildfire, 3.0f);
+
+                    hitCollider.transform.root.GetComponent<Enemy>()?.BurnMaterial();
+                }
             }
         }
 
