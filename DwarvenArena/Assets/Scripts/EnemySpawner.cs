@@ -104,6 +104,11 @@ public class EnemySpawner : MonoBehaviour
         }
     }
 
+    public void SkipWave()
+    {
+        currentTime = 0;
+    }
+
     private void SpawnEnemy(int i)
     {
         spawnedEnemies.Add(Instantiate(enemyPrefabs[i], spawnPoints[currentSpawnerIndex].position, Quaternion.identity, null));
