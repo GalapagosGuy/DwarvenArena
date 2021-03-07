@@ -19,6 +19,9 @@ public class CampfireStructure : Structure
 
     public GameObject mead;
 
+    private float currentTime2 = 0;
+    private float timeToRepair = 1;
+    private float repairAmount = 2;
     protected override void Start()
     {
         base.Start();
@@ -40,6 +43,19 @@ public class CampfireStructure : Structure
             }
             UpdateUI();
         }
+
+        if (hp < MaxHp)
+        {
+            if (currentTime < timeToRepair)
+            {
+                currentTime += Time.deltaTime;
+            }
+            else
+            {
+                Repair(repairAmount);
+                currentTime = 0;
+            }
+        }
     }
 
     public void UpdateUI()
@@ -52,7 +68,7 @@ public class CampfireStructure : Structure
         if (isReady)
         {
             Debug.Log("Player got healed from " + this.gameObject.name);
-            hero.GetComponentInParent<PlayerStats>().HealUp(healingPower);
+            hero.GetComponentInParent<PlayerStats>().PercentHealUp(healingPower);
             isReady = false;
             currentTime = 0;
             mead.SetActive(false);

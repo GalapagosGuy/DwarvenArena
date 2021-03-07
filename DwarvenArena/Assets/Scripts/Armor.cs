@@ -11,6 +11,9 @@ public class Armor : MonoBehaviour
     [SerializeField]
     private GameObject[] tierThree;
 
+    [SerializeField]
+    private ParticleSystem poof;
+
     private int currentArmor = 0;
     // Start is called before the first frame update
     void Start()
@@ -36,6 +39,7 @@ public class Armor : MonoBehaviour
             PlayerStats.Instance.SetMaxHp(50);
             currentArmor++;
         }
+        poof.Play();
         
     }
 
@@ -47,7 +51,8 @@ public class Armor : MonoBehaviour
             PlayerStats.Instance.SetMaxHp(125);
             currentArmor++;
         }
-            
+        poof.Play();
+
     }
 
     public void ActivateTierThree()
@@ -57,6 +62,8 @@ public class Armor : MonoBehaviour
             ToggleArmor(true, tierThree);
             PlayerStats.Instance.SetMaxHp(200);
         }
+        poof.Play();
+
     }
 
 }

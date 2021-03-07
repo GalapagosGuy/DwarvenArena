@@ -10,12 +10,12 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: c7bd8e5861f3a3348a724b0c0c0a3462, type: 3}
-  m_Name: SpellTier1
+  m_Name: SpellTier3
   m_EditorClassIdentifier: 
-  structureObject: {fileID: 4893127631847310749, guid: 8d224ad52fd68314e87f44c5acd13824,
+  structureObject: {fileID: 1788998107628982406, guid: 684d52155487bb34f977b4f1080e9eab,
     type: 3}
-  structureMock: {fileID: 4893127631847310749, guid: cb91efddf4b109f4886c8f92a1c82e85,
+  structureMock: {fileID: 8301159042805792069, guid: 5bf7f58dd62cfad4593057173eb9ee9b,
     type: 3}
-  cost: 30
-  tier: 0
-  structureSprite: {fileID: 21300000, guid: 5a9f21e437373e24dba5939112e2fea9, type: 3}
+  cost: 90
+  tier: 2
+  structureSprite: {fileID: 21300000, guid: fc274750e6f8e05489ab5782e5644527, type: 3}

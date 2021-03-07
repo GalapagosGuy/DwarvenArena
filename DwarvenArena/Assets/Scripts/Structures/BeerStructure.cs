@@ -18,7 +18,9 @@ public class BeerStructure : Structure
     private bool isReady;
 
     public GameObject beer;
-
+    private float currentTime2 = 0;
+    private float timeToRepair = 1;
+    private float repairAmount = 2;
     protected override void Start()
     {
         base.Start();
@@ -39,6 +41,19 @@ public class BeerStructure : Structure
 
             }
             UpdateUI();
+        }
+
+        if (hp < MaxHp)
+        {
+            if (currentTime < timeToRepair)
+            {
+                currentTime += Time.deltaTime;
+            }
+            else
+            {
+                Repair(repairAmount);
+                currentTime = 0;
+            }
         }
     }
 

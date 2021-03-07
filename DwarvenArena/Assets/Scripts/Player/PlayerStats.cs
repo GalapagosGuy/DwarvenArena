@@ -80,6 +80,17 @@ public class PlayerStats : MonoBehaviour, IHitable
 
     }
 
+    public void PercentHealUp(float percent)
+    {
+        hp += maxHp * percent;
+        if (hp > maxHp)
+        {
+            hp = maxHp;
+        }
+        UIManager.Instance.UpdateUI();
+
+    }
+
     public void AddMana(float value)
     {
         mana += value;
