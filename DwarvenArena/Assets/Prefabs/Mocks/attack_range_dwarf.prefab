@@ -64,8 +64,9 @@ MonoBehaviour:
   bloodSplash: {fileID: 3311653165523806969, guid: c72884389392ce4448aa8b5876f9bf8c,
     type: 3}
   enemyWeapon: 0
+  addedMana: 0
   canDestroyStructures: 0
-  manaRestoreRatio: 0.5
+  manaRestoreRatio: 0.1
 --- !u!54 &8354313888450898836
 Rigidbody:
   m_ObjectHideFlags: 0
