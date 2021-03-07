@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   structureObject: {fileID: 1788998107628982406, guid: 684d52155487bb34f977b4f1080e9eab,
     type: 3}
-  structureMock: {fileID: 8301159042805792069, guid: 5bf7f58dd62cfad4593057173eb9ee9b,
+  structureMock: {fileID: 4893127631847310749, guid: cb91efddf4b109f4886c8f92a1c82e85,
     type: 3}
   cost: 90
   tier: 2
