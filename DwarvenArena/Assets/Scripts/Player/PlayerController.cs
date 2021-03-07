@@ -70,6 +70,13 @@ public class PlayerController : PlayerStuff
         if (Input.GetKeyDown(InputMap.Build))
             BuildManager.Instance.ToggleBuildingMode();
 
+        if (Input.GetKeyDown(InputMap.Skip))
+        {
+            UIManager.Instance.ToggleSkip(false);
+            EnemySpawner.Instance.SkipWave();
+        }
+           
+
     }
 
     private void ProcessMovement()

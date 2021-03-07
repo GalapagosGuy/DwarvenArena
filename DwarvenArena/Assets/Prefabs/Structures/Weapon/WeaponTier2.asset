@@ -12,10 +12,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c7bd8e5861f3a3348a724b0c0c0a3462, type: 3}
   m_Name: WeaponTier2
   m_EditorClassIdentifier: 
-  structureObject: {fileID: 741687040617498862, guid: 6918c61136bfdbb48864f61c34ccbf83,
+  structureObject: {fileID: 4668154444071237491, guid: afd177039495ad241b16eb68afcafdcf,
     type: 3}
-  structureMock: {fileID: 741687040617498862, guid: 5d0a0dc9b8e434546802de3dc13811e6,
+  structureMock: {fileID: 4668154444071237491, guid: bcf189068550b144c935b23c77db9ba6,
     type: 3}
-  cost: 30
+  cost: 60
   tier: 1
-  structureSprite: {fileID: 21300000, guid: d2f6ee72b4986ba4aa54050b3be116f4, type: 3}
+  structureSprite: {fileID: 21300000, guid: 8392d7f9c45d96c4c8894cb91770907f, type: 3}

@@ -55,6 +55,7 @@ public class EnemySpawner : MonoBehaviour
         else
         {
             currentTime -= Time.deltaTime;
+            UIManager.Instance.UpdateWaveTimeText(currentTime);
             if(currentTime <= 0)
             {
                 waveStatus = WaveStatus.INPROGRESS;
@@ -74,12 +75,15 @@ public class EnemySpawner : MonoBehaviour
             packageThrower.SetNumberOfPackagesToThrow(3);
         else
             packageThrower.SetNumberOfPackagesToThrow(Random.Range(1 + (int)(wave / 3), 5 + (int)(wave / 3)));
+
+        UIManager.Instance.ToggleSkip(true);
         return true;
     }
 
     private void SpawnWave()
     {
         wave++;
+        UIManager.Instance.ToggleSkip(false);
         UIManager.Instance.UpdateWaveText();
         spawnedEnemies.Clear();
         SetWaveValue();
