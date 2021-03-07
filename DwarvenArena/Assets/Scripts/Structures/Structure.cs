@@ -7,7 +7,8 @@ public abstract class Structure : PlayerStuff, IHitable
 {
     public int cost { get; private set; }
     public float hp { get; private set; }
-    
+    public float MaxHp { get => maxHp; set => maxHp = value; }
+
     [SerializeField]
     private float maxHp;
 
@@ -17,13 +18,33 @@ public abstract class Structure : PlayerStuff, IHitable
     [SerializeField]
     private Image hpBar;
 
+    private float timeToHeal = 1;
+    private float repairAmount = 2;
+    private float currentTime = 0;
     protected virtual void Start()
     {
         //hpObject.GetComponentInParent<Canvas>().gameObject.AddComponent<CanvasBillboard>();
         hpObject = GetComponentInChildren<hpObject>().gameObject;
         hpBar = GetComponentInChildren<hpBar>().transform.gameObject.GetComponent<Image>();
-        hp = maxHp;
+        hp = MaxHp;
         UpdateUI();
+    }
+
+    private void Update()
+    {
+        if(hp < MaxHp)
+        {
+            if (currentTime < timeToHeal)
+            {
+                currentTime += Time.deltaTime;
+            }
+            else
+            {
+                Repair(repairAmount);
+                currentTime = 0;
+            }
+        }
+
     }
 
     public void GetHit(float value, DamageType damageType)
@@ -47,10 +68,10 @@ public abstract class Structure : PlayerStuff, IHitable
     public void Repair(float value)
     {
         hp += value;
-        if (hp > maxHp)
+        if (hp > MaxHp)
         {
             Debug.Log("Structure " + this.gameObject.name + " got fully repaired");
-            hp = maxHp;
+            hp = MaxHp;
         }
         UpdateUI();   
 
@@ -59,8 +80,8 @@ public abstract class Structure : PlayerStuff, IHitable
 
     public void UpdateUI()
     {
-        hpBar.fillAmount = hp / maxHp;
-        if (hp == maxHp)
+        hpBar.fillAmount = hp / MaxHp;
+        if (hp == MaxHp)
             hpObject.SetActive(false);
         else
             hpObject.SetActive(true);

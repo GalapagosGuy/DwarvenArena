@@ -828,7 +828,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2eaa35dc126b2b44e8c9c7799bac7302, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  maxHp: 100
+  maxHp: 200
   hpObject: {fileID: 0}
   hpBar: {fileID: 0}
   healingPower: 25
@@ -1718,7 +1718,7 @@ PrefabInstance:
     - target: {fileID: 2191761939716616408, guid: 9baaaed46fdbcda43849ad99a4404cf9,
         type: 3}
       propertyPath: m_AnchoredPosition.y
-      value: 0.67
+      value: 1.376
       objectReference: {fileID: 0}
     - target: {fileID: 2191761939716616408, guid: 9baaaed46fdbcda43849ad99a4404cf9,
         type: 3}

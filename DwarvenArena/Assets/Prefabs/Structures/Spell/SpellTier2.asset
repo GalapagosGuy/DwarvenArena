@@ -14,8 +14,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   structureObject: {fileID: 8301159042805792069, guid: bbb024ee6380052478333bfa4dc3682e,
     type: 3}
-  structureMock: {fileID: 8301159042805792069, guid: 5bf7f58dd62cfad4593057173eb9ee9b,
+  structureMock: {fileID: 4893127631847310749, guid: cb91efddf4b109f4886c8f92a1c82e85,
     type: 3}
   cost: 60
   tier: 1
-  structureSprite: {fileID: 21300000, guid: 3a665915fbf7f634abd751e41154a188, type: 3}
+  structureSprite: {fileID: 21300000, guid: 9e367975122cc43459cb05109ed4792e, type: 3}
