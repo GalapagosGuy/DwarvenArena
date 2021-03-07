@@ -270,7 +270,7 @@ public class Enemy : MonoBehaviour, IHitable
             //behaviourWeights.weights[i] /= 1 + allies.Count;
 
             //uncomment for turbo spam
-            Debug.Log(behaviourWeights.weights[i] + " " + i);
+            //Debug.Log(behaviourWeights.weights[i] + " " + i);
         }
     }
 
@@ -319,10 +319,16 @@ public class Enemy : MonoBehaviour, IHitable
     protected virtual void Attack()
     {
         navMeshAgent.isStopped = true;
-        LookAt(target);
+        float dot = Vector3.Dot((this.transform.position - target.position).normalized, this.transform.forward);
+        Debug.Log(dot);
+        if (dot > -.6f)
+        {
+            LookAt(target);
+            return;
+        }
         enemyAnimator.OnStopAnimation();
         enemyAnimator.OnAttackAnimation();
-        actionAvailability.SetBusy(.7f);
+        actionAvailability.SetBusy(1.3f);
     }
 
     protected virtual void ToggleAttackHitbox(bool toggle)
@@ -350,7 +356,11 @@ public class Enemy : MonoBehaviour, IHitable
         }
         hp -= value;
         if (hp <= 0)
+        {
+            PlayerStats.Instance.AddKill();
             Destroy(this.gameObject);
+        }
+          
         else
             UpdateUI(Mathf.Round(value), isCrit);
     }

@@ -18,6 +18,7 @@ public class UIManager : MonoBehaviour
     [SerializeField]
     private TextMeshProUGUI moneyText;
 
+    [Header("End game")]
     [SerializeField]
     private GameObject gameEndPanel;
 
@@ -26,6 +27,12 @@ public class UIManager : MonoBehaviour
 
     [SerializeField]
     private GameObject gameLostText;
+
+    [SerializeField]
+    private TextMeshProUGUI waveEndText;
+
+    [SerializeField]
+    private TextMeshProUGUI monsterKilledText;
 
     [Header("Structures UI")]
     public GameObject[] structuresUI;
@@ -52,10 +59,17 @@ public class UIManager : MonoBehaviour
         moneyText.text = playerStats.money.ToString();
     }
 
+    public void UpdateEndGameStatistics()
+    {
+        waveEndText.text = (EnemySpawner.Instance.wave -1 ).ToString();
+        monsterKilledText.text = PlayerStats.Instance.monsterKilled.ToString();
+    }
+
     public void GameWon()
     {
         gameEndPanel.SetActive(true);
         gameWonText.SetActive(true);
+        UpdateEndGameStatistics();
 
     }
 
@@ -63,6 +77,7 @@ public class UIManager : MonoBehaviour
     {
         gameEndPanel.SetActive(true);
         gameLostText.SetActive(true);
+        UpdateEndGameStatistics();
     }
 
     public void ReloadGame()

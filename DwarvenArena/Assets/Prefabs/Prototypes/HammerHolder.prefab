@@ -150,6 +150,7 @@ GameObject:
   - component: {fileID: 741687040617498860}
   - component: {fileID: 741687040617498861}
   - component: {fileID: 741687040617498864}
+  - component: {fileID: 1205352873768270893}
   m_Layer: 0
   m_Name: HammerHolder
   m_TagString: Untagged
@@ -263,11 +264,27 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   outlineMode: 1
-  outlineColor: {r: 0, g: 1, b: 0.008504152, a: 1}
+  outlineColor: {r: 0, g: 0.54901963, b: 1, a: 1}
   outlineWidth: 4
   precomputeOutline: 0
   bakeKeys: []
   bakeValues: []
+--- !u!208 &1205352873768270893
+NavMeshObstacle:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 741687040617498862}
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Shape: 1
+  m_Extents: {x: 0.4, y: 0.4, z: 0.4}
+  m_MoveThreshold: 0.1
+  m_Carve: 1
+  m_CarveOnlyStationary: 1
+  m_Center: {x: 0, y: 0, z: 0}
+  m_TimeToStationary: 0.5
 --- !u!1 &741687041166154450
 GameObject:
   m_ObjectHideFlags: 0

@@ -236,6 +236,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   damageType: 1
   damage: 10
+  damageOffset: 1
   animatorVariable: hasSwordEquiped
   mock: {fileID: 2118756153646113578, guid: abb10dbe21e55714eb8fed299c1ae986, type: 3}
 --- !u!1 &3803797111390612148
