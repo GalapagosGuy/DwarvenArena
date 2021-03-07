@@ -903,8 +903,8 @@ MonoBehaviour:
       m_Calls: []
   m_text: Wave
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 73ef3761eb6b6bb4b8ffe035423e244e, type: 2}
-  m_sharedMaterial: {fileID: -4112846513026683334, guid: 73ef3761eb6b6bb4b8ffe035423e244e,
+  m_fontAsset: {fileID: 11400000, guid: 065d2b00a46041f48baede8181c64417, type: 2}
+  m_sharedMaterial: {fileID: 3041267701228885122, guid: 065d2b00a46041f48baede8181c64417,
     type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
@@ -1093,8 +1093,8 @@ MonoBehaviour:
       m_Calls: []
   m_text: 66
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 73ef3761eb6b6bb4b8ffe035423e244e, type: 2}
-  m_sharedMaterial: {fileID: -4112846513026683334, guid: 73ef3761eb6b6bb4b8ffe035423e244e,
+  m_fontAsset: {fileID: 11400000, guid: 065d2b00a46041f48baede8181c64417, type: 2}
+  m_sharedMaterial: {fileID: 3041267701228885122, guid: 065d2b00a46041f48baede8181c64417,
     type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
@@ -1400,8 +1400,8 @@ MonoBehaviour:
       m_Calls: []
   m_text: 'Money:'
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 73ef3761eb6b6bb4b8ffe035423e244e, type: 2}
-  m_sharedMaterial: {fileID: -4112846513026683334, guid: 73ef3761eb6b6bb4b8ffe035423e244e,
+  m_fontAsset: {fileID: 11400000, guid: 065d2b00a46041f48baede8181c64417, type: 2}
+  m_sharedMaterial: {fileID: 3041267701228885122, guid: 065d2b00a46041f48baede8181c64417,
     type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
@@ -1823,8 +1823,8 @@ MonoBehaviour:
       m_Calls: []
   m_text: 15
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 73ef3761eb6b6bb4b8ffe035423e244e, type: 2}
-  m_sharedMaterial: {fileID: -4112846513026683334, guid: 73ef3761eb6b6bb4b8ffe035423e244e,
+  m_fontAsset: {fileID: 11400000, guid: 065d2b00a46041f48baede8181c64417, type: 2}
+  m_sharedMaterial: {fileID: 3041267701228885122, guid: 065d2b00a46041f48baede8181c64417,
     type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
@@ -2174,7 +2174,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &4794122301533002038
 RectTransform:
   m_ObjectHideFlags: 0
@@ -3484,7 +3484,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 58.6, y: 21.331}
+  m_AnchoredPosition: {x: 64.5, y: 21.331}
   m_SizeDelta: {x: 117.142944, y: 57.33795}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &3255025329440381047
@@ -3516,8 +3516,8 @@ MonoBehaviour:
       m_Calls: []
   m_text: 15
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 73ef3761eb6b6bb4b8ffe035423e244e, type: 2}
-  m_sharedMaterial: {fileID: -4112846513026683334, guid: 73ef3761eb6b6bb4b8ffe035423e244e,
+  m_fontAsset: {fileID: 11400000, guid: 065d2b00a46041f48baede8181c64417, type: 2}
+  m_sharedMaterial: {fileID: 3041267701228885122, guid: 065d2b00a46041f48baede8181c64417,
     type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
@@ -4354,7 +4354,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -76.609, y: 21.331}
+  m_AnchoredPosition: {x: -83, y: 21.331}
   m_SizeDelta: {x: 153.27429, y: 57.33795}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &6155537700213578668
@@ -4386,8 +4386,8 @@ MonoBehaviour:
       m_Calls: []
   m_text: Wave in
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 73ef3761eb6b6bb4b8ffe035423e244e, type: 2}
-  m_sharedMaterial: {fileID: -4112846513026683334, guid: 73ef3761eb6b6bb4b8ffe035423e244e,
+  m_fontAsset: {fileID: 11400000, guid: 065d2b00a46041f48baede8181c64417, type: 2}
+  m_sharedMaterial: {fileID: 3041267701228885122, guid: 065d2b00a46041f48baede8181c64417,
     type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
@@ -5167,10 +5167,10 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Press <color=green>SPACE</color> to skip waiting
+  m_text: Press <color=orange>space</color> to skip waiting
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 73ef3761eb6b6bb4b8ffe035423e244e, type: 2}
-  m_sharedMaterial: {fileID: -4112846513026683334, guid: 73ef3761eb6b6bb4b8ffe035423e244e,
+  m_fontAsset: {fileID: 11400000, guid: 065d2b00a46041f48baede8181c64417, type: 2}
+  m_sharedMaterial: {fileID: 3041267701228885122, guid: 065d2b00a46041f48baede8181c64417,
     type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
