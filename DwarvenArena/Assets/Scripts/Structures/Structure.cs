@@ -19,7 +19,9 @@ public abstract class Structure : PlayerStuff, IHitable
 
     protected virtual void Start()
     {
-        hpObject.GetComponentInParent<Canvas>().gameObject.AddComponent<CanvasBillboard>();
+        //hpObject.GetComponentInParent<Canvas>().gameObject.AddComponent<CanvasBillboard>();
+        hpObject = GetComponentInChildren<hpObject>().gameObject;
+        hpBar = FindObjectOfType<Image>();
         hp = maxHp;
         UpdateUI();
     }
