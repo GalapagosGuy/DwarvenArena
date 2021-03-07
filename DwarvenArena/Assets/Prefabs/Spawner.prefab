@@ -45,11 +45,18 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   enemyPrefabs:
   - {fileID: 406318012314030328, guid: 8c977498d3419c24c8bdc9b6b15c2d9a, type: 3}
-  enemySpawnCost: 01000000
+  - {fileID: 2560019468074000850, guid: 1d76bd1a88118a24989570d2dc7cde21, type: 3}
+  enemySpawnCost: 0100000002000000
   enemyChoicePriority:
   - 1
+  - 0.5
   spawnPoints:
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
   - {fileID: 0}
   wave: 0
   waveValue: 0
-  waveStatus: 1
+  debugSpawnNow: 0
+  timeToNextWave: 15
+  waveStatus: 0

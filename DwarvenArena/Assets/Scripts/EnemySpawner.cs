@@ -23,7 +23,7 @@ public class EnemySpawner : MonoBehaviour
     public bool debugSpawnNow = false;
     public float timeToNextWave = 5f;
     private float currentTime = 0;
-
+    private PackageThrower packageThrower;
     public WaveStatus waveStatus = WaveStatus.UNKNOWN;
 
     private void Awake()
@@ -36,6 +36,10 @@ public class EnemySpawner : MonoBehaviour
         spawnedEnemies = new List<Enemy>();
         if(!debugSpawnNow)
             currentTime = timeToNextWave;
+
+        packageThrower = FindObjectOfType<PackageThrower>();
+        if (packageThrower == null)
+            Debug.Log("PACKAGE THROWER NOT FOUND");
     }
 
     private void Update()
@@ -66,6 +70,12 @@ public class EnemySpawner : MonoBehaviour
             if (e != null)
                 return false;
         }
+        if(wave == 1)
+            packageThrower.SetNumberOfPackagesToThrow(3);
+        else if(wave <= 5)
+            packageThrower.SetNumberOfPackagesToThrow(Random.Range(1,4));
+        else
+            packageThrower.SetNumberOfPackagesToThrow(Random.Range(2, 5));
         return true;
     }
 

@@ -348,7 +348,7 @@ GameObject:
   - component: {fileID: 444142682}
   - component: {fileID: 444142681}
   m_Layer: 0
-  m_Name: GameObject
+  m_Name: PackageThrower
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -367,10 +367,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   start: {fileID: 444142682}
-  target: {fileID: 0}
   packagePrefab: {fileID: 6738702016938509465, guid: 00db0d58ca007374d908295a2b97225d,
     type: 3}
-  force: 300
+  minForce: 200
+  maxForce: 400
 --- !u!4 &444142682
 Transform:
   m_ObjectHideFlags: 0
@@ -2622,31 +2622,6 @@ PrefabInstance:
       propertyPath: m_Name
       value: Spawner
       objectReference: {fileID: 0}
-    - target: {fileID: 2001288496284493558, guid: 024d364fd17b0ea4baf29fecb52a7b2d,
-        type: 3}
-      propertyPath: m_IsActive
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 2001288496284493559, guid: 024d364fd17b0ea4baf29fecb52a7b2d,
-        type: 3}
-      propertyPath: spawnPoints.Array.size
-      value: 4
-      objectReference: {fileID: 0}
-    - target: {fileID: 2001288496284493559, guid: 024d364fd17b0ea4baf29fecb52a7b2d,
-        type: 3}
-      propertyPath: enemyPrefabs.Array.size
-      value: 2
-      objectReference: {fileID: 0}
-    - target: {fileID: 2001288496284493559, guid: 024d364fd17b0ea4baf29fecb52a7b2d,
-        type: 3}
-      propertyPath: enemySpawnCost.Array.size
-      value: 2
-      objectReference: {fileID: 0}
-    - target: {fileID: 2001288496284493559, guid: 024d364fd17b0ea4baf29fecb52a7b2d,
-        type: 3}
-      propertyPath: enemyChoicePriority.Array.size
-      value: 2
-      objectReference: {fileID: 0}
     - target: {fileID: 2001288496284493559, guid: 024d364fd17b0ea4baf29fecb52a7b2d,
         type: 3}
       propertyPath: spawnPoints.Array.data[0]
@@ -2669,24 +2644,8 @@ PrefabInstance:
       objectReference: {fileID: 862413005}
     - target: {fileID: 2001288496284493559, guid: 024d364fd17b0ea4baf29fecb52a7b2d,
         type: 3}
-      propertyPath: waveStatus
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 2001288496284493559, guid: 024d364fd17b0ea4baf29fecb52a7b2d,
-        type: 3}
-      propertyPath: enemyPrefabs.Array.data[1]
-      value: 
-      objectReference: {fileID: 2560019468074000850, guid: 1d76bd1a88118a24989570d2dc7cde21,
-        type: 3}
-    - target: {fileID: 2001288496284493559, guid: 024d364fd17b0ea4baf29fecb52a7b2d,
-        type: 3}
-      propertyPath: enemySpawnCost.Array.data[1]
-      value: 2
-      objectReference: {fileID: 0}
-    - target: {fileID: 2001288496284493559, guid: 024d364fd17b0ea4baf29fecb52a7b2d,
-        type: 3}
-      propertyPath: enemyChoicePriority.Array.data[1]
-      value: 0.5
+      propertyPath: timeToNextWave
+      value: 15
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 024d364fd17b0ea4baf29fecb52a7b2d, type: 3}
@@ -3053,6 +3012,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: SpearHolder
+      objectReference: {fileID: 0}
+    - target: {fileID: 4668154444071237491, guid: afd177039495ad241b16eb68afcafdcf,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4668154444071237495, guid: afd177039495ad241b16eb68afcafdcf,
         type: 3}
