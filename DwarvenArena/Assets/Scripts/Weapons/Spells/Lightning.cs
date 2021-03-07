@@ -10,8 +10,12 @@ public class Lightning : CastedSpell
     [SerializeField] private float damageOffset;
     [SerializeField] private DamageType damageType;
     [SerializeField] private float interval;
+    [SerializeField] private float chancesForCritical = 10.0f;
+    [SerializeField] private float criticalDamage = 30.0f;
 
     private float currentIntervalTime = 0.0f;
+
+    public GameObject lightningCritical;
 
     public float RandomDamage()
     {
@@ -31,7 +35,7 @@ public class Lightning : CastedSpell
         Destroy(this.gameObject);
     }
 
-    private List<IHitable> targets = new List<IHitable>();
+    private List<GameObject> targets = new List<GameObject>();
 
     private void OnTriggerStay(Collider other)
     {
@@ -40,9 +44,9 @@ public class Lightning : CastedSpell
 
         IHitable iHitable = other.GetComponentInParent<IHitable>();
 
-        if (iHitable != null && iHitable != PlayerController.Instance.GetComponent<IHitable>() && !targets.Contains(iHitable))
+        if (iHitable != null && iHitable != PlayerController.Instance.GetComponent<IHitable>() && !targets.Contains(other.transform.root.gameObject))
         {
-            targets.Add(iHitable);
+            targets.Add(other.transform.root.gameObject);
         }
     }
 
@@ -50,9 +54,9 @@ public class Lightning : CastedSpell
     {
         IHitable iHitable = other.GetComponentInParent<IHitable>();
 
-        if (iHitable != null && targets.Contains(iHitable))
+        if (iHitable != null && targets.Contains(other.transform.root.gameObject))
         {
-            targets.Remove(iHitable);
+            targets.Remove(other.transform.root.gameObject);
         }
     }
 
@@ -69,12 +73,27 @@ public class Lightning : CastedSpell
 
         if (currentIntervalTime >= interval)
         {
-            IHitable[] targetsToDealDamage = targets.ToArray();
+            GameObject[] targetsToDealDamage = targets.ToArray();
 
-            foreach (IHitable iHitable in targetsToDealDamage)
+            foreach (GameObject go in targetsToDealDamage)
             {
+                if (go == null)
+                    return;
+
+                IHitable iHitable = go.GetComponent<IHitable>();
+
                 if (iHitable != null)
                     iHitable.GetHit(RandomDamage(), damageType);
+
+                if (Random.Range(0, 100.0f) < chancesForCritical)
+                {
+                    iHitable.GetHit(criticalDamage, damageType);
+
+                    GameObject lightningCrit = Instantiate(lightningCritical, transform.position, Quaternion.identity);
+                    lightningCrit.transform.GetChild(0).transform.position = go.transform.position;
+                    lightningCrit.transform.GetChild(1).transform.position = go.transform.position + new Vector3(0.0f, 20.0f, 0.0f);
+                    Destroy(lightningCrit, 0.2f);
+                }
             }
 
             currentIntervalTime = 0.0f;

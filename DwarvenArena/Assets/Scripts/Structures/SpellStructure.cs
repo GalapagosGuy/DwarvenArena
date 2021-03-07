@@ -9,6 +9,8 @@ public class SpellStructure : Structure
 
     private bool spellCanBeTaken = true;
 
+    public GameObject book;
+
     protected override void Start()
     {
         base.Start();
@@ -25,6 +27,7 @@ public class SpellStructure : Structure
             {
                 playerSlots.ChangeSpell(spellReference);
                 spellCanBeTaken = false;
+                book.SetActive(false);
             }
         }
     }
@@ -38,6 +41,7 @@ public class SpellStructure : Structure
         spellReference.transform.localPosition = Vector3.zero;
         spellReference.transform.localRotation = Quaternion.identity;
         spellReference.transform.localScale = Vector3.one;
+        book.SetActive(true);
 
         spellCanBeTaken = true;
     }

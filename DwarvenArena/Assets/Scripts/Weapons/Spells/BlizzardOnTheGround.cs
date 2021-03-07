@@ -11,6 +11,9 @@ public class BlizzardOnTheGround : CastedSpell
     [SerializeField] private float damageRadius = 3.0f;
     [SerializeField] private int bullets = 7;
 
+    [SerializeField] private float chanceForPrison = 25.0f;
+    public GameObject frozenPrison = null;
+
     public Animator animator;
 
     private List<IHitable> targetsHit = new List<IHitable>();
@@ -32,6 +35,14 @@ public class BlizzardOnTheGround : CastedSpell
             {
                 targetsHit.Add(iHitable);
                 iHitable.GetHit(RandomDamage(), damageType);
+
+                if (Random.Range(0, 100.0f) < chanceForPrison && !PrisonManager.Instance.CheckIfPrisonExistsForTarget(hitCollider.transform.root.gameObject))
+                {
+                    GameObject prison = Instantiate(frozenPrison, hitCollider.transform.position, Quaternion.identity);
+                    prison.GetComponent<FrozenPrison>().CreatePrison(hitCollider.transform.root.gameObject);
+
+                    PrisonManager.Instance.AddPrison(prison.GetComponent<FrozenPrison>());
+                }
 
                 /*if (fire)
                 {

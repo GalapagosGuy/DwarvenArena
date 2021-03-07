@@ -412,6 +412,9 @@ MonoBehaviour:
   damageOffset: 5
   damageRadius: 6
   bullets: 7
+  chanceForPrison: 100
+  frozenPrison: {fileID: 3690567715521616030, guid: 713f50a9f82674e4f9c2f5600d887591,
+    type: 3}
   animator: {fileID: 4956265174183829642}
 --- !u!1001 &942426604858020273
 PrefabInstance:

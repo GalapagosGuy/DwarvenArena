@@ -369,10 +369,15 @@ public class Enemy : MonoBehaviour, IHitable
         hp -= value;
         if (hp <= 0)
         {
+            if (PrisonManager.Instance.CheckIfPrisonExistsForTarget(this.gameObject))
+            {
+                PrisonManager.Instance.DestroyPrison(this.gameObject);
+            }
+
             PlayerStats.Instance.AddKill();
             Destroy(this.gameObject);
         }
-          
+
         else
             UpdateUI(Mathf.Round(value), isCrit);
     }
