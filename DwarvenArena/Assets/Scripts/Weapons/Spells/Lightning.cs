@@ -16,6 +16,7 @@ public class Lightning : CastedSpell
     private float currentIntervalTime = 0.0f;
 
     public GameObject lightningCritical;
+    public GameObject critAudio;
 
     public float RandomDamage()
     {
@@ -93,6 +94,9 @@ public class Lightning : CastedSpell
                     lightningCrit.transform.GetChild(0).transform.position = go.transform.position;
                     lightningCrit.transform.GetChild(1).transform.position = go.transform.position + new Vector3(0.0f, 20.0f, 0.0f);
                     Destroy(lightningCrit, 0.2f);
+
+                    GameObject audio = Instantiate(critAudio, transform.position, Quaternion.identity);
+                    Destroy(audio, 4.0f);
                 }
             }
 
