@@ -21,7 +21,17 @@ public class Spell : MonoBehaviour
     {
         if (castedSpell)
         {
-            GameObject go = Instantiate(castedSpell, this.transform.position, this.transform.rotation);
+            GameObject go;
+
+            if (castedSpell.GetComponent<BlizzardOnTheGround>())
+            {
+                Vector3 pos = targetPosition;
+                pos.y = 0.009f;
+
+                go = Instantiate(castedSpell, pos, Quaternion.identity);
+            }
+            else
+                go = Instantiate(castedSpell, this.transform.position, this.transform.rotation);
 
             go.GetComponent<CastedSpell>()?.Initialize(sourcePosition, targetPosition);
         }

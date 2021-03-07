@@ -230,8 +230,8 @@ MonoBehaviour:
   weakness: 3
   debugSetTarget: {fileID: 0}
   maxHp: 100
-  minPlayerDistance: 8
-  maxPlayerDistance: 7
+  minPlayerDistance: 5
+  maxPlayerDistance: 12
   minAllyDistance: 2
   maxAllyDistance: Infinity
   projectilePrefab: {fileID: 7821536015419693969, guid: af88f6010a407ab4da6baf19b8357d78,
