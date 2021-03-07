@@ -18,6 +18,7 @@ public class Enemy : MonoBehaviour, IHitable
     private GameObject hpObject;
 
     public DamageType weakness;
+    public bool bigdude = false;
 
     protected Transform target = null;
     protected string allyTag = "Enemy";
@@ -356,7 +357,7 @@ public class Enemy : MonoBehaviour, IHitable
         if (this == null)
             return;
 
-        if (damageType != DamageType.Electric)
+        if (damageType != DamageType.Electric && !bigdude)
             HandleStagger();
 
         bool isCrit = false;
