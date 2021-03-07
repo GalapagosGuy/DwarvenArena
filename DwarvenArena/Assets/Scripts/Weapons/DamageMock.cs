@@ -14,6 +14,9 @@ public class DamageMock : MonoBehaviour
 
     public bool canDestroyStructures = true;
 
+    public AudioSource audioSource;
+    public AudioClip[] clips;
+
     [SerializeField] private float manaRestoreRatio = 0.05f;
 
     private void Awake()
@@ -54,7 +57,33 @@ public class DamageMock : MonoBehaviour
 
         if (iHitable != null && !hitObjects.Contains(iHitable))
         {
-            iHitable.GetHit(weaponReference.RandomDamage(), weaponReference.DamageType);
+            if(GetComponentInParent<PlayerStats>())
+            {
+                if (weaponReference.DamageType == DamageType.Blunt)
+                {
+                    audioSource.clip = clips[0];
+
+                    audioSource.Play();
+                }
+                if (weaponReference.DamageType == DamageType.Slash)
+                {
+                    audioSource.clip = clips[0];
+
+                    audioSource.Play();
+                }
+
+                if (weaponReference.DamageType == DamageType.Pierce)
+                {
+                    audioSource.clip = clips[0];
+
+                    audioSource.Play();
+                }
+            }
+
+   
+
+
+                iHitable.GetHit(weaponReference.RandomDamage(), weaponReference.DamageType);
 
             if (bloodSplash && !other.GetComponentInParent<Structure>())
             {
