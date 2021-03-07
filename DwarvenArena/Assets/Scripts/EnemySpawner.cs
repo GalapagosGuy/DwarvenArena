@@ -93,10 +93,10 @@ public class EnemySpawner : MonoBehaviour
         {
             failsafe++;
             List<int> availableEnemyIndexes = GetEnemyIndexesForValue(waveValue);
-            float random = Random.Range(0.0f, 1.0f);
             for(int i = availableEnemyIndexes.Count - 1; i >= 0; i--)
             {
-                if(random <= enemyChoicePriority[availableEnemyIndexes[i]])
+                float random = Random.Range(0.0f, 1.0f);
+                if (random <= enemyChoicePriority[availableEnemyIndexes[i]])
                 {
                     SpawnEnemy(i);
                     break;

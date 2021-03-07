@@ -18,4 +18,4 @@ MonoBehaviour:
     type: 3}
   cost: 90
   tier: 2
-  structureSprite: {fileID: 21300000, guid: cdf05773596e4bf47b66478e6e05eb90, type: 3}
+  structureSprite: {fileID: 21300000, guid: 7a3a7fb79c68b7d4d9d85dcdd77560c0, type: 3}
