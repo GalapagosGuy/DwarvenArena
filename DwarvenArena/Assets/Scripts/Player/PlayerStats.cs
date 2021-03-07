@@ -90,7 +90,7 @@ public class PlayerStats : MonoBehaviour, IHitable
         money -= value;
         if (money < 0)
             money = 0;
-
+        UIManager.Instance?.UpdateUI();
     }
 
     public void SubstractMana(float value)
@@ -98,6 +98,7 @@ public class PlayerStats : MonoBehaviour, IHitable
         mana -= value;
         if (mana < 0)
             mana = 0;
+        UIManager.Instance?.UpdateUI();
     }
 
     public bool HasEnoughMoney(int value)

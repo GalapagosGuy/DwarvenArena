@@ -23,7 +23,7 @@ public class BuildManager : MonoBehaviour
     private GameObject mock;
 
     // DO ZMIANY <<<<<<<<<<<<<<<<<<<<<
-    private int numberOfTiers = 2;
+    private int numberOfTiers = 3;
 
     void Start()
     {

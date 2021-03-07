@@ -76,8 +76,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8eb9ab0e2fe82464f9729395f3549fdd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  damageType: 1
-  damage: 12
+  damageType: 0
+  damage: 18
   damageOffset: 2
   animatorVariable: hasSwordEquiped
   mock: {fileID: 2118756153646113578, guid: 205ee6b653cea354ca9741ad64efa69d, type: 3}

@@ -15,3 +15,4 @@ MonoBehaviour:
   structureContainers:
   - {fileID: 11400000, guid: bcbac5c3053f1dc408535718efd61666, type: 2}
   - {fileID: 11400000, guid: 7798862c32eee864fa942fa758e1b9e8, type: 2}
+  - {fileID: 11400000, guid: b448d19a95b8833469f4a5dec1b56e74, type: 2}
