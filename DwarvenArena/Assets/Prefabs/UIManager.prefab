@@ -255,8 +255,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -0.000030518, y: 271}
-  m_SizeDelta: {x: 370.87048, y: 100}
+  m_AnchoredPosition: {x: -5, y: 271}
+  m_SizeDelta: {x: 410.40002, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &4808946812305228
 CanvasRenderer:
@@ -285,10 +285,10 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: You have lost!
+  m_text: They took your beard
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 73ef3761eb6b6bb4b8ffe035423e244e, type: 2}
-  m_sharedMaterial: {fileID: -4112846513026683334, guid: 73ef3761eb6b6bb4b8ffe035423e244e,
+  m_fontAsset: {fileID: 11400000, guid: 065d2b00a46041f48baede8181c64417, type: 2}
+  m_sharedMaterial: {fileID: 3041267701228885122, guid: 065d2b00a46041f48baede8181c64417,
     type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
@@ -313,8 +313,8 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 55
-  m_fontSizeBase: 55
+  m_fontSize: 45
+  m_fontSizeBase: 45
   m_fontWeight: 400
   m_enableAutoSizing: 0
   m_fontSizeMin: 18
@@ -413,7 +413,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 0.20754719, g: 0.20754719, b: 0.20754719, a: 1}
+  m_Color: {r: 0, g: 0, b: 0, a: 0.9490196}
   m_RaycastTarget: 1
   m_Maskable: 1
   m_OnCullStateChanged:
@@ -2091,8 +2091,8 @@ MonoBehaviour:
       m_Calls: []
   m_text: 4
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 73ef3761eb6b6bb4b8ffe035423e244e, type: 2}
-  m_sharedMaterial: {fileID: -4112846513026683334, guid: 73ef3761eb6b6bb4b8ffe035423e244e,
+  m_fontAsset: {fileID: 11400000, guid: 065d2b00a46041f48baede8181c64417, type: 2}
+  m_sharedMaterial: {fileID: 3041267701228885122, guid: 065d2b00a46041f48baede8181c64417,
     type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
@@ -2700,8 +2700,8 @@ MonoBehaviour:
       m_Calls: []
   m_text: YOU ARE THE CHAMPION!
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 73ef3761eb6b6bb4b8ffe035423e244e, type: 2}
-  m_sharedMaterial: {fileID: -4112846513026683334, guid: 73ef3761eb6b6bb4b8ffe035423e244e,
+  m_fontAsset: {fileID: 11400000, guid: 065d2b00a46041f48baede8181c64417, type: 2}
+  m_sharedMaterial: {fileID: 3041267701228885122, guid: 065d2b00a46041f48baede8181c64417,
     type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
@@ -2726,8 +2726,8 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 45
-  m_fontSizeBase: 45
+  m_fontSize: 35
+  m_fontSizeBase: 35
   m_fontWeight: 400
   m_enableAutoSizing: 0
   m_fontSizeMin: 18
@@ -2890,8 +2890,8 @@ MonoBehaviour:
       m_Calls: []
   m_text: Play again
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 73ef3761eb6b6bb4b8ffe035423e244e, type: 2}
-  m_sharedMaterial: {fileID: -4112846513026683334, guid: 73ef3761eb6b6bb4b8ffe035423e244e,
+  m_fontAsset: {fileID: 11400000, guid: 065d2b00a46041f48baede8181c64417, type: 2}
+  m_sharedMaterial: {fileID: 3041267701228885122, guid: 065d2b00a46041f48baede8181c64417,
     type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
@@ -3382,8 +3382,8 @@ MonoBehaviour:
       m_Calls: []
   m_text: 12
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 73ef3761eb6b6bb4b8ffe035423e244e, type: 2}
-  m_sharedMaterial: {fileID: -4112846513026683334, guid: 73ef3761eb6b6bb4b8ffe035423e244e,
+  m_fontAsset: {fileID: 11400000, guid: 065d2b00a46041f48baede8181c64417, type: 2}
+  m_sharedMaterial: {fileID: 3041267701228885122, guid: 065d2b00a46041f48baede8181c64417,
     type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
@@ -3780,8 +3780,8 @@ MonoBehaviour:
       m_Calls: []
   m_text: Exit
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 73ef3761eb6b6bb4b8ffe035423e244e, type: 2}
-  m_sharedMaterial: {fileID: -4112846513026683334, guid: 73ef3761eb6b6bb4b8ffe035423e244e,
+  m_fontAsset: {fileID: 11400000, guid: 065d2b00a46041f48baede8181c64417, type: 2}
+  m_sharedMaterial: {fileID: 3041267701228885122, guid: 065d2b00a46041f48baede8181c64417,
     type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
@@ -3914,8 +3914,8 @@ MonoBehaviour:
       m_Calls: []
   m_text: Enemies slayed
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 73ef3761eb6b6bb4b8ffe035423e244e, type: 2}
-  m_sharedMaterial: {fileID: -4112846513026683334, guid: 73ef3761eb6b6bb4b8ffe035423e244e,
+  m_fontAsset: {fileID: 11400000, guid: 065d2b00a46041f48baede8181c64417, type: 2}
+  m_sharedMaterial: {fileID: 3041267701228885122, guid: 065d2b00a46041f48baede8181c64417,
     type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
@@ -4252,8 +4252,8 @@ MonoBehaviour:
       m_Calls: []
   m_text: Waves survived
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 73ef3761eb6b6bb4b8ffe035423e244e, type: 2}
-  m_sharedMaterial: {fileID: -4112846513026683334, guid: 73ef3761eb6b6bb4b8ffe035423e244e,
+  m_fontAsset: {fileID: 11400000, guid: 065d2b00a46041f48baede8181c64417, type: 2}
+  m_sharedMaterial: {fileID: 3041267701228885122, guid: 065d2b00a46041f48baede8181c64417,
     type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
