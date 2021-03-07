@@ -404,17 +404,17 @@ public class Enemy : MonoBehaviour, IHitable
 
     private void OnDrawGizmos()
     {
-        if (Application.isPlaying)
-        {
-            for (int i = 0; i < 8; i++)
-            {
-                Gizmos.color = Color.red;
-                Gizmos.DrawLine(transform.position, transform.position + (ContextBasedSteeringBehaviourWeights.weightVectors[i] * behaviourWeights.weights[i]));
-            }
+        //if (Application.isPlaying)
+        //{
+        //    //for (int i = 0; i < 8; i++)
+        //    //{
+        //    //    Gizmos.color = Color.red;
+        //    //    Gizmos.DrawLine(transform.position, transform.position + (ContextBasedSteeringBehaviourWeights.weightVectors[i] * behaviourWeights.weights[i]));
+        //    //}
 
-            Gizmos.color = Color.blue;
-            Gizmos.DrawWireSphere(this.transform.position, distancePrefs.minPrefferedDistanceFromAlly);
-        }
+        //    //Gizmos.color = Color.blue;
+        //    //Gizmos.DrawWireSphere(this.transform.position, distancePrefs.minPrefferedDistanceFromAlly);
+        //}
     }
 
     public void BurnMaterial()

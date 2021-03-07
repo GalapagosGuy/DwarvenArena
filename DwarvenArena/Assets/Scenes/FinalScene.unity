@@ -2762,6 +2762,21 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2001288496284493559, guid: 024d364fd17b0ea4baf29fecb52a7b2d,
         type: 3}
+      propertyPath: enemyPrefabs.Array.size
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 2001288496284493559, guid: 024d364fd17b0ea4baf29fecb52a7b2d,
+        type: 3}
+      propertyPath: enemySpawnCost.Array.size
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 2001288496284493559, guid: 024d364fd17b0ea4baf29fecb52a7b2d,
+        type: 3}
+      propertyPath: enemyChoicePriority.Array.size
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 2001288496284493559, guid: 024d364fd17b0ea4baf29fecb52a7b2d,
+        type: 3}
       propertyPath: spawnPoints.Array.data[0]
       value: 
       objectReference: {fileID: 1389200111}
@@ -2784,6 +2799,22 @@ PrefabInstance:
         type: 3}
       propertyPath: waveStatus
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2001288496284493559, guid: 024d364fd17b0ea4baf29fecb52a7b2d,
+        type: 3}
+      propertyPath: enemyPrefabs.Array.data[1]
+      value: 
+      objectReference: {fileID: 2560019468074000850, guid: 1d76bd1a88118a24989570d2dc7cde21,
+        type: 3}
+    - target: {fileID: 2001288496284493559, guid: 024d364fd17b0ea4baf29fecb52a7b2d,
+        type: 3}
+      propertyPath: enemySpawnCost.Array.data[1]
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 2001288496284493559, guid: 024d364fd17b0ea4baf29fecb52a7b2d,
+        type: 3}
+      propertyPath: enemyChoicePriority.Array.data[1]
+      value: 0.5
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 024d364fd17b0ea4baf29fecb52a7b2d, type: 3}
