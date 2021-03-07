@@ -320,7 +320,7 @@ public class Enemy : MonoBehaviour, IHitable
 
     /// //////////////////////////////////////////////////////////////////////////////////////////
 
-    private void LookAt(Transform target)
+    protected void LookAt(Transform target)
     {
         Vector3 direction = (target.position - transform.position).normalized;
         Quaternion lookRotation = Quaternion.LookRotation(new Vector3(direction.x, 0, direction.z));    // flattens the vector3

@@ -85,9 +85,19 @@ public class RangedEnemy : Enemy
         }
     }
 
-    protected void WeightBasedDecision()
+    protected override void Attack()
     {
-
+        navMeshAgent.isStopped = true;
+        float dot = Vector3.Dot((this.transform.position - target.position).normalized, this.transform.forward);
+        Debug.Log(dot);
+        if (dot > -.6f)
+        {
+            LookAt(target);
+            return;
+        }
+        enemyAnimator.OnStopAnimation();
+        enemyAnimator.OnAttackAnimation();
+        actionAvailability.SetBusy(2f);
     }
 
     protected float RandomDamage()
