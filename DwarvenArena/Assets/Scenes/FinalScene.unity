@@ -3989,8 +3989,8 @@ PrefabInstance:
       objectReference: {fileID: 862413005}
     - target: {fileID: 2001288496284493559, guid: 024d364fd17b0ea4baf29fecb52a7b2d,
         type: 3}
-      propertyPath: enemyChoicePriority.Array.data[1]
-      value: 0.25
+      propertyPath: enemySpawnCost.Array.data[1]
+      value: 3
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 024d364fd17b0ea4baf29fecb52a7b2d, type: 3}
@@ -9655,6 +9655,11 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 2416183574208664768, guid: e6dfe1062eee32341b3cba4334bdb318,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 2894225056381279262, guid: e6dfe1062eee32341b3cba4334bdb318,
         type: 3}
       propertyPath: m_LocalPosition.x

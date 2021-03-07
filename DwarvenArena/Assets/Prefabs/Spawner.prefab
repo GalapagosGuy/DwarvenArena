@@ -46,7 +46,7 @@ MonoBehaviour:
   enemyPrefabs:
   - {fileID: 406318012314030328, guid: 8c977498d3419c24c8bdc9b6b15c2d9a, type: 3}
   - {fileID: 2560019468074000850, guid: 1d76bd1a88118a24989570d2dc7cde21, type: 3}
-  enemySpawnCost: 0100000002000000
+  enemySpawnCost: 0100000003000000
   enemyChoicePriority:
   - 1
   - 0.25
