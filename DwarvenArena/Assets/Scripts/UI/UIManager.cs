@@ -4,6 +4,7 @@ using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
 using UnityEngine.SceneManagement;
+using System;
 
 public class UIManager : MonoBehaviour
 {
@@ -23,6 +24,15 @@ public class UIManager : MonoBehaviour
 
     [SerializeField]
     private Animator animator;
+
+    [SerializeField]
+    private GameObject skipWaitingWaveObject;
+
+    [SerializeField]
+    private GameObject waveTimerObject;
+
+    [SerializeField]
+    private TextMeshProUGUI waveTimerText;
 
     [Header("End game")]
     [SerializeField]
@@ -66,6 +76,11 @@ public class UIManager : MonoBehaviour
         moneyText.text = playerStats.money.ToString();
     }
 
+    public void UpdateWaveTimeText(float time)
+    {
+        waveTimerText.text = Mathf.RoundToInt(time).ToString();
+    }
+
     public void UpdateWaveText()
     {
         waveText.text = (EnemySpawner.Instance.wave).ToString();
@@ -90,6 +105,12 @@ public class UIManager : MonoBehaviour
         gameEndPanel.SetActive(true);
         gameLostText.SetActive(true);
         UpdateEndGameStatistics();
+    }
+
+    public void ToggleSkip(bool toggle)
+    {
+        skipWaitingWaveObject.SetActive(toggle);
+        waveTimerObject.SetActive(toggle);
     }
 
     public void ReloadGame()

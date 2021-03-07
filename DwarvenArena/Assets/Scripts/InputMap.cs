@@ -13,4 +13,5 @@ public static class InputMap
     public const KeyCode MovementRight = KeyCode.D;
     public const KeyCode Action = KeyCode.E;
     public const KeyCode Build = KeyCode.R;
+    public const KeyCode Skip = KeyCode.Space;
 }
