@@ -34,7 +34,7 @@ public class EnemySpawner : MonoBehaviour
             Destroy(this.gameObject);
 
         spawnedEnemies = new List<Enemy>();
-        if(!debugSpawnNow)
+        if (!debugSpawnNow)
             currentTime = timeToNextWave;
 
         packageThrower = FindObjectOfType<PackageThrower>();
@@ -52,11 +52,11 @@ public class EnemySpawner : MonoBehaviour
                 currentTime = timeToNextWave;
             }
         }
-        else if(waveStatus == WaveStatus.WAITING)
+        else if (waveStatus == WaveStatus.WAITING)
         {
             currentTime -= Time.deltaTime;
             UIManager.Instance.UpdateWaveTimeText(currentTime);
-            if(currentTime <= 0)
+            if (currentTime <= 0)
             {
                 waveStatus = WaveStatus.INPROGRESS;
                 SpawnWave();
@@ -66,12 +66,12 @@ public class EnemySpawner : MonoBehaviour
 
     private bool CheckIfWaveFinished()
     {
-        foreach(Enemy e in spawnedEnemies)
+        foreach (Enemy e in spawnedEnemies)
         {
             if (e != null)
                 return false;
         }
-        if(wave == 1)
+        if (wave == 1)
             packageThrower.SetNumberOfPackagesToThrow(3);
         else
             packageThrower.SetNumberOfPackagesToThrow(Random.Range(1 + (int)(wave / 3), 5 + (int)(wave / 3)));
@@ -82,12 +82,14 @@ public class EnemySpawner : MonoBehaviour
         {
             UIManager.Instance.GameWon();
         }
-            
+
         return true;
     }
 
     private void SpawnWave()
     {
+        GetComponent<AudioSource>().Play();
+
         wave++;
         UIManager.Instance.ToggleSkip(false);
         UIManager.Instance.UpdateWaveText();
@@ -95,11 +97,11 @@ public class EnemySpawner : MonoBehaviour
         SetWaveValue();
 
         int failsafe = 0;
-        while(waveValue > 0)
+        while (waveValue > 0)
         {
             failsafe++;
             List<int> availableEnemyIndexes = GetEnemyIndexesForValue(waveValue);
-            for(int i = availableEnemyIndexes.Count - 1; i >= 0; i--)
+            for (int i = availableEnemyIndexes.Count - 1; i >= 0; i--)
             {
                 float random = Random.Range(0.0f, 1.0f);
                 if (random <= enemyChoicePriority[availableEnemyIndexes[i]])
@@ -136,7 +138,7 @@ public class EnemySpawner : MonoBehaviour
     private List<int> GetEnemyIndexesForValue(int value)
     {
         List<int> result = new List<int>();
-        for(int i = 0; i < enemySpawnCost.Count; i++)
+        for (int i = 0; i < enemySpawnCost.Count; i++)
         {
             if (waveValue >= enemySpawnCost[i])
                 result.Add(i);

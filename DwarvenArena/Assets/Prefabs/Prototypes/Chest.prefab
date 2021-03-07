@@ -17,7 +17,7 @@ GameObject:
   - component: {fileID: 8163579752422927200}
   - component: {fileID: 3161416596606661000}
   m_Layer: 0
-  m_Name: Prototype Package From Audience
+  m_Name: Chest
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -116,6 +116,8 @@ MonoBehaviour:
   hpObject: {fileID: 0}
   hpBar: {fileID: 0}
   moneyAward: 10
+  soundObject: {fileID: 2739568588277084796, guid: 7272c19ab089edd4db4d6ed4eb536abb,
+    type: 3}
 --- !u!114 &6738702016938509458
 MonoBehaviour:
   m_ObjectHideFlags: 0
