@@ -72,6 +72,7 @@ public class EnemySpawner : MonoBehaviour
     private void SpawnWave()
     {
         wave++;
+        UIManager.Instance.UpdateWaveText();
         spawnedEnemies.Clear();
         SetWaveValue();
 

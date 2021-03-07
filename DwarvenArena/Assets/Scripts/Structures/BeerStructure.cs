@@ -33,7 +33,7 @@ public class BeerStructure : Structure
             if(currentTime >= cooldownTime)
             {
                 isReady = true;
-                currentTime = 0;
+               
             }
             UpdateUI();
         }
@@ -50,6 +50,7 @@ public class BeerStructure : Structure
         {
             hero.GetComponentInParent<PlayerStats>().AddMana(healingPower);
             isReady = false;
+            currentTime = 0;
         }
        
     }

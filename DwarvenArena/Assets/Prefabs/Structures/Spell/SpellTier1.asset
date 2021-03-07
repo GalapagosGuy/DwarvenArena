@@ -17,5 +17,5 @@ MonoBehaviour:
   structureMock: {fileID: 4893127631847310749, guid: f79e5cba05bff00498146e7ecab56672,
     type: 3}
   cost: 30
-  tier: 1
+  tier: 0
   structureSprite: {fileID: 21300000, guid: 5e4481bd955d59747b8b6dd5221c397c, type: 3}

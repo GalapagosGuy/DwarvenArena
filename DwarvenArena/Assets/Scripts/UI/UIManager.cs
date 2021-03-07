@@ -18,6 +18,12 @@ public class UIManager : MonoBehaviour
     [SerializeField]
     private TextMeshProUGUI moneyText;
 
+    [SerializeField]
+    private TextMeshProUGUI waveText;
+
+    [SerializeField]
+    private Animator animator;
+
     [Header("End game")]
     [SerializeField]
     private GameObject gameEndPanel;
@@ -50,6 +56,7 @@ public class UIManager : MonoBehaviour
     void Start()
     {
         UpdateUI();
+        UpdateWaveText();
     }
 
     public void UpdateUI()
@@ -57,6 +64,11 @@ public class UIManager : MonoBehaviour
         hpBar.fillAmount = playerStats.hp / playerStats.MaxHp;
         manaBar.fillAmount = playerStats.mana / playerStats.MaxMana;
         moneyText.text = playerStats.money.ToString();
+    }
+
+    public void UpdateWaveText()
+    {
+        waveText.text = (EnemySpawner.Instance.wave).ToString();
     }
 
     public void UpdateEndGameStatistics()
@@ -102,6 +114,11 @@ public class UIManager : MonoBehaviour
 
         structuresUI[category].GetComponent<StructureUI>().activeIndicator.SetActive(true);
 
+    }
+
+    public void GetHitEffect()
+    {
+        animator.SetTrigger("Blink");
     }
 
 

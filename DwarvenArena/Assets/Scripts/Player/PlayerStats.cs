@@ -55,7 +55,8 @@ public class PlayerStats : MonoBehaviour, IHitable
             Destroy(this.gameObject);
         }
 
-        UIManager.Instance?.UpdateUI();
+        UIManager.Instance.UpdateUI();
+        UIManager.Instance.GetHitEffect();
     }
 
     public void HealUp(float value)
