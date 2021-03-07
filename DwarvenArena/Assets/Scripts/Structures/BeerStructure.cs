@@ -17,6 +17,8 @@ public class BeerStructure : Structure
     private float currentTime;
     private bool isReady;
 
+    public GameObject beer;
+
     protected override void Start()
     {
         base.Start();
@@ -27,13 +29,14 @@ public class BeerStructure : Structure
     // Update is called once per frame
     void Update()
     {
-        if(!isReady)
+        if (!isReady)
         {
             currentTime += Time.deltaTime;
-            if(currentTime >= cooldownTime)
+            if (currentTime >= cooldownTime)
             {
                 isReady = true;
-               
+                beer.SetActive(true);
+
             }
             UpdateUI();
         }
@@ -46,12 +49,13 @@ public class BeerStructure : Structure
 
     public override void Use(GameObject hero)
     {
-        if(isReady)
+        if (isReady)
         {
             hero.GetComponentInParent<PlayerStats>().AddMana(healingPower);
             isReady = false;
             currentTime = 0;
+            beer.SetActive(false);
         }
-       
+
     }
 }
