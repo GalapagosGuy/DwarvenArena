@@ -77,6 +77,12 @@ public class EnemySpawner : MonoBehaviour
             packageThrower.SetNumberOfPackagesToThrow(Random.Range(1 + (int)(wave / 3), 5 + (int)(wave / 3)));
 
         UIManager.Instance.ToggleSkip(true);
+
+        if (wave == 20)
+        {
+            UIManager.Instance.GameWon();
+        }
+            
         return true;
     }
 
