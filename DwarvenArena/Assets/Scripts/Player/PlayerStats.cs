@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -7,13 +8,14 @@ public class PlayerStats : MonoBehaviour, IHitable
     public static PlayerStats Instance = null;
 
     [SerializeField]
+    private float startingMaxHp;
+    [SerializeField]
     private float maxHp;
     [SerializeField]
     private float maxMana;
     [SerializeField]
     private float manaRegen;
 
-    
     public float hp { get; private set; }
     public float mana { get; private set; }
     public int money { get; private set; }
@@ -22,18 +24,19 @@ public class PlayerStats : MonoBehaviour, IHitable
     public int monsterKilled { get; private set; }
 
     public PlayerSlots playerSlots;
+    public Armor armor;
 
     void Start()
     {
         PlayerStats.Instance = this;
+        armor = GetComponent<Armor>();
         playerSlots = GetComponent<PlayerSlots>();
-        hp = maxHp;//* .25f;
+        hp = startingMaxHp;//* .25f;
         mana = maxMana;
-        money = 0;
+        money = 500;
         UIManager.Instance?.UpdateUI();
     }
 
-    // Update is called once per frame
     void Update()
     {
         if (mana < maxMana)
@@ -57,6 +60,13 @@ public class PlayerStats : MonoBehaviour, IHitable
 
         UIManager.Instance.UpdateUI();
         UIManager.Instance.GetHitEffect();
+    }
+
+    public void SetMaxHp(float bonus)
+    {
+        maxHp = startingMaxHp + bonus;
+        HealUp(bonus);
+        UIManager.Instance.UpdateUI();
     }
 
     public void HealUp(float value)

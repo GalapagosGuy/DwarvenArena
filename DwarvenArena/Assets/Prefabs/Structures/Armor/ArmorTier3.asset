@@ -1,0 +1,21 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c7bd8e5861f3a3348a724b0c0c0a3462, type: 3}
+  m_Name: ArmorTier3
+  m_EditorClassIdentifier: 
+  structureObject: {fileID: 3349706777818599967, guid: 3d10048fa61f46d45a80a57058de5b3e,
+    type: 3}
+  structureMock: {fileID: 3349706777818599967, guid: bc046a43686801942b8a39bd60d81c83,
+    type: 3}
+  cost: 90
+  tier: 2
+  structureSprite: {fileID: 21300000, guid: cdf05773596e4bf47b66478e6e05eb90, type: 3}

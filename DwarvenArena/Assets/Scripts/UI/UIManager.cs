@@ -104,7 +104,7 @@ public class UIManager : MonoBehaviour
 
     public void ChangeIndicator(int category)
     {
-        for (int i = 0; i < structuresUI.Length-1; i++)
+        for (int i = 0; i < structuresUI.Length; i++)
         {
             structuresUI[i].GetComponent<StructureUI>().activeIndicator.SetActive(false);
             structuresUI[i].GetComponent<StructureUI>().tierText.text = "Tier " + (BuildManager.Instance.tierContainers[i].structureContainers[BuildManager.Instance.tiersToBuild[i]].tier + 1);

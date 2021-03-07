@@ -72,10 +72,8 @@ public class EnemySpawner : MonoBehaviour
         }
         if(wave == 1)
             packageThrower.SetNumberOfPackagesToThrow(3);
-        else if(wave <= 5)
-            packageThrower.SetNumberOfPackagesToThrow(Random.Range(1,4));
         else
-            packageThrower.SetNumberOfPackagesToThrow(Random.Range(2, 5));
+            packageThrower.SetNumberOfPackagesToThrow(Random.Range(1 + (int)(wave / 3), 5 + (int)(wave / 3)));
         return true;
     }
 

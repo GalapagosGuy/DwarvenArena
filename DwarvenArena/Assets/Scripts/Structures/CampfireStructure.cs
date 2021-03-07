@@ -17,6 +17,8 @@ public class CampfireStructure : Structure
     private float currentTime;
     private bool isReady;
 
+    public GameObject mead;
+
     protected override void Start()
     {
         base.Start();
@@ -27,13 +29,14 @@ public class CampfireStructure : Structure
     // Update is called once per frame
     void Update()
     {
-        if(!isReady)
+        if (!isReady)
         {
             currentTime += Time.deltaTime;
-            if(currentTime >= cooldownTime)
+            if (currentTime >= cooldownTime)
             {
                 isReady = true;
-                
+                mead.SetActive(true);
+
             }
             UpdateUI();
         }
@@ -46,13 +49,14 @@ public class CampfireStructure : Structure
 
     public override void Use(GameObject hero)
     {
-        if(isReady)
+        if (isReady)
         {
             Debug.Log("Player got healed from " + this.gameObject.name);
             hero.GetComponentInParent<PlayerStats>().HealUp(healingPower);
             isReady = false;
             currentTime = 0;
+            mead.SetActive(false);
         }
-       
+
     }
 }
