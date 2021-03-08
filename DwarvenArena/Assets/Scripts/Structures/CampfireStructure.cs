@@ -14,28 +14,42 @@ public class CampfireStructure : Structure
     [SerializeField]
     private Image cooldownBar;
 
-    private float currentTime;
+
     private bool isReady;
 
     public GameObject mead;
 
-    private float currentTime2 = 0;
-    private float timeToRepair = 1;
-    private float repairAmount = 2;
+    private float currentHealTime = 0;
     protected override void Start()
     {
         base.Start();
-        currentTime = 0;
+        currentHealTime = 0;
+        currentRepairTime = 0;
         UpdateUI();
     }
 
     // Update is called once per frame
     void Update()
     {
+        // REPAIRING
+        if (hp < MaxHp)
+        {
+            if (currentRepairTime < timeToRepair)
+            {
+                currentRepairTime += Time.deltaTime;
+            }
+            else
+            {
+                Repair(repairAmount);
+                currentRepairTime = 0;
+            }
+        }
+
+        // SPAWNING FOOD
         if (!isReady)
         {
-            currentTime += Time.deltaTime;
-            if (currentTime >= cooldownTime)
+            currentHealTime += Time.deltaTime;
+            if (currentHealTime >= cooldownTime)
             {
                 isReady = true;
                 mead.SetActive(true);
@@ -43,24 +57,15 @@ public class CampfireStructure : Structure
             }
             UpdateUI();
         }
-
-        if (hp < MaxHp)
-        {
-            if (currentTime < timeToRepair)
-            {
-                currentTime += Time.deltaTime;
-            }
-            else
-            {
-                Repair(repairAmount);
-                currentTime = 0;
-            }
-        }
+        
+        
     }
 
-    public void UpdateUI()
+    public override void UpdateUI()
     {
-        cooldownBar.fillAmount = currentTime / cooldownTime;
+        base.UpdateUI();
+        cooldownBar.fillAmount = currentHealTime / cooldownTime;
+        
     }
 
     public override void Use(GameObject hero)
@@ -70,7 +75,7 @@ public class CampfireStructure : Structure
             Debug.Log("Player got healed from " + this.gameObject.name);
             hero.GetComponentInParent<PlayerStats>().PercentHealUp(healingPower);
             isReady = false;
-            currentTime = 0;
+            currentHealTime = 0;
             mead.SetActive(false);
             GetComponent<AudioSource>()?.Play();
         }

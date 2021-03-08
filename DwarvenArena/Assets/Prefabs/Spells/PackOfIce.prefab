@@ -408,9 +408,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   cost: 50
-  damage: 30
+  damage: 10
   damageType: 4
-  damageOffset: 5
+  damageOffset: 3
   damageRadius: 6
   bullets: 7
   chanceForPrison: 100

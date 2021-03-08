@@ -14,27 +14,40 @@ public class BeerStructure : Structure
     [SerializeField]
     private Image cooldownBar;
 
-    private float currentTime;
     private bool isReady;
 
     public GameObject beer;
-    private float currentTime2 = 0;
-    private float timeToRepair = 1;
-    private float repairAmount = 2;
+    private float currentHealTime = 0;
+
     protected override void Start()
     {
         base.Start();
-        currentTime = 0;
+        currentHealTime = 0;
         UpdateUI();
     }
 
     // Update is called once per frame
     void Update()
     {
+        // REPAIRING
+        if (hp < MaxHp)
+        {
+            if (currentRepairTime < timeToRepair)
+            {
+                currentRepairTime += Time.deltaTime;
+            }
+            else
+            {
+                Repair(repairAmount);
+                currentRepairTime = 0;
+            }
+        }
+
+        // SPAWNING BEER/MANA
         if (!isReady)
         {
-            currentTime += Time.deltaTime;
-            if (currentTime >= cooldownTime)
+            currentHealTime += Time.deltaTime;
+            if (currentHealTime >= cooldownTime)
             {
                 isReady = true;
                 beer.SetActive(true);
@@ -42,24 +55,13 @@ public class BeerStructure : Structure
             }
             UpdateUI();
         }
-
-        if (hp < MaxHp)
-        {
-            if (currentTime < timeToRepair)
-            {
-                currentTime += Time.deltaTime;
-            }
-            else
-            {
-                Repair(repairAmount);
-                currentTime = 0;
-            }
-        }
+        
     }
 
-    public void UpdateUI()
+    public override void UpdateUI()
     {
-        cooldownBar.fillAmount = currentTime / cooldownTime;
+        base.UpdateUI();
+        cooldownBar.fillAmount = currentHealTime / cooldownTime;
     }
 
     public override void Use(GameObject hero)
@@ -68,7 +70,7 @@ public class BeerStructure : Structure
         {
             hero.GetComponentInParent<PlayerStats>().AddMana(healingPower);
             isReady = false;
-            currentTime = 0;
+            currentHealTime = 0;
             beer.SetActive(false);
             GetComponent<AudioSource>()?.Play();
         }

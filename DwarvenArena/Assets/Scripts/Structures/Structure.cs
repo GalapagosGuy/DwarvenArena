@@ -18,9 +18,9 @@ public abstract class Structure : PlayerStuff, IHitable
     [SerializeField]
     private Image hpBar;
 
-    private float timeToHeal = 1;
-    private float repairAmount = 2;
-    private float currentTime = 0;
+    protected float timeToRepair = 1;
+    protected float repairAmount = 2;
+    protected float currentRepairTime = 0;
     protected virtual void Start()
     {
         //hpObject.GetComponentInParent<Canvas>().gameObject.AddComponent<CanvasBillboard>();
@@ -32,16 +32,17 @@ public abstract class Structure : PlayerStuff, IHitable
 
     private void Update()
     {
+        // REPAIRING
         if(hp < MaxHp)
         {
-            if (currentTime < timeToHeal)
+            if (currentRepairTime < timeToRepair)
             {
-                currentTime += Time.deltaTime;
+                currentRepairTime += Time.deltaTime;
             }
             else
             {
                 Repair(repairAmount);
-                currentTime = 0;
+                currentRepairTime = 0;
             }
         }
 
@@ -78,7 +79,7 @@ public abstract class Structure : PlayerStuff, IHitable
     }
     public abstract void Use(GameObject hero);
 
-    public void UpdateUI()
+    public virtual void UpdateUI()
     {
         hpBar.fillAmount = hp / MaxHp;
         if (hp == MaxHp)
