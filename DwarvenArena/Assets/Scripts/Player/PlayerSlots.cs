@@ -57,7 +57,7 @@ public class PlayerSlots : MonoBehaviour
 
     public void StopUsingSpell()
     {
-        
+        playerController.mouseLocked = false;
         animator?.SetBool("usingSpell", false);
 
         CastedSpell[] spells = hearingSpells.ToArray();

@@ -53,7 +53,7 @@ public class PlayerController : PlayerStuff
     {
         if (!mouseLocked)
         {
-            if (Input.GetMouseButtonDown(0))
+            if (Input.GetMouseButton(0))
             {
                 playerSlots?.UseWeapon();
             }

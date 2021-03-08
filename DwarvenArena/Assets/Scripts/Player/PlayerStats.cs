@@ -34,16 +34,17 @@ public class PlayerStats : MonoBehaviour, IHitable
         PlayerStats.Instance = this;
         armor = GetComponent<Armor>();
         playerSlots = GetComponent<PlayerSlots>();
-        hp = startingMaxHp;//* .25f;
-        mana = maxMana;
+       
         money = 0;
         if (godMode)
         {
             money = 10000;
-            mana = 10000;
-            hp = 10000;
+            maxMana = 10000;
+            startingMaxHp = 10000;
+            manaRegen = 100;
         }
-           
+        hp = startingMaxHp;//* .25f;
+        mana = maxMana;
         UIManager.Instance?.UpdateUI();
     }
 
