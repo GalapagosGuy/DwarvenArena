@@ -21,6 +21,11 @@ public class Detector : MonoBehaviour
             detectedStructure = other.GetComponentInParent<Structure>();
             if (other.GetComponentInChildren<Outline>())
                 other.GetComponentInChildren<Outline>().enabled = true;
+
+            if (other.GetComponentInParent<PackageFromAudiance>())
+            {
+                Use();
+            }
         }
     }
 
@@ -34,6 +39,8 @@ public class Detector : MonoBehaviour
 
             if (other.GetComponentInChildren<Outline>())
                 other.GetComponentInChildren<Outline>().enabled = false;
+
+
         }
     }
 

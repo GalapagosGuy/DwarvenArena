@@ -364,7 +364,9 @@ public class Enemy : MonoBehaviour, IHitable
         if (damageType == weakness)
         {
             if(weakness == DamageType.Pierce)
-                value *= 3.0f;
+                value *= 2.0f;
+            else if (weakness == DamageType.Blunt)
+                value *= 2.5f;
             else
                 value *= 1.5f;
 
