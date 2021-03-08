@@ -408,7 +408,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   cost: 50
-  damage: 10
+  damage: 12
   damageType: 4
   damageOffset: 3
   damageRadius: 6

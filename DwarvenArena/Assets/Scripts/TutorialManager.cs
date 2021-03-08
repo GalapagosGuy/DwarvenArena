@@ -51,4 +51,9 @@ public class TutorialManager : MonoBehaviour
         }  
        
     }
+
+    public void Exit()
+    {
+        Application.Quit();
+    }
 }

@@ -87,9 +87,13 @@ public class UIManager : MonoBehaviour
         waveText.text = (EnemySpawner.Instance.wave).ToString();
     }
 
-    public void UpdateEndGameStatistics()
+    public void UpdateEndGameStatistics(bool won)
     {
-        waveEndText.text = (EnemySpawner.Instance.wave -1 ).ToString();
+        if(won)
+            waveEndText.text = (EnemySpawner.Instance.wave).ToString();
+        else
+            waveEndText.text = (EnemySpawner.Instance.wave - 1).ToString();
+
         monsterKilledText.text = PlayerStats.Instance.monsterKilled.ToString();
     }
 
@@ -99,7 +103,7 @@ public class UIManager : MonoBehaviour
         gameWonText.SetActive(true);
         Time.timeScale = 0;
         Cursor.visible = true;
-        UpdateEndGameStatistics();
+        UpdateEndGameStatistics(true);
 
     }
 
@@ -110,7 +114,7 @@ public class UIManager : MonoBehaviour
         Cursor.visible = true;
         Time.timeScale = 0;
 
-        UpdateEndGameStatistics();
+        UpdateEndGameStatistics(false);
     }
 
     public void ToggleSkip(bool toggle)
