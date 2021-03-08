@@ -18,6 +18,7 @@ public class PlayerSlots : MonoBehaviour
 
     private PlayerStats playerStats;
     private Animator animator = null;
+    private PlayerController playerController;
 
     private List<CastedSpell> hearingSpells = new List<CastedSpell>();
 
@@ -25,13 +26,14 @@ public class PlayerSlots : MonoBehaviour
     {
         playerStats = GetComponent<PlayerStats>();
         animator = GetComponent<Animator>();
+        playerController = GetComponent<PlayerController>();
     }
 
     public void UseWeapon()
     {
         if (!equipedWeapon)
             return;
-
+        playerController.mouseLocked = true;
         animator?.SetTrigger("attackTrigger");
     }
 
@@ -47,6 +49,7 @@ public class PlayerSlots : MonoBehaviour
 
         if (!playerStats.HasEnoughMana(equipedSpell.castedSpell.GetComponent<CastedSpell>().cost))
             return;
+       // playerController.mouseLocked = true;
 
         animator?.SetTrigger("spellTrigger");
         animator?.SetBool("usingSpell", true);
@@ -54,6 +57,7 @@ public class PlayerSlots : MonoBehaviour
 
     public void StopUsingSpell()
     {
+        
         animator?.SetBool("usingSpell", false);
 
         CastedSpell[] spells = hearingSpells.ToArray();
@@ -122,6 +126,8 @@ public class PlayerSlots : MonoBehaviour
 
     public void DisableDealingMeleeDamage()
     {
+        playerController.mouseLocked = false;
+
         equipedWeapon?.DisableDealingDamage();
     }
 

@@ -44,19 +44,26 @@ public class PlayerController : PlayerStuff
         {
             mousePosition = hit.point;
         }
-        if(!mouseLocked)
-            ProcessMouseInputs();
+
+         ProcessMouseInputs();
         ProcessKeyboardInputs();
     }
 
     private void ProcessMouseInputs()
     {
-        if (Input.GetMouseButtonDown(0))
-            playerSlots?.UseWeapon();
-        else if (Input.GetMouseButtonDown(1))
+        if (!mouseLocked)
+        {
+            if (Input.GetMouseButtonDown(0))
+            {
+                playerSlots?.UseWeapon();
+            }
+        }
+
+
+        if (Input.GetMouseButtonDown(1))
             playerSlots?.UseSpell();
 
-        if (!Input.GetMouseButton(1))
+        if (Input.GetMouseButtonUp(1))
             playerSlots?.StopUsingSpell();
     }
 

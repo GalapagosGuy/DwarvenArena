@@ -8,6 +8,9 @@ public class PlayerStats : MonoBehaviour, IHitable
     public static PlayerStats Instance = null;
 
     [SerializeField]
+    private bool godMode;
+
+    [SerializeField]
     private float startingMaxHp;
     [SerializeField]
     private float maxHp;
@@ -34,6 +37,13 @@ public class PlayerStats : MonoBehaviour, IHitable
         hp = startingMaxHp;//* .25f;
         mana = maxMana;
         money = 0;
+        if (godMode)
+        {
+            money = 10000;
+            mana = 10000;
+            hp = 10000;
+        }
+           
         UIManager.Instance?.UpdateUI();
     }
 
