@@ -83,7 +83,7 @@ public class PlayerController : PlayerStuff
             EnemySpawner.Instance.SkipWave();
         }
         if (Input.GetKeyDown(KeyCode.Escape))
-            Application.Quit();
+            UIManager.Instance.TogglePause();
 
     }
 

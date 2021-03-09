@@ -34,6 +34,9 @@ public class UIManager : MonoBehaviour
     [SerializeField]
     private TextMeshProUGUI waveTimerText;
 
+    [SerializeField]
+    private GameObject settingsObject;
+
     [Header("End game")]
     [SerializeField]
     private GameObject gameEndPanel;
@@ -150,6 +153,18 @@ public class UIManager : MonoBehaviour
     public void GetHitEffect()
     {
         animator.SetTrigger("Blink");
+    }
+
+    private bool paused = false;
+    public void TogglePause()
+    {
+        paused = !paused;
+        settingsObject.SetActive(paused);
+
+        if (paused)
+            Time.timeScale = 0;
+        else
+            Time.timeScale = 1;
     }
 
 
