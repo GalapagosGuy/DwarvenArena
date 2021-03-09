@@ -82,8 +82,16 @@ public class PlayerController : PlayerStuff
             UIManager.Instance.ToggleSkip(false);
             EnemySpawner.Instance.SkipWave();
         }
-        if (Input.GetKeyDown(KeyCode.Escape))
-            UIManager.Instance.TogglePause();
+        if(!Application.isEditor)
+        {
+            if (Input.GetKeyDown(KeyCode.Escape))
+                UIManager.Instance.TogglePause();
+        }
+        else
+        {
+            if (Input.GetKeyDown(KeyCode.F1))
+                UIManager.Instance.TogglePause();
+        }
 
     }
 
