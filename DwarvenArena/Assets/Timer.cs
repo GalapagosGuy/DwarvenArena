@@ -8,7 +8,7 @@ public class Timer : MonoBehaviour
 {
     [SerializeField]
     private float time = 0;
-    private TextMeshProUGUI text;
+    public TextMeshProUGUI text;
 
     private void Awake()
     {

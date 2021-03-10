@@ -39,7 +39,7 @@ public class Fireball : CastedSpell
 
     private void OnTriggerEnter(Collider other)
     {
-        if (other.transform.root.gameObject != PlayerController.Instance.gameObject)
+        if (other.transform.root.gameObject != PlayerController.Instance.gameObject && !other.GetComponent<PackageFromAudiance>())
         {
             Destroy(this.gameObject);
         }

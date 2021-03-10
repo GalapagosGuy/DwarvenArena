@@ -53,6 +53,9 @@ public class UIManager : MonoBehaviour
     [SerializeField]
     private TextMeshProUGUI monsterKilledText;
 
+    [SerializeField]
+    private TextMeshProUGUI endTimeText;
+
     [Header("Structures UI")]
     public GameObject[] structuresUI;
 
@@ -98,6 +101,7 @@ public class UIManager : MonoBehaviour
             waveEndText.text = (EnemySpawner.Instance.wave - 1).ToString();
 
         monsterKilledText.text = PlayerStats.Instance.monsterKilled.ToString();
+        endTimeText.text = FindObjectOfType<Timer>().text.text;
     }
 
     public void GameWon()
